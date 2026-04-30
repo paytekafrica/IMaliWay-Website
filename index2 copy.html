@@ -8,25 +8,37 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="assets/css/main.css"/>
-  
+  <link rel="stylesheet" href="assets/css/main (1).css"/>
 </head>
 <body>
+
 <!-- ════════════════════════ NAVBAR ════════════════════════ -->
 <header class="navbar" id="navbar">
   <div class="nav-wrap">
 
     <a href="/" class="nav-logo" aria-label="IMaliway">
-      
-      <span class="logo-text">I<strong>Mali</strong><em>way</em></span>
+      <svg class="logo-mark" width="36" height="36" viewBox="0 0 38 38" fill="none">
+        <circle cx="8.5" cy="8.5" r="4.5" stroke="currentColor" stroke-width="2" fill="none" class="logo-ring"/>
+        <circle cx="8.5" cy="8.5" r="2" fill="currentColor" class="logo-dot"/>
+        <path d="M13 30 L13 15 L21.5 23 L30 15 L30 30" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" fill="none" class="logo-m"/>
+        <path d="M13 15 L21.5 22.5 L30 15" stroke="url(#chev)" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <defs>
+          <linearGradient id="chev" x1="13" y1="15" x2="30" y2="15">
+            <stop offset="0%" stop-color="#6DC135"/>
+            <stop offset="100%" stop-color="#2E7D1E"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="logo-text">i<strong>Mali</strong><em>way</em></span>
     </a>
 
     <nav class="nav-links" aria-label="Navegação">
-        <a href="#metodos" class="nav-link">Soluções</a>
-        <a href="developers.html" class="nav-link">Developers</a>
-        <a href="taxas.html" class="nav-link">Taxas</a>
-        <a href="documentacao.html" class="nav-link">Documentação</a>
+      <a href="#metodos" class="nav-link">Soluções</a>
+      <a href="developers.html" class="nav-link">Developers</a>
+      <a href="precos.html" class="nav-link">Preços</a>
+      <a href="sobre.html" class="nav-link">Empresa</a>
     </nav>
+
     <div class="nav-end">
       <!-- Theme toggle -->
       <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" title="Alternar tema claro/escuro">
@@ -51,14 +63,15 @@
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <a href="#metodos" class="mob-link">Soluções</a>
     <a href="developers.html" class="mob-link">Developers</a>
-    <a href="taxas.html" class="mob-link">Taxas</a>
-    <a href="documentacao.html" class="mob-link">Documentação</a>
+    <a href="precos.html" class="mob-link">Preços</a>
+    <a href="sobre.html" class="mob-link">Empresa</a>
     <div class="mob-ctas">
       <a href="#" class="btn btn-ghost">Entrar</a>
       <a href="#" class="btn btn-primary">Criar Conta</a>
     </div>
   </div>
 </header>
+
 <main>
 
  <section class="hero" id="hero">
@@ -92,25 +105,18 @@
         </svg>
       </a>
     </div>
-    <div class="hero-cards">
-  <div class="hero-card">
-    <div class="hero-card-img">
-      <img src="assets\image\bm.png" alt="Licenciado" />
-    </div>
-    <span class="hero-card-label">Licenciado(2020)</span>
-  </div>
 <div class="hero-cards">
   <div class="hero-card">
     <div class="hero-card-img">
       <img src="assets/image/SANDBOX-a07a249c9b1021561c7b8c545d69f9c2.png" alt="Regulado" />
     </div>
-    <span class="hero-card-label">Aprovado (2020)</span>
+    <span class="hero-card-label">Regulado</span>
   </div>
   <div class="hero-card">
     <div class="hero-card-img">
       <img src="assets/image/simo-rede.png" alt="Ligados a SIMO" />
     </div>
-    <span class="hero-card-label">Ligados a SIMO (2026)</span>
+    <span class="hero-card-label">Ligados a SIMO</span>
   </div>
 </div>
   </div>
@@ -119,38 +125,37 @@
 <!-- ════════════════════════ MÉTODOS (Stitch) ════════════════════════ -->
 <section class="methods-section" id="metodos" aria-labelledby="methods-h">
   <div class="container">
-    <h2 class="section-h reveal" id="methods-h">Aceite todos os métodos de pagamentos digitais</h2>
-    <p class="section-p reveal">Uma integração única para todos os métodos de pagamentos digitais.</p>
+    <h2 class="section-h reveal" id="methods-h">Aceite tudo o que move valor</h2>
+    <p class="section-p reveal">Uma integração única para todos os métodos de pagamento populares em Moçambique.</p>
 
     <div class="methods-grid reveal">
 
       <div class="method-card">
         <div class="method-icon-ring mpesa-ring">
-          <img src="assets/image/m-pesa.png" alt="M-Pesa" style="max-width: 32px; height: auto;" />
+          <span class="method-initial" style="color:#1B5E20">M</span>
         </div>
         <h3 class="method-name">M-Pesa</h3>
-        <p class="method-desc">Integração com a carteira móvel da Vodacom</p>
-        <span class="method-pill">Disponível</span>
-      </div>
-        <div class="method-card">
-        <div class="method-icon-ring emola-ring">
-          <img src="assets/image/E-mola .png" alt="Emola" style="max-width: 32px; height: auto;" />
-        </div>
-        <h3 class="method-name">Emola</h3>
-        <p class="method-desc">Integração com a carteira móvel da Movitel</p>
+        <p class="method-desc">Integração nativa com a maior rede de carteiras móvel do país</p>
         <span class="method-pill">Disponível</span>
       </div>
 
       <div class="method-card">
         <div class="method-icon-ring mkesh-ring">
-          <img src="assets/image/MKesh.jpg" alt="Mkesh" style="max-width: 32px; height: auto;" />
+          <span class="method-initial" style="color:#0D47A1">K</span>
         </div>
         <h3 class="method-name">Mkesh</h3>
-        <p class="method-desc">Integração  com a carteira móvel da TMCEL</p>
+        <p class="method-desc">A primeira carteira e-móvel, totalmente integrada na nossa API</p>
         <span class="method-pill">Disponível</span>
       </div>
 
-    
+      <div class="method-card">
+        <div class="method-icon-ring emola-ring">
+          <span class="method-initial" style="color:#BF360C">E</span>
+        </div>
+        <h3 class="method-name">Emola</h3>
+        <p class="method-desc">Soluções flexíveis para pagamentos via Movitel Emola</p>
+        <span class="method-pill">Disponível</span>
+      </div>
 
       <div class="method-card">
         <div class="method-icon-ring neutral-ring">
@@ -180,42 +185,19 @@
         <p class="method-desc">Vende pelas redes sociais ou chat sem precisar de um site</p>
         <span class="method-pill">Disponível</span>
       </div>
-         <!-- ═══ NOVO: Entidade e Referência (Disponível) ═══ -->
-      <div class="method-card">
+
+      <div class="method-card method-soon">
         <div class="method-icon-ring neutral-ring">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="8" y1="13" x2="16" y2="13"/>
-            <line x1="8" y1="17" x2="16" y2="17"/>
-            <line x1="10" y1="9" x2="14" y2="9"/>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </div>
-        <h3 class="method-name">Entidade e Referência</h3>
-        <p class="method-desc">Pagamentos por Multibanco e homebanking com dados de factura</p>
-        <span class="method-pill">Disponível</span>
-      </div>
-
-      <!-- ═══ NOVO: PayPal (Em breve) ═══ -->
-      <div class="method-card method-soon">
-        <div class="method-icon-ring neutral-ring">
-          <img src="assets\image\Paypal.png" alt="Paypal" style="max-width: 40px; height: auto;" />
-        
-        </div>
-        <h3 class="method-name">PayPal</h3>
-        <p class="method-desc">Carteira digital internacional com milhões de utilizadores</p>
-        <span class="method-pill method-soon-pill">Em breve</span>
-      </div>
-
-
-      <div class="method-card method-soon">
-        <div class="method-icon-ring neutral-ring">
-          <img src="assets/image/Visa-Mastercard.jpg" alt="Visa / Mastercard" style="max-width: 40px; height: auto;" />
-        </div>
-        <h3 class="method-name">Mastercard / Visa </h3>
+        <h3 class="method-name">Visa / Mastercard</h3>
         <p class="method-desc">Cartões de débito e crédito nacionais e internacionais</p>
         <span class="method-pill method-soon-pill">Em breve</span>
       </div>
+
     </div>
   </div>
 </section>
@@ -223,8 +205,8 @@
 <!-- ════════════════════════ STEPPER ════════════════════════ -->
 <section class="stepper-section" aria-labelledby="stepper-h">
   <div class="container">
-    <h2 class="section-h reveal" id="stepper-h">Como funciona o IMali<span class="hero-accent">Way</span></h2>
-    <p class="section-p reveal">Comece em minutos.</p>
+    <h2 class="section-h reveal" id="stepper-h">Da conta ao primeiro pagamento em 5 passos</h2>
+    <p class="section-p reveal">Comece em minutos, não em semanas.</p>
 
     <div class="step-tabs reveal" role="tablist">
       <button class="step-tab active" data-step="1" role="tab" aria-selected="true" aria-controls="panel-1">
@@ -271,7 +253,7 @@
         </div>
         <div class="panel-info">
           <span class="panel-badge">Passo 1 de 5</span>
-          <h3 class="panel-title">Cria a tua conta IMali Business</h3>
+          <h3 class="panel-title">Cria a tua conta IMaliway</h3>
           <p class="panel-desc">Regista-te em menos de 2 minutos. Sem cartão de crédito, sem burocracia. Acesso imediato ao sandbox.</p>
           <ul class="panel-list">
             <li>Email e número de telefone</li>
@@ -430,7 +412,7 @@
         <div class="panel-info">
           <span class="panel-badge panel-badge-ok">🎉 Pronto!</span>
           <h3 class="panel-title">Em produção. A receber.</h3>
-          <p class="panel-desc">Troca a chave sandbox pela chave live — só isso. Os pagamentos chegam em tempo real a sua conta Imali.</p>
+          <p class="panel-desc">Troca a chave sandbox pela chave live — só isso. Os pagamentos chegam em tempo real ao dashboard.</p>
           <ul class="panel-list">
             <li>Troca de ambiente com uma linha de código</li>
             <li>Dashboard em tempo real</li>
@@ -576,7 +558,7 @@
 
     <div class="dev-content reveal">
 
-      <h2 class="section-h left" id="dev-h">INTEGRAÇÃO EM<br><span class="hero-accent">MINUTOS</span></h2>
+      <h2 class="section-h left" id="dev-h">INTEGRAÇÃO EM<br><span class="hero-accent">MINUTOS,</span><br>NÃO DIAS.</h2>
 
       <div class="dev-pillars">
         <div class="dev-pillar">
@@ -607,20 +589,8 @@
           </div>
         </div>
       </div>
-<div class="hero-ctas">
-      <a href="#" class="btn btn-primary btn-lg" id="btnCriarConta">
-        Explorar documentação
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-      <a href="#" class="btn btn-ghost btn-lg" id="btnFalarEquipa">
-        Sandbox
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/>
-        </svg>
-      </a>
-    </div>
+
+      <a href="developers.html" class="btn btn-primary" style="width:fit-content">Explorar Documentação →</a>
     </div>
 
     <div class="dev-terminal reveal" style="animation-delay:.15s">
@@ -650,7 +620,7 @@
     <span class="t-key">"reference"</span><span class="t-obj">:</span> <span class="t-str">"ORDER_123"</span>
   <span class="t-obj">}'</span>
 
-<span class="t-comment"># Response: 200</span>
+<span class="t-comment"># Response: 201 Created</span>
 <span class="t-ok">payment.id: txn_3MzS1U2eZvKY1s2</span>
 <span class="t-ok">status: "pending_customer_action"</span></code></pre>
       </div>
@@ -658,153 +628,42 @@
 
   </div>
 </section>
-
-<!-- ════════════════════════ CTA (Stitch) ════════════════════════ -->
-<section class="cta-section" aria-labelledby="cta-h">
-  <div class="container">
-    <div class="cta-card reveal">
-      <div class="cta-card-inner">
-        <h2 class="cta-title" id="cta-h">Pronto para modernizar os seus pagamentos digitais?</h2>
-        <p class="cta-desc">Junte-se a centenas de empresas moçambicanas que já estão a facturar com o iMaliway.</p>
-       <div class="hero-ctas">
-      <a href="#" class="btn btn-primary btn-lg" id="btnCriarConta">
-        Começar agora
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-      <a href="#" class="btn btn-ghost btn-lg" id="btnFalarEquipa">
-        Testar Sandbox
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/>
-        </svg>
-      </a>
-    </div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════ CERTIFICAÇÕES (Flip Cards) ════════════════════════ -->
+<!-- ════════════════════════ CERTIFICATIONS ════════════════════════ -->
 <section class="certs-section" aria-labelledby="certs-h">
   <div class="container">
     <h2 class="section-h center reveal" id="certs-h">Validado e supervisionado pelas entidades competentes</h2>
     <p class="section-p center reveal">Operamos sob supervisão do Banco de Moçambique e em conformidade com todas as regulamentações locais.</p>
-
     <div class="certs-grid reveal">
-
-      <!-- Card 1: Banco de Moçambique -->
-      <div class=" flip-card">
-        <div class="flip-inner">
-          <div class="flip-front" style="background-image: url('assets/image/cert-bdm.png');">
-            <div class="flip-overlay"></div>
-            <div class="flip-content">
-              <h3>Banco de Moçambique</h3>
-              <span class="cert-tag tag-reg">Regulado</span>
-            </div>
-          </div>
-          <div class="flip-back" style="background-image: url('assets/image/cert-bdm.jpg');">
-            <div class="flip-overlay" style="background: rgba(0,0,0,0.8);"></div>
-            <div class="flip-content">
-              <p>A <strong>IMaliway</strong> opera sob licença nº 177/2022 emitida pelo Banco de Moçambique, garantindo total conformidade legal e supervisão contínua das nossas operações.</p>
-            </div>
-          </div>
-        </div>
+      <div class="cert-card">
+        <div class="cert-seal cert-bdm">BdM</div>
+        <h3>Banco de Moçambique</h3>
+        <p>Regulado e licenciado como Instituição de Pagamento</p>
+        <span class="cert-tag tag-reg">Regulado</span>
       </div>
-
-        <!-- Card 1: Sandbox Regulatorio -->
-      <div class=" flip-card">
-        <div class="flip-inner">
-          <div class="flip-front" style="background-image: url('assets/image/SANDBOX.png');">
-            <div class="flip-overlay"></div>
-            <div class="flip-content">
-              <h3>Sandbox Regulatorio BM</h3>
-              <span class="cert-tag tag-reg">Aprovado</span>
-            </div>
-          </div>
-          <div class="flip-back" style="background-image: url('');">
-            <div class="flip-overlay" style="background: rgba(0,0,0,0.8);"></div>
-            <div class="flip-content">
-              <p>A <strong>IMaliway</strong> opera sob licença nº 177/2022 emitida pelo Banco de Moçambique, garantindo total conformidade legal e supervisão contínua das nossas operações.</p>
-            </div>
-          </div>
-        </div>
+      <div class="cert-card">
+        <div class="cert-seal cert-simo">SIMO</div>
+        <h3>SIMOrede</h3>
+        <p>Membro do Sistema Integrado de Meios de Pagamento</p>
+        <span class="cert-tag tag-cert">Certificado</span>
       </div>
-      <!-- Card 2: SIMOrede -->
-      <div class="flip-card">
-        <div class="flip-inner">
-          <div class="flip-front" style="background-image: url('assets/image/simo-rede.jpg');">
-            <div class="flip-overlay"></div>
-            <div class="flip-content">
-              <h3>SIMOrede</h3>
-              <span class="cert-tag tag-reg">Certificado</span>
-            </div>
-          </div>
-          <div class="flip-back" style="background-image: url();">
-            <div class="flip-overlay" style="background: rgba(0,0,0,0.8);"></div>
-            <div class="flip-content">
-              <p>Membros activos do <strong>Sistema Integrado de Meios de Pagamento</strong> (SIMO), garantindo interoperabilidade total com todas as instituições financeiras do país.</p>
-            </div>
-          </div>
-        </div>
+      <div class="cert-card">
+        <div class="cert-seal cert-mpesa">M</div>
+        <h3>M-Pesa</h3>
+        <p>Parceiro oficial M-Pesa Vodacom</p>
+        <span class="cert-tag tag-intg">Integrado</span>
       </div>
-
-      <!-- Card 3: M-Pesa -->
-      <div class="flip-card">
-        <div class="flip-inner">
-          <div class="flip-front" style="background-image: url('assets/image/m-pesa.png');">
-            <div class="flip-overlay"></div>
-            <div class="flip-content">
-              <h3>M-Pesa</h3>
-              <span class="cert-tag tag-reg">Parceiro</span>
-            </div>
-          </div>
-          <div class="flip-back" style="background-image: url('assets/image/cert-mpesa.jpg');">
-            <div class="flip-overlay" style="background: rgba(0,0,0,0.8);"></div>
-            <div class="flip-content">
-              <p>Parceiro oficial da <strong>Vodacom M-Pesa</strong>, permitindo pagamentos instantâneos via push USSD para mais de 5 milhões de utilizadores activos.</p>
-            </div>
-          </div>
-        </div>
+      <div class="cert-card">
+        <div class="cert-seal cert-emola">E</div>
+        <h3>Emola</h3>
+        <p>Parceiro integrado Emola Vodacom</p>
+        <span class="cert-tag tag-intg">Integrado</span>
       </div>
-
-      <!-- Card 4: Emola -->
-      <div class="flip-card">
-        <div class="flip-inner">
-          <div class="flip-front" style="background-image: url('assets/image/Emola_fundo.png');">
-            <div class="flip-overlay"></div>
-            <div class="flip-content">
-              <h3>Emola</h3>
-              <span class="cert-tag tag-reg">Parceiro</span>
-            </div>
-          </div>
-          <div class="flip-back" style="background-image: url();">
-            <div class="flip-overlay" style="background: rgba(0,0,0,0.8);"></div>
-            <div class="flip-content">
-              <p>Integração directa com a <strong>carteira móvel da Movitel</strong>, oferecendo cobertura adicional em zonas rurais e peri-urbanas de Moçambique.</p>
-            </div>
-          </div>
-        </div>
+      <div class="cert-card">
+        <div class="cert-seal cert-mkesh">K</div>
+        <h3>Mkesh</h3>
+        <p>Parceiro integrado Mkesh Movitel</p>
+        <span class="cert-tag tag-intg">Integrado</span>
       </div>
-
-      <!-- Card 5: Mkesh -->
-      <div class="flip-card">
-        <div class="flip-inner">
-          <div class="flip-front" style="background-image: url('assets/image/mkesh.jpg');">
-            <div class="flip-overlay"></div>
-            <div class="flip-content">
-              <h3>Mkesh</h3>
-              <span class="cert-tag tag-reg">Parceiro</span>
-            </div>
-          </div>
-          <div class="flip-back" style="background-image: url();">
-            <div class="flip-overlay" style="background: rgba(0,0,0,0.8);"></div>
-            <div class="flip-content">
-              <p>Parceiro integrado da <strong>TMCEL Mkesh</strong>, a primeira carteira móvel moçambicana, com acesso a uma base de clientes fiel e diversificada.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -865,7 +724,7 @@
         </div>
         <h2 class="cta-title" id="cta-h">AINDA TEM DÚVIDAS?</h2>
         <p class="cta-desc">Nossa equipa de suporte técnico está disponível 24/7 para ajudar no teu percurso.</p>
-        <a href="contacto.html" class="btn btn-primary btn-lg">Fale Conosco</a>
+        <a href="contacto.html" class="btn btn-primary btn-lg">Falar com Contacto</a>
       </div>
     </div>
   </div>
@@ -873,13 +732,20 @@
 
 
 </main>
+
 <!-- ════════════════════════ FOOTER (Stitch) ════════════════════════ -->
 <footer class="footer">
   <div class="footer-top">
     <div class="footer-brand">
       <a href="/" class="nav-logo footer-logo-link" aria-label="IMaliway">
-        
-        <span class="logo-text" style="color:#fff">I<strong>Mali</strong><em>way</em></span>
+        <svg class="logo-mark" width="32" height="32" viewBox="0 0 38 38" fill="none">
+          <circle cx="8.5" cy="8.5" r="4.5" stroke="#fff" stroke-width="2" fill="none"/>
+          <circle cx="8.5" cy="8.5" r="2" fill="#fff"/>
+          <path d="M13 30 L13 15 L21.5 23 L30 15 L30 30" stroke="#fff" stroke-width="3.5" stroke-linecap="square" fill="none"/>
+          <path d="M13 15 L21.5 22.5 L30 15" stroke="url(#fchev)" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <defs><linearGradient id="fchev" x1="13" y1="15" x2="30" y2="15"><stop offset="0%" stop-color="#6DC135"/><stop offset="100%" stop-color="#4CAF2B"/></linearGradient></defs>
+        </svg>
+        <span class="logo-text" style="color:#fff">i<strong>Mali</strong><em>way</em></span>
       </a>
       <p class="footer-tagline">Liderando a revolução digital em Moçambique com tecnologia de pagamentos robusta e acessível.</p>
       <div class="footer-socials">

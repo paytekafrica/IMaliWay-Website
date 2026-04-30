@@ -1,23 +1,58 @@
 /* ═══════════════════════════════════════════════════
    IMALIWAY v3 — main.js
-   Interactions: theme toggle · navbar · reveal ·
-                 stepper · FAQ · smooth scroll
+   Component loader (Promise) + App init after load
 ═══════════════════════════════════════════════════ */
 
-document.addEventListener('DOMContentLoaded', () => {
+/* ─────────────────────────────────────────
+   1. COMPONENT LOADER (retorna Promise)
+   ───────────────────────────────────────── */
+function loadComponents() {
+  return new Promise(resolve => {
+    const includes = document.querySelectorAll('[data-include]');
+    if (includes.length === 0) { resolve(); return; }
 
+    let loaded = 0;
+    const total = includes.length;
+    includes.forEach(el => {
+      const file = el.getAttribute('data-include');
+      if (!file) {
+        loaded++;
+        if (loaded === total) resolve();
+        return;
+      }
+      fetch(file)
+        .then(res => {
+          if (!res.ok) throw new Error(`Falha ao carregar ${file}`);
+          return res.text();
+        })
+        .then(html => {
+          el.insertAdjacentHTML('afterend', html);
+          el.remove();
+          loaded++;
+          if (loaded === total) resolve();
+        })
+        .catch(err => {
+          console.error(err);
+          loaded++;
+          if (loaded === total) resolve();
+        });
+    });
+  });
+}
+
+/* ─────────────────────────────────────────
+   2. TODA A LÓGICA DA APLICAÇÃO
+   (só executa quando componentes estiverem prontos)
+   ───────────────────────────────────────── */
+function initializeApp() {
   const html         = document.documentElement;
   const navbar       = document.getElementById('navbar');
   const themeToggle  = document.getElementById('themeToggle');
   const hamburger    = document.getElementById('hamburger');
   const mobileMenu   = document.getElementById('mobileMenu');
 
-  /* ─────────────────────────────────────────
-     THEME TOGGLE — dark / light
-  ───────────────────────────────────────── */
+  /* ── THEME TOGGLE ── */
   const THEME_KEY = 'imaliway-theme';
-
-  // Load saved preference, fallback to dark
   const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
   html.setAttribute('data-theme', savedTheme);
 
@@ -31,9 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTheme(current === 'dark' ? 'light' : 'dark');
   });
 
-  /* ─────────────────────────────────────────
-     NAVBAR — scroll shadow + mobile
-  ───────────────────────────────────────── */
+  /* ── NAVBAR: scroll shadow + mobile ── */
   window.addEventListener('scroll', () => {
     navbar?.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
@@ -45,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenu.setAttribute('aria-hidden', String(!isOpen));
   });
 
-  // Close mobile menu on link click
   mobileMenu?.querySelectorAll('.mob-link').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('open');
@@ -54,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Close on outside click
   document.addEventListener('click', e => {
     if (mobileMenu?.style.display === 'flex' && !navbar?.contains(e.target)) {
       hamburger.classList.remove('open');
@@ -63,9 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ─────────────────────────────────────────
-     SCROLL REVEAL
-  ───────────────────────────────────────── */
+  /* ── SCROLL REVEAL ── */
   const revealObs = new IntersectionObserver(
     entries => entries.forEach(e => {
       if (e.isIntersecting) {
@@ -77,9 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-  /* ─────────────────────────────────────────
-     ACTIVE NAV LINK on scroll
-  ───────────────────────────────────────── */
+  /* ── ACTIVE NAV LINK (spy) ── */
   const sections = document.querySelectorAll('section[id]');
   const navLinks  = document.querySelectorAll('.nav-link');
 
@@ -95,9 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   sections.forEach(s => spyObs.observe(s));
 
-  /* ─────────────────────────────────────────
-     SMOOTH SCROLL — anchor links
-  ───────────────────────────────────────── */
+  /* ── SMOOTH SCROLL (inclui links no navbar/footer) ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
@@ -112,9 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ─────────────────────────────────────────
-     STEPPER
-  ───────────────────────────────────────── */
+  /* ── STEPPER ── */
   const stepTabs   = document.querySelectorAll('.step-tab');
   const stepPanels = document.querySelectorAll('.step-panel');
 
@@ -144,20 +167,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ─────────────────────────────────────────
-     FAQ ACCORDION
-  ───────────────────────────────────────── */
+  /* ── FAQ ACCORDION ── */
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const wasOpen = btn.getAttribute('aria-expanded') === 'true';
 
-      // Close all
       document.querySelectorAll('.faq-q').forEach(b => {
         b.setAttribute('aria-expanded', 'false');
         b.nextElementSibling.hidden = true;
       });
 
-      // Open this one if it was closed
       if (!wasOpen) {
         btn.setAttribute('aria-expanded', 'true');
         btn.nextElementSibling.hidden = false;
@@ -165,63 +184,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ─────────────────────────────────────────
-     TERMINAL TABS (developer section)
-  ───────────────────────────────────────── */
+  /* ── TERMINAL TABS ── */
   document.querySelectorAll('.term-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       const parent = tab.closest('.term-header');
       parent.querySelectorAll('.term-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      // Content switching can be added here when real snippets are provided
     });
   });
+}
 
-});
-
-/**
- * FEATURES CARDS — JavaScript
- * iMalway · Maputo, Moçambique
- * Controla a animação de revelação e cliques nos itens.
- */
-(function() {
-  'use strict';
-
-  // ═══════════════ 1. REVEAL ON SCROLL ═══════════════
-  const revealEls = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, {
-    threshold: 0.25,
-    rootMargin: '0px 0px -40px 0px'
-  });
-
-  revealEls.forEach(el => revealObserver.observe(el));
-
-  // ═══════════════ 2. FEATURE LIST ITEM CLICK ═══════════════
-  document.querySelectorAll('.feature-list-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const texto = item.textContent.trim();
-      console.log('📋 Item de funcionalidade clicado:', texto);
-      // Feedback visual opcional
-      item.style.transform = 'scale(0.97)';
-      setTimeout(() => { item.style.transform = ''; }, 150);
-    });
-  });
-
-  // ═══════════════ 3. FEATURE CARD CLICK (excluindo itens internos) ═══════════════
-  document.querySelectorAll('.feature-card').forEach(card => {
-    card.addEventListener('click', function(e) {
-      // Não dispara se o clique foi num item da lista
-      if (e.target.closest('.feature-list-item')) return;
-      const titulo = this.querySelector('h3')?.textContent || 'Card';
-      console.log('📦 Card clicado:', titulo);
-    });
-  });
-
-  console.log('✅ Features Cards inicializados.');
-})();
+/* ─────────────────────────────────────────
+   3. ARRANQUE: carrega componentes → inicia app
+   ───────────────────────────────────────── */
+loadComponents().then(initializeApp);

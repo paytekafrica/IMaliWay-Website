@@ -885,151 +885,460 @@ p { color:var(--text-secondary); line-height:1.65; }
   .container { padding:0 16px; }
   .features-section { padding:64px 0; }
 }
- /* ════════════════════════════════════
-           COMPONENTE 1 · HERO (Visily style)
-        ════════════════════════════════════ */
-        .hero {
-            min-height: 100dvh;
-            padding: 130px 0 90px;
-            background: var(--hero-bg);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-        }
-        /* Grain texture */
-        .hero-noise {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-            opacity: .028;
-            mix-blend-mode: overlay;
-        }
-        /* Green glows */
-        .hero-glow-left {
-            position: absolute;
-            top: -10%;
-            left: -5%;
-            width: 55vw;
-            height: 55vw;
-            pointer-events: none;
-            background: radial-gradient(ellipse at center, rgba(82, 168, 40, .1) 0%, transparent 65%);
-        }
-        .hero-glow-right {
-            position: absolute;
-            bottom: -10%;
-            right: -5%;
-            width: 45vw;
-            height: 45vw;
-            pointer-events: none;
-            background: radial-gradient(ellipse at center, rgba(82, 168, 40, .07) 0%, transparent 65%);
-        }
-        .hero-inner {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-            max-width: 820px;
-        }
+ /* ═══════════════ HERO (Visily dark) – centralizado ═══════════════ */
+.hero {
+  min-height: 100dvh;
+  padding: 130px 0 90px;
+  background: var(--hero-bg);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-        /* Badge */
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            width: fit-content;
-            background: transparent;
-            border: 1px solid var(--green-tint2);
-            color: var(--green-light);
-            font-family: var(--font-head);
-            font-size: .62rem;
-            font-weight: 700;
-            letter-spacing: .1em;
-            padding: 6px 16px;
-            border-radius: var(--r-full);
-        }
-        .hero-badge-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--green-light);
-            box-shadow: 0 0 0 3px rgba(109, 193, 53, .2);
-            animation: hbPulse 2s ease infinite;
-        }
-        @keyframes hbPulse {
-            0%,
-            100% {
-                box-shadow: 0 0 0 3px rgba(109, 193, 53, .2);
-            }
-            50% {
-                box-shadow: 0 0 0 7px rgba(109, 193, 53, .06);
-            }
-        }
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .028;
+  mix-blend-mode: overlay;
+}
 
-        /* Headline — Visily style */
-        .hero-title {
-            font-family: var(--font-head);
-            font-size: clamp(2.2rem, 6vw, 4.5rem);
-            font-weight: 900;
-            line-height: .96;
-            letter-spacing: -.04em;
-            text-transform: uppercase;
-            color: var(--hero-headline);
-        }
-        .hero-title .hero-accent {
-            color: var(--green-light);
-        }
-        .hero-sub {
-            font-size: 1.08rem;
-            color: var(--text-secondary);
-            max-width: 480px;
-            line-height: 1.7;
-        }
-        .hero-ctas {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
+.hero-glow-left {
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 55vw;
+  height: 55vw;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(82,168,40,.1) 0%, transparent 65%);
+}
 
-        /* Cert row */
-        .hero-cert {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
-        }
-        .cert-label {
-            font-family: var(--font-head);
-            font-size: .6rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: .1em;
-            text-transform: uppercase;
-        }
-        .cert-icons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .cert-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-family: var(--font-head);
-            font-size: .65rem;
-            font-weight: 700;
-            padding: 4px 11px;
-            border-radius: var(--r-full);
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            background: var(--bg-card);
-        }
-        .cert-chip.cert-secure {
-            border-color: var(--green-tint2);
-            color: var(--green-light);
-        }
+.hero-glow-right {
+  position: absolute;
+  bottom: -10%;
+  right: -5%;
+  width: 45vw;
+  height: 45vw;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(82,168,40,.07) 0%, transparent 65%);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+  max-width: 960px;            /* mais largura → mais palavras por linha no h1 */
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: .96;
+  letter-spacing: -.04em;
+  text-transform: uppercase;
+  color: var(--hero-headline);
+}
+
+.hero-accent {
+  color: var(--green-light);
+}
+
+.hero-sub {
+  font-size: 1.08rem;
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.7;
+  margin: 0 auto;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Badge e certificações (preservado para reutilização) */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: transparent;
+  border: 1px solid var(--green-tint2);
+  color: var(--green-light);
+  font-family: var(--font-head);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  padding: 6px 16px;
+  border-radius: var(--r-full);
+}
+
+.hero-cert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  justify-content: center;
+}
+
+.cert-label {
+  font-family: var(--font-head);
+  font-size: .6rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.cert-icons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cert-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-head);
+  font-size: .65rem;
+  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: var(--r-full);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: var(--bg-card);
+}
+
+/* ═══════════════ Cards abaixo da hero ═══════════════ */
+/* Certificações na hero */
+.hero-cert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: var(--sp-2);
+  border-top: 1px solid var(--border);
+  justify-content: center;
+}
+.cert-label {
+  font-family: var(--font-head);
+  font-size: .6rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.cert-icons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cert-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-head);
+  font-size: .65rem;
+  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: var(--r-full);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: var(--bg-card);
+}
+.cert-simo   { border-color: rgba(25, 118, 210, .3); color: #90CAF9; }
+.cert-secure { border-color: var(--green-tint2); color: var(--green-light); }
+
+/* Hero cards (logos/parceiros) — sempre lado a lado, imagem centrada, texto no fundo */
+.hero-cards {
+  display: flex;
+  flex-wrap: nowrap;            /* sempre lado a lado, sem quebra */
+  justify-content: center;
+  gap: 20px;
+  margin-top: 4px;
+  width: 70;
+  
+}
+.hero-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4) var(--sp-5) var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12;                      /* removemos o gap para controlo fino */
+ 
+  flex: 1 1 0%;               /* distribui o espaço disponível */
+  backdrop-filter: blur(8px);
+  transition:
+    border-color var(--t-norm),
+    box-shadow var(--t-norm),
+    transform var(--t-norm);
+}
+.hero-card:hover {
+  border-color: var(--green-tint2);
+  box-shadow: var(--sh-green);
+  transform: translateY(-2px);
+}
+
+/* Wrapper da imagem — ocupa o espaço restante e centraliza a imagem */
+.hero-card-img {
+  flex: 1;                    /* empurra o texto para o fundo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-light);
+}
+.hero-card-img img {
+  max-height: 66px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Texto do card — fixo no fundo */
+.hero-card-label {
+  font-family: var(--font-head);
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--text-muted);
+  white-space: nowrap;         /* evita quebra do texto */
+}
+/* ════════════════════════════════════
+   CARROSSEL DE MÉTODOS
+   (substitui a grelha estática)
+════════════════════════════════════ */
+.methods-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+}
+
+/* Faixa que desliza */
+.methods-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  /* Cada card ocupa sempre a mesma largura */
+  --card-width: calc((100% - 48px) / 4); /* 4 cards visíveis */
+  width: 100%;
+}
+
+/* Cada card dentro do carrossel */
+.methods-carousel .method-card {
+  flex: 0 0 var(--card-width);
+  min-width: 180px; /* largura mínima para ecrãs pequenos */
+  transition: transform var(--t-norm), box-shadow var(--t-norm);
+  user-select: none;
+}
+
+/* Botões laterais */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--t-fast);
+  box-shadow: 0 2px 12px rgba(0,0,0,.15);
+  cursor: pointer;
+}
+.carousel-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--green-light);
+  color: var(--green-light);
+  box-shadow: var(--sh-green);
+}
+.carousel-btn:active { transform: translateY(-50%) scale(0.95); }
+.carousel-btn-left  { left: -20px; }
+.carousel-btn-right { right: -20px; }
+
+/* Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  transition: all var(--t-norm);
+  padding: 0;
+}
+.carousel-dot.active {
+  background: var(--green);
+  width: 24px;
+  border-radius: 5px;
+}
+
+/* Responsivo – adapta número de cards visíveis */
+@media (max-width: 1100px) {
+  .methods-track { --card-width: calc((100% - 32px) / 3); }
+}
+@media (max-width: 768px) {
+  .methods-track { --card-width: calc((100% - 16px) / 2); }
+  .carousel-btn-left  { left: -12px; }
+  .carousel-btn-right { right: -12px; }
+}
+@media (max-width: 540px) {
+  .methods-track { --card-width: 85%; }
+  .methods-carousel .method-card { min-width: 0; }
+}
+/* ════════════════════════ FLIP CARDS (substitui .certs-section antigo) ════════════════════════ */
+.certs-section {
+  padding: 96px 0;
+  background: var(--cert-bg, #111);
+}
+.certs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+/* Container do flip */
+.flip-card {
+  width: 210px;
+  height: 260px;
+  perspective: 1200px;
+  flex-shrink: 0;
+}
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* Faces */
+.flip-front,
+.flip-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--r-xl, 16px);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.flip-front {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid var(--border, rgba(255,255,255,.1));
+  box-shadow: var(--sh-card, 0 4px 24px rgba(0,0,0,.4));
+}
+
+/* Overlay escuro para legibilidade */
+.flip-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+  z-index: 1;
+}
+
+/* Conteúdo textual */
+.flip-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px 16px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+.flip-front .flip-content {
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+.flip-content h3 {
+  font-family: var(--font-head, 'Montserrat', sans-serif);
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.flip-content p {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  opacity: 0.95;
+  margin: 0;
+}
+.flip-content strong {
+  color: var(--green-light, #6DC135);
+}
+
+/* Verso */
+.flip-back {
+  transform: rotateY(180deg);
+  border: 1px solid var(--border, rgba(255,255,255,.08));
+  box-shadow: var(--sh-card, 0 4px 24px rgba(0,0,0,.4));
+  align-items: center;
+  justify-content: center;
+}
+.flip-back .flip-content {
+  padding: 24px 18px;
+}
+
+/* Tags */
+.cert-tag {
+  font-family: var(--font-head, 'Montserrat', sans-serif);
+  font-size: 0.63rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 9999px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.tag-reg  { background: #1a1a1a; color: #fff; border: 1px solid rgba(255,255,255,.2); }
+.tag-cert { background: #0d47a1; color: #bbdefb; border: 1px solid #1565c0; }
+.tag-intg { background: var(--green-tint, rgba(82,168,40,.15)); color: var(--green-light, #6DC135); border: 1px solid var(--green-tint2, rgba(82,168,40,.25)); }
+
+/* Responsivo */
+@media (max-width: 1100px) {
+  .flip-card { width: 180px; height: 230px; }
+}
+@media (max-width: 768px) {
+  .certs-grid { gap: 16px; }
+  .flip-card { width: 160px; height: 210px; }
+}
+@media (max-width: 540px) {
+  .certs-grid { flex-direction: column; align-items: center; }
+  .flip-card { width: 220px; height: 260px; }
+}
