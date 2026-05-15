@@ -141,10 +141,10 @@ class SiteHeader extends HTMLElement {
           </a>
 
           <nav class="nav-links" aria-label="Navegação">
-            <a href="/IMaliWay-Website/index2.html#metodos" class="nav-link">Soluções</a>
-            <a href="/IMaliWay-Website/developers.html" class="nav-link">Developers</a>
+            <a href="/IMaliWay-Website/index2.html" class="nav-link">Soluções</a>
+            
             <a href="/IMaliWay-Website/taxas.html" class="nav-link">Taxas</a>
-            <a href="/IMaliWay-Website/documentacao.html" class="nav-link">Documentação</a>
+            <a href="doc2/doc.html" class="nav-link">Documentação</a>
             <a href="contact/index.html" class="nav-link">Contacto</a>
           </nav>
 
@@ -166,11 +166,11 @@ class SiteHeader extends HTMLElement {
         </div>
 
         <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-          <a href="/IMaliWay-Website/index2.html#metodos" class="mob-link">Soluções</a>
-          <a href="/IMaliWay-Website/developers.html" class="mob-link">Developers</a>
-          <a href="/IMaliWay-Website/taxas.html" class="mob-link">Taxas</a>
-          <a href="/IMaliWay-Website/documentacao.html" class="mob-link">Documentação</a>
-          <a href="/IMaliWay-Website/contact/index.html" class="mob-link">Contacto</a>
+          <a href="/IMaliWay-Website/index2.html" class="mob-link">Soluções</a>
+          
+          <a href="/IMaliWay-Website/#" class="mob-link">Taxas</a>
+          <a href="doc2/index.html" class="mob-link">Documentação</a>
+          <a href="contact/index.html" class="mob-link">Contacto</a>
           <div class="mob-ctas">
             <a href="#" class="btn btn-ghost">Entrar</a>
             <a href="#" class="btn btn-primary">Criar Conta</a>

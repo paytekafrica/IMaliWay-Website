@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iMaliway — Soluções de Pagamento para Moçambique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<button class="theme-btn" onclick="toggleTheme()" aria-label="Alternar tema">
+  <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+</button>
+
+<section class="solutions">
+  <!-- Background decorativo -->
+  <div class="solutions-bg">
+    <div class="bg-gradient bg-gradient-1"></div>
+    <div class="bg-gradient bg-gradient-2"></div>
+    <div class="bg-pattern"></div>
+  </div>
+
+<div class="container">
+
+  <div class="section-header reveal">
+    <h2 class="section-title">Encontre a solução <span>certa</span> para o seu negócio</h2>
+    <p class="section-desc">Do pequeno comércio à grande empresa, dos serviços às fintechs — integramos M-Pesa, e-Mola, mkesh, QR Code, Links e Entidade & Referência num único ecossistema de pagamentos. Descubra como cada sector utiliza o iMaliway.</p>
+  </div>
+
+  <div class="tabs-outer reveal">
+    <div class="tabs-wrap">
+      <button class="tab-btn active" onclick="switchTab(this,'all')"><span>✦</span>Todos os sectores</button>
+      <button class="tab-btn" onclick="switchTab(this,'ecommerce')"><span>🛍️</span>Comércio digital</button>
+      <button class="tab-btn" onclick="switchTab(this,'services')"><span>⚙️</span>Serviços</button>
+      <button class="tab-btn" onclick="switchTab(this,'pme')"><span>🏪</span>Negócios locais</button>
+      <button class="tab-btn" onclick="switchTab(this,'dev')"><span>👨‍💻</span>Para developers</button>
+      <button class="tab-btn" onclick="switchTab(this,'fintech')"><span>🏦</span>Banca & Fintech</button>
+    </div>
+  </div>
+
+  <!-- TODOS -->
+  <div class="cards-panel active" id="panel-all">
+    <div class="use-card card-featured reveal" onclick="openModal('checkout')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80&auto=format&fit=crop" alt="Checkout digital para e-commerce" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">🛍️ Comércio digital</span>
+        <h3 class="card-title">Checkout que aceita tudo — M-Pesa, e-Mola, mkesh e cartão</h3>
+        <p class="card-desc">Um único componente de pagamento para a sua loja online. Sem redirects, sem sair do site, sem perder vendas.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">M-Pesa</span><span class="card-tag">e-Mola</span><span class="card-tag">mkesh</span><span class="card-tag">QR</span><span class="card-tag">Cartão</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('salary')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80&auto=format&fit=crop" alt="Processamento de salários" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">💼 Recursos Humanos</span>
+        <h3 class="card-title">Pagar salários e bónus pelo telemóvel</h3>
+        <p class="card-desc">Carregue uma lista e dispare pagamentos para toda a equipa. Cada colaborador recebe na sua carteira móvel.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">Batch</span><span class="card-tag">M-Pesa</span><span class="card-tag">Relatórios</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('qr-pme')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1556745753-8e78f2e3e7c1?w=800&q=80&auto=format&fit=crop" alt="Pagamento por QR code no comércio" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">🍽️ Restauração & Retalho</span>
+        <h3 class="card-title">QR Code no balcão — comece a aceitar pagamentos em segundos</h3>
+        <p class="card-desc">Sem máquina, sem fidelização, sem surpresas. Gere o QR, imprima, coloque na mesa ou balcão.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">QR Code</span><span class="card-tag">Sem hardware</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('recurring')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8c5d?w=800&q=80&auto=format&fit=crop" alt="Cobranças automáticas" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">⚙️ Utilities & Telecom</span>
+        <h3 class="card-title">Cobranças automáticas — água, luz, internet, ginásios</h3>
+        <p class="card-desc">Defina o plano, o sistema cobra e reconcilia sozinho. Notificações por SMS e relatórios prontos.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">Recorrente</span><span class="card-tag">SMS</span><span class="card-tag">Auto-reconciliação</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('paylink')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&q=80&auto=format&fit=crop" alt="Vendas por WhatsApp e redes sociais" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">📲 Vendas por redes sociais</span>
+        <h3 class="card-title">Venda no WhatsApp e Instagram com um simples link</h3>
+        <p class="card-desc">Partilhe um link de pagamento com o cliente. Ele paga com a carteira que quiser, sem sair da conversa.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">Link</span><span class="card-tag">WhatsApp</span><span class="card-tag">Instagram</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('school')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1523050854058-8df90910b78b?w=800&q=80&auto=format&fit=crop" alt="Pagamento de propinas escolares" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">🎓 Instituições de ensino</span>
+        <h3 class="card-title">Propinas, inscrições e mensalidades escolares</h3>
+        <p class="card-desc">Cada aluno com uma referência única. Os pais pagam pelo telemóvel, a tesouraria recebe notificação automática.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">Entidade & Ref.</span><span class="card-tag">Multi-conta</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('marketplace')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1553729459-afe8e5e2f0a2?w=800&q=80&auto=format&fit=crop" alt="Marketplace com múltiplos vendedores" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">🛍️ Marketplace</span>
+        <h3 class="card-title">Dividir pagamentos automaticamente entre vendedores</h3>
+        <p class="card-desc">Cada venda repartida entre si e os seus vendedores, com as regras que definir — percentagem, fixo ou ambos.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">Split</span><span class="card-tag">Multi-vendedor</span><span class="card-tag">Em tempo real</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('events')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80&auto=format&fit=crop" alt="Venda de bilhetes para eventos" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">🎟️ Eventos & Entretenimento</span>
+        <h3 class="card-title">Bilhetes digitais com validação na porta por QR</h3>
+        <p class="card-desc">Venda online antes do evento, valide na entrada com o telemóvel. Sem papel, sem dinheiro vivo, sem confusão.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">Bilhete digital</span><span class="card-tag">QR</span><span class="card-tag">Controlo de entradas</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMÉRCIO DIGITAL -->
+  <div class="cards-panel" id="panel-ecommerce">
+    <div class="use-card card-featured reveal" onclick="openModal('checkout')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80&auto=format&fit=crop" alt="Checkout digital multi-método" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">🛍️ Checkout online</span>
+        <h3 class="card-title">Um checkout. Todos os métodos de pagamento. Zero redirects.</h3>
+        <p class="card-desc">WooCommerce, Shopify ou integração direta via API. M-Pesa, e-Mola, mkesh, QR, Link, Entidade & Ref. e cartão — tudo no mesmo componente, sem enviar o cliente para fora do seu site.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">WooCommerce</span><span class="card-tag">Shopify</span><span class="card-tag">API REST</span><span class="card-tag">Todos os métodos</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('marketplace')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1553729459-afe8e5e2f0a2?w=800&q=80&auto=format&fit=crop" alt="Split de pagamentos em marketplace" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🛍️ Multi-vendedor</span><h3 class="card-title">Dividir receitas automaticamente entre si e os vendedores</h3><p class="card-desc">Comissões configuráveis por categoria, vendedor ou produto. Liquidação instantânea assim que o cliente paga.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Split</span><span class="card-tag">Comissões</span><span class="card-tag">Instantâneo</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('refund')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1589758438368-0a2d2e7a1f4e?w=800&q=80&auto=format&fit=crop" alt="Processamento de reembolsos" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">↩️ Devoluções</span><h3 class="card-title">Reembolsos em segundos, direto na carteira do cliente</h3><p class="card-desc">Processe devoluções via API ou dashboard. O cliente recebe o dinheiro de volta em menos de 30 segundos.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Refund API</span><span class="card-tag">< 30s</span><span class="card-tag">Rastreável</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('paylink')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&q=80&auto=format&fit=crop" alt="Links de pagamento para redes sociais" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">📲 Social commerce</span><h3 class="card-title">Vender sem ter site — links de pagamento para WhatsApp e redes</h3><p class="card-desc">Gere um link, partilhe com o cliente. Ele paga com qualquer carteira moçambicana.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Link de pagamento</span><span class="card-tag">WhatsApp</span><span class="card-tag">Instagram</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('recurring')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8c5d?w=800&q=80&auto=format&fit=crop" alt="Subscrições e pagamentos recorrentes" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🔄 Subscrições</span><h3 class="card-title">Cobranças recorrentes — planos, assinaturas e mensalidades</h3><p class="card-desc">Automatize a cobrança de subscrições. Lembretes, retry inteligente e reconciliação incluídos.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Recorrente</span><span class="card-tag">Dunning</span><span class="card-tag">Planos flexíveis</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('fraud')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1633265486501-0cf524a07213?w=800&q=80&auto=format&fit=crop" alt="Sistema anti-fraude" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🔒 Protecção</span><h3 class="card-title">Detecção de fraude e prevenção de estornos abusivos</h3><p class="card-desc">Motor de regras que bloqueia transacções suspeitas em tempo real, antes do prejuízo.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Anti-fraude</span><span class="card-tag">Tempo real</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+  <!-- SERVIÇOS -->
+  <div class="cards-panel" id="panel-services">
+    <div class="use-card card-featured reveal" onclick="openModal('recurring')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8c5d?w=1200&q=80&auto=format&fit=crop" alt="Cobranças automáticas para utilities" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">⚙️ Utilities & Serviços essenciais</span>
+        <h3 class="card-title">Água, luz, internet, TV — cobre automaticamente todos os meses</h3>
+        <p class="card-desc">Planos mensais ou pré-pagos. O cliente recebe SMS antes do débito, o sistema processa a cobrança e gera relatórios de reconciliação prontos para auditoria. Zero intervenção manual.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">Recorrente</span><span class="card-tag">SMS</span><span class="card-tag">Entidade & Ref.</span><span class="card-tag">Relatórios</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('salary')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80&auto=format&fit=crop" alt="Processamento de folha salarial" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">💼 Processamento salarial</span><h3 class="card-title">Pagar centenas de colaboradores em segundos</h3><p class="card-desc">Carregue uma folha em CSV ou JSON. O sistema processa todos os pagamentos e devolve relatório individual.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Batch API</span><span class="card-tag">CSV</span><span class="card-tag">Relatório individual</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('insurance')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80&auto=format&fit=crop" alt="Seguros via mobile money" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🛡️ Sector segurador</span><h3 class="card-title">Cobrar prémios e pagar indemnizações pelo telemóvel</h3><p class="card-desc">Prémios recorrentes automatizados. Sinistros pagos na carteira do segurado em segundos após aprovação.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Prémios</span><span class="card-tag">Indemnizações</span><span class="card-tag">Instantâneo</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('school')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1523050854058-8df90910b78b?w=800&q=80&auto=format&fit=crop" alt="Pagamentos escolares" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🎓 Ensino</span><h3 class="card-title">Propinas, inscrições e actividades — cada aluno com a sua referência</h3><p class="card-desc">Os pais pagam com o telemóvel. A escola recebe notificação e o sistema reconcilia automaticamente.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Entidade & Ref.</span><span class="card-tag">Multi-conta</span><span class="card-tag">Dashboard</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('health')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80&auto=format&fit=crop" alt="Pagamentos em clínicas e farmácias" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🏥 Saúde</span><h3 class="card-title">Clínicas, consultórios e farmácias — pagamentos sem hardware</h3><p class="card-desc">O paciente digitaliza um QR ou recebe um link. Recibo digital enviado automaticamente.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">QR Code</span><span class="card-tag">Link</span><span class="card-tag">Recibo digital</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('microfinance')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1593672715438-88a70629dc2c?w=800&q=80&auto=format&fit=crop" alt="Microfinanças e inclusão financeira" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🌍 Microfinanças & ONGs</span><h3 class="card-title">Chegar a comunidades rurais — desembolsos e cobranças pelo telemóvel</h3><p class="card-desc">Sem conta bancária necessária. Liberte crédito e recolha prestações via mobile money.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Desembolso</span><span class="card-tag">Cobrança</span><span class="card-tag">Zonas rurais</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+  <!-- NEGÓCIOS LOCAIS -->
+  <div class="cards-panel" id="panel-pme">
+    <div class="use-card card-featured reveal" onclick="openModal('qr-pme')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1556745753-8e78f2e3e7c1?w=1200&q=80&auto=format&fit=crop" alt="QR Code para comércio local" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">🏪 Comércio de bairro</span>
+        <h3 class="card-title">QR Code impresso no balcão — o cliente paga com o telemóvel</h3>
+        <p class="card-desc">Sem máquina POS, sem contrato de aluguer, sem mensalidade escondida. Abra uma conta, gere o QR, imprima e comece a aceitar pagamentos. Simples assim.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">Zero hardware</span><span class="card-tag">Todas as carteiras</span><span class="card-tag">Setup em 2 min</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('paylink')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&q=80&auto=format&fit=crop" alt="Vendas por WhatsApp" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">📲 Vendas no WhatsApp</span><h3 class="card-title">O seu catálogo no WhatsApp, o pagamento por link</h3><p class="card-desc">Partilhe o link com o cliente. Ele paga com M-Pesa, e-Mola ou mkesh. Sem site, sem complicações.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Link de pagamento</span><span class="card-tag">WhatsApp</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('events')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80&auto=format&fit=crop" alt="Bilhetes para eventos locais" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🎟️ Eventos & festas</span><h3 class="card-title">Venda de bilhetes antecipada e validação na porta</h3><p class="card-desc">Link de pagamento para venda online. QR Code para validar na entrada. Sem filas, sem dinheiro físico.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Bilhete digital</span><span class="card-tag">QR</span><span class="card-tag">Pré-venda</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('school')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1523050854058-8df90910b78b?w=800&q=80&auto=format&fit=crop" alt="Escolas e explicações" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🎓 Explicações & creches</span><h3 class="card-title">Receba mensalidades de explicações e creches</h3><p class="card-desc">Referência por aluno. Os pais pagam, a direcção confirma. Sem cobranças manuais.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Entidade & Ref.</span><span class="card-tag">Por aluno</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('health')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80&auto=format&fit=crop" alt="Clínicas e consultórios" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🏥 Clínicas & farmácias</span><h3 class="card-title">Consultas pagas por mobile money, recibo automático</h3><p class="card-desc">O paciente paga com QR ou link. A clínica recebe confirmação instantânea, o paciente recebe recibo digital.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">QR</span><span class="card-tag">Recibo</span><span class="card-tag">Sem hardware</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('transport')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1570125909232-eb263c4e4c3e?w=800&q=80&auto=format&fit=crop" alt="Transportes e passes digitais" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🚌 Transportes</span><h3 class="card-title">Bilhetes e passes de transporte comprados no telemóvel</h3><p class="card-desc">Venda bilhetes individuais e passes mensais. Validação por QR no embarque. Acabou o troco.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">QR</span><span class="card-tag">Passes</span><span class="card-tag">Bilhetes</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+  <!-- DEVELOPERS -->
+  <div class="cards-panel" id="panel-dev">
+    <div class="use-card card-featured reveal" onclick="openModal('api')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80&auto=format&fit=crop" alt="API e SDK para developers" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">👨‍💻 API & Integração</span>
+        <h3 class="card-title">Documentação clara, SDKs prontos, sandbox gratuito — comece hoje</h3>
+        <p class="card-desc">REST API com SDKs para Node.js, Python, PHP e Dart. Ambiente de testes completo. Da integração ao go-live em 48 horas com apoio técnico directo.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">REST API</span><span class="card-tag">Node.js</span><span class="card-tag">Python</span><span class="card-tag">PHP</span><span class="card-tag">Dart</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('webhook')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80&auto=format&fit=crop" alt="Webhooks e notificações" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🔗 Webhooks</span><h3 class="card-title">Notificações em tempo real — saiba no instante em que o cliente paga</h3><p class="card-desc">Endpoints HTTP com payload assinado. Retry automático e logs completos de entrega.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">HTTPS</span><span class="card-tag">HMAC</span><span class="card-tag">Retry</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('testing')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&q=80&auto=format&fit=crop" alt="Ambiente de testes sandbox" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🧪 Sandbox</span><h3 class="card-title">Teste tudo antes de ir para produção — sem gastar um cêntimo</h3><p class="card-desc">Simule pagamentos, falhas, reembolsos e webhooks. Ambiente isolado e completamente gratuito.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Sandbox</span><span class="card-tag">Simulação</span><span class="card-tag">Gratuito</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('reconciliation')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80&auto=format&fit=crop" alt="Reconciliação financeira" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">📊 Reconciliação</span><h3 class="card-title">Exportações automáticas para o seu sistema contabilístico</h3><p class="card-desc">CSV, JSON, XML. Conectores prontos para SAP, Sage e Primavera. Exportações agendadas.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">CSV/JSON</span><span class="card-tag">ERP</span><span class="card-tag">Agendado</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('fraud')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1633265486501-0cf524a07213?w=800&q=80&auto=format&fit=crop" alt="Segurança e compliance" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🔒 Segurança</span><h3 class="card-title">Anti-fraude, verificação de identidade e compliance regulatório</h3><p class="card-desc">Motor de regras anti-fraude, KYC no onboarding e relatórios AML. Tudo pronto para o BdM.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">KYC</span><span class="card-tag">AML</span><span class="card-tag">BdM</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+  <!-- BANCA & FINTECH -->
+  <div class="cards-panel" id="panel-fintech">
+    <div class="use-card card-featured reveal" onclick="openModal('microfinance')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1593672715438-88a70629dc2c?w=1200&q=80&auto=format&fit=crop" alt="Inclusão financeira digital" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-sector">🌍 Inclusão financeira</span>
+        <h3 class="card-title">Levar serviços financeiros a quem nunca teve acesso a um banco</h3>
+        <p class="card-desc">IMFs, cooperativas e ONGs chegam a comunidades rurais. Desembolso de crédito e recolha de reembolsos 100% via mobile money, sem necessidade de conta bancária.</p>
+        <div class="card-footer"><div class="card-tags"><span class="card-tag">Microcrédito</span><span class="card-tag">Zonas rurais</span><span class="card-tag">Batch</span></div><span class="card-arrow">→</span></div>
+      </div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('insurance')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80&auto=format&fit=crop" alt="Insurtech e microseguros" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🛡️ InsurTech</span><h3 class="card-title">Microseguros acessíveis — prémios diários, indemnizações instantâneas</h3><p class="card-desc">Modelos de seguro inclusivo cobrados e pagos via mobile money. Perfeito para o mercado informal.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Microseguros</span><span class="card-tag">Diário</span><span class="card-tag">Instantâneo</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('salary')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80&auto=format&fit=crop" alt="Adiantamento salarial" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">💼 Earned Wage Access</span><h3 class="card-title">Adiantamento de salário — o colaborador recebe quando precisa</h3><p class="card-desc">Solução de EWA: o funcionário solicita adiantamento sobre dias já trabalhados, recebe na hora.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">EWA</span><span class="card-tag">On-demand</span><span class="card-tag">Instantâneo</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('reconciliation')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80&auto=format&fit=crop" alt="Gestão de tesouraria" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">📊 Tesouraria</span><h3 class="card-title">Consolidar saldos de múltiplas carteiras num só painel</h3><p class="card-desc">Visão agregada de todas as contas e carteiras. Exportação em tempo real para o seu ERP.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">Multi-carteira</span><span class="card-tag">ERP</span><span class="card-tag">Tempo real</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('fraud')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1633265486501-0cf524a07213?w=800&q=80&auto=format&fit=crop" alt="Compliance e regulação" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🔍 Compliance</span><h3 class="card-title">KYC, AML e relatórios para o regulador — tudo integrado</h3><p class="card-desc">Validação de identidade no onboarding, monitorização de transacções e relatórios automáticos.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">KYC</span><span class="card-tag">AML</span><span class="card-tag">BdM ready</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+    <div class="use-card reveal" onclick="openModal('multitenancy')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80&auto=format&fit=crop" alt="Infraestrutura white-label" loading="lazy">
+      <div class="card-overlay"></div>
+      <div class="card-body"><span class="card-sector">🏗️ Banking-as-a-Service</span><h3 class="card-title">A sua fintech com a sua marca — nós tratamos da infraestrutura</h3><p class="card-desc">Solução white-label completa. Licenciamento, compliance e operações por nossa conta. Sub-contas e permissões granulares.</p><div class="card-footer"><div class="card-tags"><span class="card-tag">White-label</span><span class="card-tag">BaaS</span><span class="card-tag">Sub-contas</span></div><span class="card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-strip reveal">
+    <div class="cta-strip-inner">
+      <div class="cta-label">Fale connosco</div>
+      <h3 class="cta-title">Não encontrou o que procura? <span>Nós construímos à sua medida.</span></h3>
+      <p class="cta-desc">A API do iMaliway adapta-se a qualquer fluxo de pagamento. Entre em contacto com a nossa equipa — da ideia ao go-live, em média 48 horas.</p>
+    </div>
+    <div class="cta-btns">
+      <button class="btn btn-primary">Falar com a equipa →</button>
+      <button class="btn btn-ghost">Explorar documentação</button>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal-backdrop" onclick="handleBackdropClick(event)">
+  <div class="modal-wrap">
+    <button class="modal-close" onclick="closeModal()" aria-label="Fechar">✕</button>
+    <div class="modal">
+      <img class="modal-img" id="modal-img" src="" alt="" loading="lazy">
+      <div class="modal-content">
+        <div class="modal-sector-badge" id="modal-sector"></div>
+        <h3 class="modal-title" id="modal-title"></h3>
+        <p class="modal-desc" id="modal-desc"></p>
+        <div class="modal-methods" id="modal-methods"></div>
+        <div class="benefits-grid" id="modal-benefits"></div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="closeModal()">Começar integração →</button>
+          <button class="btn btn-ghost" onclick="closeModal()">Ver documentação</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
