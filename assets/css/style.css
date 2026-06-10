@@ -162,25 +162,36 @@ p  { color: var(--c-mid); line-height: 1.65; }
 .hero {
   min-height: 100dvh; padding: 120px 0 80px;
   position: relative; overflow: hidden;
-  background: #FAFAFA;
+  background-color: #060D06;
+  background-image: url('../designer/BG/abstract-twisted-cosmic-wormhole-technology-background-data-network-3d-rendering.jpg');
+  background-size: cover;
+  background-position: center;
   display: flex; align-items: center;
 }
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(4,10,4,.68);
+  z-index: 0;
+}
 .hero-grid-bg {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image: linear-gradient(var(--c-border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--c-border) 1px, transparent 1px);
-  background-size: 52px 52px; opacity: .4;
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 52px 52px;
 }
 .hero-glow {
-  position: absolute; top: -100px; right: -60px;
-  width: 650px; height: 650px; pointer-events: none;
-  background: radial-gradient(ellipse at center, rgba(82,168,40,.1) 0%, transparent 70%);
+  position: absolute; top: -100px; right: -60px; z-index: 1;
+  width: 700px; height: 700px; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(82,168,40,.28) 0%, transparent 65%);
 }
 .hero-container {
   max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-6);
   display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-16); align-items: center;
-  position: relative; z-index: 1; width: 100%;
+  position: relative; z-index: 2; width: 100%;
 }
+.hero .btn-outline { color: rgba(255,255,255,.85); border-color: rgba(255,255,255,.35); }
+.hero .btn-outline:hover { border-color: rgba(255,255,255,.7); background: rgba(255,255,255,.08); color: #fff; }
 .hero-content { display: flex; flex-direction: column; gap: var(--sp-5); }
 
 /* Regulatory badge */
@@ -207,7 +218,7 @@ p  { color: var(--c-mid); line-height: 1.65; }
 .hero-title {
   font-size: clamp(2.6rem, 5.5vw, 4rem);
   font-weight: 900; letter-spacing: -.035em; line-height: 1.05;
-  color: var(--c-charcoal);
+  color: #ffffff;
 }
 .title-accent { color: var(--c-green); position: relative; display: inline-block; }
 .title-accent::after {
@@ -217,7 +228,7 @@ p  { color: var(--c-mid); line-height: 1.65; }
   background: linear-gradient(90deg, var(--c-green-light), var(--c-green-dark));
 }
 
-.hero-sub { font-size: 1.05rem; max-width: 460px; }
+.hero-sub { font-size: 1.05rem; max-width: 460px; color: rgba(255,255,255,.72); }
 
 /* Method chips */
 .hero-methods { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
@@ -233,18 +244,18 @@ p  { color: var(--c-mid); line-height: 1.65; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
 
 /* Trust logos */
-.hero-trust { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; padding-top: var(--sp-4); border-top: 1px solid var(--c-border); }
-.trust-label { font-family: var(--font-head); font-size: .68rem; font-weight: 700; color: var(--c-muted); text-transform: uppercase; letter-spacing: .06em; }
+.hero-trust { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; padding-top: var(--sp-4); border-top: 1px solid rgba(255,255,255,.12); }
+.trust-label { font-family: var(--font-head); font-size: .68rem; font-weight: 700; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .06em; }
 .trust-logos { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
 .trust-badge {
   font-family: var(--font-head); font-size: .65rem; font-weight: 800;
   padding: 3px 9px; border-radius: var(--r-full);
-  background: var(--c-surface); color: var(--c-mid);
-  border: 1px solid var(--c-border);
+  background: rgba(255,255,255,.1); color: rgba(255,255,255,.75);
+  border: 1px solid rgba(255,255,255,.18);
 }
-.trust-mpesa  { background: var(--c-mpesa-bg); color: #1B5E20; border-color: #A5D6A7; }
-.trust-emola  { background: var(--c-emola-bg); color: #BF360C; border-color: #FFCC80; }
-.trust-mkesh  { background: var(--c-mkesh-bg); color: #0D47A1; border-color: #90CAF9; }
+.trust-mpesa  { background: rgba(76,175,80,.2); color: #A5D6A7; border-color: rgba(76,175,80,.35); }
+.trust-emola  { background: rgba(230,81,0,.2); color: #FFCC80; border-color: rgba(230,81,0,.35); }
+.trust-mkesh  { background: rgba(25,118,210,.2); color: #90CAF9; border-color: rgba(25,118,210,.35); }
 
 /* ── DASHBOARD MOCKUP ── */
 .hero-mockup { position: relative; }
@@ -328,7 +339,7 @@ p  { color: var(--c-mid); line-height: 1.65; }
 ══════════════════════════════════════════════════ */
 .methods-section { padding: var(--sp-24) 0; background: #fff; }
 .methods-grid {
-  display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--sp-4);
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4);
   margin-top: var(--sp-10);
 }
 .method-card {
@@ -342,9 +353,10 @@ p  { color: var(--c-mid); line-height: 1.65; }
   border-color: var(--c-green); box-shadow: var(--sh-green); transform: translateY(-4px);
 }
 .method-icon-wrap {
-  width: 56px; height: 56px; border-radius: 50%;
+  width: 64px; height: 64px; border-radius: var(--r-lg);
   display: flex; align-items: center; justify-content: center;
 }
+.method-icon-wrap img { width: 44px; height: 44px; object-fit: contain; }
 .mpesa-bg  { background: var(--c-mpesa-bg); }
 .mkesh-bg  { background: var(--c-mkesh-bg); }
 .emola-bg  { background: var(--c-emola-bg); }
@@ -524,7 +536,7 @@ p  { color: var(--c-mid); line-height: 1.65; }
 /* 3 pillars */
 .dev-pillars { display: flex; flex-direction: column; gap: var(--sp-3); margin: var(--sp-2) 0; }
 .dev-pillar { display: flex; gap: 12px; align-items: flex-start; background: #fff; border: 1px solid var(--c-border); border-radius: var(--r-lg); padding: var(--sp-4); }
-.dp-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.dp-icon { width: 32px; height: 32px; flex-shrink: 0; object-fit: contain; }
 .dev-pillar strong { font-family: var(--font-head); font-size: .88rem; font-weight: 700; color: var(--c-charcoal); display: block; margin-bottom: 2px; }
 .dev-pillar p { font-size: .8rem; line-height: 1.55; margin: 0; }
 

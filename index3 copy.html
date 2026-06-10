@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>iMali Way — Gateway de Pagamentos para Moçambique</title>
+  <meta name="description" content="Aceite M-Pesa, e-Mola, mKesh, QR Code e Link de Pagamento com uma única API. Regulado pelo Banco de Moçambique."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <script src="components/navbar-components.js" defer></script>
+  <link rel="stylesheet" href="assets/css/main.css"/>
+
+  <style>
+  /* ══════════════════════════════════════════════════
+     INDEX 3 — OVERRIDES & NEW SECTIONS (Figma faithful)
+  ══════════════════════════════════════════════════ */
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100dvh;
+    padding: 130px 0 80px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before { display: none; }
+  .hero-grid-bg { display: none; }
+  .hero-glow    { display: none; }
+
+  /* Vídeo de fundo — sem interacção, sem controlos */
+  .hero-bg-video {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+    opacity: .42;
+  }
+  /* Overlay para legibilidade do texto */
+  .hero-bg-overlay {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.25) 50%, rgba(0,0,0,.55) 100%);
+  }
+
+  .hero-inner3 {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 32px;
+    max-width: 860px; margin: 0 auto; padding: 0 24px;
+  }
+
+  /* Título — estilo Figma: maiúsculas, muito pesado */
+  .hero-title3 {
+    font-family: var(--font-head);
+    font-size: clamp(3.2rem, 8.5vw, 7rem);
+    font-weight: 900;
+    line-height: .92;
+    letter-spacing: -.04em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .hero-title3 .ht-green { color: #6DC135; }
+
+  .hero-subtitle3 {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,.62);
+    line-height: 1.75;
+    max-width: 560px;
+    text-align: center;
+  }
+
+  /* Trust badges — row de 3 pills */
+  .hero-badges {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;
+    padding-top: 8px;
+  }
+  .hbadge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+  }
+  .hbadge img { height: 22px; width: auto; object-fit: contain; display: block; }
+  .hbadge span {
+    font-family: var(--font-head); font-size: .62rem; font-weight: 700;
+    color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .08em;
+    white-space: nowrap;
+  }
+
+  /* ── SOLUTIONS (white) ── */
+  .solutions-section {
+    padding: 100px 0 0;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .solutions-hl {
+    font-family: var(--font-head);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    text-align: center;
+    color: #1A1A1A;
+    line-height: 1.2;
+    margin-bottom: 64px;
+  }
+  .solutions-hl .sg { color: #6DC135; }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 48px;
+    align-items: flex-end;
+    position: relative; z-index: 1;
+  }
+
+  /* Wave bg */
+  .solutions-wave-bg {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 55%; pointer-events: none; z-index: 0;
+    overflow: hidden;
+  }
+  .solutions-wave-bg img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+  /* Phone side */
+  .phone-col {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 20px;
+    padding-bottom: 0; position: relative;
+  }
+  .phone-device {
+    width: 190px;
+    background: #111;
+    border-radius: 32px;
+    border: 2px solid rgba(255,255,255,.15);
+    box-shadow: 0 30px 80px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.05);
+    overflow: hidden;
+    aspect-ratio: 9/19.5;
+    position: relative;
+  }
+  .phone-notch {
+    height: 28px;
+    background: #000;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .phone-notch-pill { width: 72px; height: 7px; background: #111; border-radius: 4px; border: 1.5px solid rgba(255,255,255,.1); }
+  .phone-screen {
+    background: linear-gradient(170deg, #0d1f0d 0%, #162616 40%, #0a1a0a 100%);
+    height: calc(100% - 28px);
+    padding: 16px 14px 20px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .phone-balance {
+    text-align: center; padding: 12px 0 8px;
+  }
+  .phone-balance-val {
+    font-family: var(--font-mono);
+    font-size: .85rem; font-weight: 700;
+    color: #6DC135; letter-spacing: .02em;
+  }
+  .phone-balance-lbl { font-size: .52rem; color: rgba(255,255,255,.35); margin-top: 3px; }
+  .phone-apps {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px;
+  }
+  .phone-app {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+    padding: 9px 6px;
+    text-align: center;
+    font-size: .48rem; color: rgba(255,255,255,.5);
+    font-family: var(--font-head); font-weight: 600;
+  }
+  .phone-app-dot {
+    width: 20px; height: 20px; border-radius: 50%;
+    margin: 0 auto 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .52rem; font-weight: 800; color: #fff;
+  }
+
+  .callout-chip {
+    background: rgba(255,255,255,.97);
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,.1);
+    max-width: 195px;
+    font-size: .77rem; color: #444; line-height: 1.5;
+  }
+  .callout-chip .cc-label {
+    font-family: var(--font-head);
+    font-size: .68rem; font-weight: 800;
+    color: #52A828; display: block; margin-bottom: 4px;
+  }
+
+  /* Dashboard side */
+  .dash-col { position: relative; padding-top: 48px; }
+  .callout-top {
+    position: absolute; top: 0; right: 0;
+    background: rgba(255,255,255,.97);
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,.1);
+    max-width: 215px;
+    font-size: .77rem; color: #444; line-height: 1.5;
+    z-index: 3;
+  }
+  .callout-top .cc-label {
+    font-family: var(--font-head);
+    font-size: .68rem; font-weight: 800;
+    color: #52A828; display: block; margin-bottom: 4px;
+  }
+  .dash-frame {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    box-shadow: 0 8px 48px rgba(0,0,0,.12);
+    overflow: hidden;
+  }
+  .dash-topbar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 9px 14px;
+    background: #f5f5f5; border-bottom: 1px solid #eee;
+  }
+  .dash-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dash-url-bar {
+    flex: 1; text-align: center;
+    font-family: var(--font-mono); font-size: .6rem; color: #888;
+    background: #fff; border-radius: 4px;
+    padding: 3px 10px; border: 1px solid #eee;
+  }
+  .dash-layout { display: grid; grid-template-columns: 160px 1fr; min-height: 260px; }
+  .dash-sidebar {
+    background: #fff; border-right: 1px solid #eee;
+    padding: 14px 0; font-size: .7rem;
+  }
+  .dash-sb-logo {
+    padding: 0 14px 14px;
+    font-family: var(--font-head); font-size: .75rem; font-weight: 800; color: #1A1A1A;
+  }
+  .dash-sb-item {
+    padding: 7px 14px; color: #666;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .dash-sb-item.act { background: #f0f9ea; color: #2E7D1E; font-weight: 700; }
+  .dash-main-area { padding: 14px; }
+  .dash-section-lbl {
+    font-family: var(--font-head); font-size: .55rem; font-weight: 800;
+    color: #aaa; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px;
+  }
+  .dash-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+  .dash-kpi-card {
+    background: #f9f9f9; border: 1px solid #eee; border-radius: 8px; padding: 9px 10px;
+  }
+  .dash-kpi-lbl { font-family: var(--font-head); font-size: .52rem; font-weight: 700; color: #aaa; }
+  .dash-kpi-val { font-family: var(--font-head); font-size: .78rem; font-weight: 800; color: #1A1A1A; margin-top: 2px; }
+  .dash-table { background: #f9f9f9; border: 1px solid #eee; border-radius: 8px; padding: 10px; }
+  .dash-table-h { font-family: var(--font-head); font-size: .6rem; font-weight: 700; color: #555; margin-bottom: 6px; }
+  .dash-empty { font-size: .62rem; color: #bbb; text-align: center; padding: 10px 0; }
+
+  /* ── METHODS SVG GRID ── */
+  .methods-svg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .method-svg-card {
+    width: 100%; height: auto; display: block;
+    border-radius: 14px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .method-svg-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(82,168,40,.15);
+  }
+
+  /* ── SANDBOX SVG CARDS ── */
+  .sandbox-svg-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+  .sandbox-svg-card {
+    width: 100%; height: auto; display: block;
+    border-radius: 20px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .sandbox-svg-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 40px rgba(82,168,40,.2);
+  }
+
+  /* ── METHODS WHITE ── */
+  .methods-white-section {
+    padding: 80px 0 60px;
+    background: #fff;
+  }
+  .methods-white-hl {
+    font-family: var(--font-head);
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800; text-align: center; color: #1A1A1A;
+    line-height: 1.2; margin-bottom: 40px;
+  }
+  .methods-white-hl .mg { color: #6DC135; }
+  .methods-logo-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 14px; margin-bottom: 48px;
+  }
+  .mlg-card {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 20px;
+    background: #fff; border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    transition: all .22s;
+  }
+  .mlg-card:hover {
+    border-color: rgba(82,168,40,.3);
+    box-shadow: 0 4px 20px rgba(82,168,40,.1);
+    transform: translateY(-2px);
+  }
+  .mlg-logo { width: 50px; height: 50px; object-fit: contain; flex-shrink: 0; }
+  .mlg-text { display: flex; flex-direction: column; gap: 2px; }
+  .mlg-type {
+    font-family: var(--font-head); font-size: .68rem;
+    font-weight: 600; color: #999;
+  }
+  .mlg-name {
+    font-family: var(--font-head); font-size: .92rem;
+    font-weight: 800; color: #6DC135; font-style: italic;
+  }
+
+  .methods-choose-hl {
+    font-family: var(--font-head);
+    font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+    font-weight: 700; text-align: center; color: #1A1A1A;
+    margin-bottom: 24px;
+  }
+  .methods-choose-hl .mg { color: #6DC135; }
+  .methods-choose-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  }
+  .mch-card {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 20px;
+    background: #fff; border: 1px solid #e8e8e8;
+    border-radius: 16px; transition: all .22s;
+  }
+  .mch-card:hover {
+    border-color: rgba(82,168,40,.3);
+    box-shadow: 0 4px 20px rgba(82,168,40,.1);
+    transform: translateY(-2px);
+  }
+  .mch-icon { width: 40px; height: 40px; object-fit: contain; flex-shrink: 0; }
+  .mch-via { font-family: var(--font-head); font-size: .68rem; font-weight: 600; color: #999; }
+  .mch-name { font-family: var(--font-head); font-size: .88rem; font-weight: 800; color: #6DC135; font-style: italic; }
+
+  /* ── DASHBOARD SHOWCASE (gradient) ── */
+  .dash-showcase {
+    padding: 80px 0;
+    position: relative; overflow: hidden;
+  }
+  .dash-showcase-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: url('assets/designer/BG/magnific_a-diagonal-gradient-of-so_Te7MvHHVNR.png');
+    background-size: cover; background-position: center;
+  }
+  .dash-showcase-inner {
+    position: relative; z-index: 1;
+    display: flex; justify-content: center;
+  }
+  .dash-showcase-wrap {
+    position: relative;
+    max-width: 860px; width: 100%;
+    padding: 0 200px;
+  }
+  .dsc-callout {
+    position: absolute;
+    background: rgba(255,255,255,.96);
+    border: 1px solid #e8e8e8;
+    border-radius: 12px; padding: 12px 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
+    max-width: 175px; font-size: .74rem; color: #444; line-height: 1.55;
+    z-index: 3;
+  }
+  .dsc-callout .dc-lbl {
+    font-family: var(--font-head); font-size: .66rem; font-weight: 800;
+    color: #52A828; display: block; margin-bottom: 4px;
+  }
+  .dsc-callout.tl { top: 10%; left: 0; }
+  .dsc-callout.tr { top: 8%; right: 0; }
+  .dsc-callout.bl { bottom: 22%; left: 0; }
+  .dsc-callout.br { bottom: 16%; right: 0; }
+
+  /* ── SANDBOX STEPS (dark) ── */
+  .sandbox-steps {
+    padding: 80px 0;
+    background: #0C0C0C;
+  }
+  .sandbox-steps-hl {
+    font-family: var(--font-head);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800; text-align: center; color: #fff;
+    line-height: 1.25; margin-bottom: 52px;
+  }
+  .sandbox-steps-hl .sg { color: #6DC135; }
+  .sandbox-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin-bottom: 44px;
+  }
+  .sb-step-card {
+    background: #181818;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 20px; padding: 36px 24px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 20px; text-align: center;
+    transition: all .25s;
+  }
+  .sb-step-card:hover {
+    border-color: rgba(82,168,40,.3);
+    box-shadow: 0 0 40px rgba(82,168,40,.12);
+  }
+  .sb-step-icon { width: 88px; height: 88px; object-fit: contain; }
+  .sb-step-name {
+    font-family: var(--font-head); font-size: .95rem;
+    font-weight: 700; color: #fff; line-height: 1.45;
+  }
+  .sb-step-name .sg { color: #6DC135; }
+  .sandbox-steps-cta { text-align: center; }
+
+  /* ── STEPPER WHITE ── */
+  .stepper-white {
+    padding: 80px 0;
+    background: #fff !important;
+  }
+  .stepper-white .section-h { color: #1A1A1A; }
+  .stepper-white .section-p { color: #555; }
+  .stepper-white .step-tab:hover { background: rgba(82,168,40,.07); }
+  .stepper-white .step-num {
+    background: #f0f0f0; color: #888; border-color: #ddd;
+  }
+  .stepper-white .step-tab.active .step-num {
+    background: #52A828; color: #fff; border-color: transparent;
+  }
+  .stepper-white .step-tab.active .step-lbl { color: #52A828; }
+  .stepper-white .step-lbl { color: #888; }
+  .stepper-white .step-conn { background: #ddd; }
+  .stepper-white .panel-title { color: #1A1A1A; }
+  .stepper-white .panel-desc,
+  .stepper-white .panel-list li { color: #555; }
+  .stepper-white .panel-list li::before { background: #52A828; }
+  .stepper-white .sp { background: #ddd; }
+  .stepper-white .sp.active { background: #52A828; width: 22px; }
+  .stepper-white .btn-step-prev { color: #888; border-color: #ddd; }
+  .stepper-white .btn-step-prev:hover:not(:disabled) { background: #f5f5f5; }
+
+  /* ── INLINE FOOTER ── */
+  .footer3 {
+    background: #080808;
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .footer3-top {
+    max-width: 1200px; margin: 0 auto; padding: 64px 24px 48px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+  }
+  .footer3-brand { display: flex; flex-direction: column; gap: 16px; }
+  .footer3-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-head); font-size: 1.18rem;
+    font-weight: 400; color: #fff;
+    text-decoration: none;
+  }
+  .footer3-logo strong { font-weight: 900; }
+  .footer3-logo em { font-style: normal; font-weight: 700; color: #6DC135; }
+  .footer3-desc { font-size: .82rem; color: rgba(255,255,255,.35); line-height: 1.7; }
+  .footer3-socials { display: flex; gap: 8px; }
+  .footer3-soc {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,.07); color: rgba(255,255,255,.45);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s;
+  }
+  .footer3-soc:hover { background: #52A828; color: #fff; }
+  .footer3-col { display: flex; flex-direction: column; gap: 10px; }
+  .footer3-col-h {
+    font-family: var(--font-head); font-size: .6rem; font-weight: 800;
+    color: rgba(255,255,255,.25); letter-spacing: .12em;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .footer3-lnk {
+    font-size: .83rem; color: rgba(255,255,255,.45);
+    transition: color .15s; text-decoration: none;
+  }
+  .footer3-lnk:hover { color: #6DC135; }
+  .footer3-bottom {
+    border-top: 1px solid rgba(255,255,255,.05);
+    padding: 18px 24px;
+    max-width: 1200px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .footer3-copy {
+    font-family: var(--font-head); font-size: .6rem;
+    font-weight: 700; color: rgba(255,255,255,.18); letter-spacing: .04em;
+  }
+  .footer3-reg { font-size: .58rem; color: rgba(255,255,255,.12); letter-spacing: .03em; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .solutions-grid { grid-template-columns: 1fr; }
+    .phone-col { display: none; }
+    .dash-showcase-wrap { padding: 0 20px; }
+    .dsc-callout { display: none; }
+    .footer3-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .methods-svg-grid { grid-template-columns: 1fr 1fr; }
+    .sandbox-svg-cards { grid-template-columns: 1fr; }
+    .hero-trust-bar { flex-direction: column; }
+    .htb-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.09); }
+    .htb-item:last-child { border-bottom: none; }
+    .footer3-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 540px) {
+    .methods-svg-grid { grid-template-columns: 1fr; }
+    .sandbox-svg-cards { grid-template-columns: 1fr; }
+    .methods-logo-grid { grid-template-columns: 1fr; }
+    .footer3-top { grid-template-columns: 1fr; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<site-header></site-header>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+   HERO — dark, green orb, "iMali Way"
+══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+
+  <!-- Vídeo de fundo atmosférico -->
+  <video class="hero-bg-video"
+         autoplay loop muted playsinline
+         disablepictureinpicture
+         controlsList="nodownload nofullscreen noremoteplayback"
+         aria-hidden="true"
+         oncontextmenu="return false;">
+    <source src="assets/designer/cards/ASSETS/sci-fi-motion.mp4" type="video/mp4">
+  </video>
+  <div class="hero-bg-overlay" aria-hidden="true"></div>
+
+  <div class="hero-inner3">
+
+    <!-- Título — fiel ao Figma -->
+    <h1 class="hero-title3">
+      Pronto para<br>
+      <span class="ht-green">modernizar</span><br>
+      os seus pagamentos digitais?
+    </h1>
+
+    <!-- Subtítulo -->
+    <p class="hero-subtitle3">
+      A IMaliway é a Gateway de pagamentos da Paytek, regulada pelo Banco de Moçambique.
+      Permite que qualquer empresa ou desenvolvedor integre M‑Pesa, e‑Mola, mKesh,
+      QR Code e Link de Pagamento numa única chamada à API.
+    </p>
+
+    <!-- CTAs -->
+    <div class="hero-ctas">
+      <a href="auth/index.html?tab=signup" class="btn btn-primary btn-lg">
+        Criar conta
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="doc2/doc.html" class="btn btn-ghost btn-lg">
+        Ver documentação
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+      </a>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="hero-badges">
+      <div class="hbadge">
+        <img src="assets/image/bm.png" alt="Banco de Moçambique">
+        <span>Licenciado (2020)</span>
+      </div>
+      <div class="hbadge">
+        <img src="assets/image/SANDBOX-a07a249c9b1021561c7b8c545d69f9c2.png" alt="Sandbox Regulatório">
+        <span>Aprovado (2020)</span>
+      </div>
+      <div class="hbadge">
+        <img src="assets/image/simo-rede.png" alt="SIMOrede">
+        <span>Ligados a SIMO (2026)</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+   SOLUTIONS — white, phone + dashboard, wave
+══════════════════════════════════════════ -->
+<section class="solutions-section" id="solucoes">
+
+  <!-- Animated wave decoration -->
+  <div class="solutions-wave-bg" aria-hidden="true">
+    <video autoplay loop muted playsinline
+           disablepictureinpicture
+           controlsList="nodownload nofullscreen noremoteplayback"
+           oncontextmenu="return false;"
+           style="width:100%;height:100%;object-fit:cover;object-position:top;pointer-events:none;user-select:none;">
+      <source src="assets/designer/cards/ASSETS/magnific_style-clean-cinematic-mot_rlooT4Fxtc.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="container">
+    <h2 class="solutions-hl">
+      <span class="sg">Soluções flexíveis</span> para todo<br>modelo de negócio.
+    </h2>
+
+    <div class="solutions-grid">
+
+      <!-- Phone mockup — designer SVG -->
+      <div class="phone-col">
+        <img src="assets/designer/cards/ASSETS/smartphone.svg"
+             alt="iMali Way App"
+             style="width:100%;max-width:271px;height:auto;display:block;margin:0 auto;">
+        <img src="assets/designer/cards/desenhado_para.svg"
+             alt="Desenhado para funcionar individualmente ou em conjunto."
+             style="width:100%;max-width:338px;height:auto;display:block;margin-top:16px;">
+      </div>
+
+      <!-- Dashboard mockup — designer SVG -->
+      <div class="dash-col">
+        <img src="assets/designer/cards/ASSETS/Card-1.svg"
+             alt=""
+             style="position:absolute;top:0;right:0;width:338px;max-width:100%;height:auto;z-index:3;"
+             aria-hidden="true">
+        <img src="assets/designer/cards/ASSETS/Dahboard.svg"
+             alt="Dashboard iMali Way"
+             style="width:100%;height:auto;display:block;margin-top:40px;border-radius:12px;box-shadow:0 8px 48px rgba(0,0,0,.12);">
+        <img src="assets/designer/cards/ASSETS/Card 2.svg"
+             alt=""
+             style="width:338px;max-width:100%;height:auto;display:block;margin-top:16px;margin-left:auto;"
+             aria-hidden="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+   METHODS — white, logo cards
+══════════════════════════════════════════ -->
+<section class="methods-white-section" id="metodos">
+  <div class="container">
+
+    <h2 class="methods-white-hl reveal">
+      <span class="mg">Todos métodos de pagamento</span><br>na palma da mão.
+    </h2>
+
+    <!-- 6 payment SVG cards do designer -->
+    <div class="methods-svg-grid reveal">
+      <img src="assets/designer/cards/ASSETS/eMola.svg"     alt="e-Mola"           class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/MPesa.svg"     alt="M-Pesa"           class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/mKesh.svg"     alt="mKesh"            class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Visa.svg"      alt="Visa/Mastercard"  class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Google n Apple.svg" alt="Google Pay &amp; Apple Pay" class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/PayPal.svg"    alt="PayPal"           class="method-svg-card">
+    </div>
+
+    <!-- Choose row -->
+    <h3 class="methods-choose-hl reveal">
+      <span class="mg">Escolha</span> como o seu cliente paga.
+    </h3>
+
+    <div class="methods-svg-grid reveal">
+      <img src="assets/designer/cards/ASSETS/QRcode.svg"   alt="Via QR Code"              class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Ent Ref.svg"  alt="Por Entidade e Referência" class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Link.svg"     alt="Via Link"                  class="method-svg-card">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+   INTEGRATION — dark, terminal
+══════════════════════════════════════════ -->
+<section class="dev-section" id="developers" aria-labelledby="dev-h3">
+  <div class="container dev-inner">
+
+    <div class="dev-content reveal">
+      <h2 class="section-h left" id="dev-h3">
+        Integração em<br><span class="hero-accent">minutos</span>
+      </h2>
+
+      <div class="dev-pillars">
+        <div class="dev-pillar">
+          <div class="pillar-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div>
+            <h4>SDKS MODERNOS</h4>
+            <p>Bibliotecas prontas para Node.js, Python, PHP e Go.</p>
+          </div>
+        </div>
+        <div class="dev-pillar">
+          <div class="pillar-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <div>
+            <h4>WEBHOOKS ROBUSTOS</h4>
+            <p>Notificações em tempo real com retry automático em caso de falha.</p>
+          </div>
+        </div>
+        <div class="dev-pillar">
+          <div class="pillar-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <h4>SANDBOX GRATUITO</h4>
+            <p>Ambiente de testes completo com espelhamento de produção.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="doc2/doc.html" class="btn btn-primary btn-lg">
+          Explorar documentação
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#" class="btn btn-ghost btn-lg">Sandbox</a>
+      </div>
+    </div>
+
+    <div class="dev-terminal reveal" style="animation-delay:.15s">
+      <div class="term-header">
+        <span class="term-dot" style="background:#ff5f57"></span>
+        <span class="term-dot" style="background:#ffbd2e"></span>
+        <span class="term-dot" style="background:#28c840"></span>
+        <span class="term-title">Terminal</span>
+        <div class="term-tabs">
+          <button class="term-tab active" tabindex="-1">curl</button>
+          <button class="term-tab" tabindex="-1">Node.js</button>
+          <button class="term-tab" tabindex="-1">Python</button>
+          <button class="term-tab" tabindex="-1">PHP</button>
+        </div>
+      </div>
+      <div class="term-body">
+        <pre><code><span class="t-cmd">curl</span> <span class="t-url">https://api.imaliway.co.mz/v1/payments</span> \
+  <span class="t-flag">-H</span> <span class="t-str">"Authorization: Bearer sk_live_..."</span> \
+  <span class="t-flag">-d</span> <span class="t-str">'</span><span class="t-obj">{</span>
+    <span class="t-key">"amount"</span><span class="t-obj">:</span>   <span class="t-num">2500.00</span><span class="t-obj">,</span>
+    <span class="t-key">"currency"</span><span class="t-obj">:</span> <span class="t-str">"MZN"</span><span class="t-obj">,</span>
+    <span class="t-key">"method"</span><span class="t-obj">:</span>   <span class="t-str">"mpesa"</span><span class="t-obj">,</span>
+    <span class="t-key">"customer"</span><span class="t-obj">:</span> <span class="t-obj">{</span>
+      <span class="t-key">"msisdn"</span><span class="t-obj">:</span> <span class="t-str">"841234567"</span><span class="t-obj">,</span>
+      <span class="t-key">"name"</span><span class="t-obj">:</span>   <span class="t-str">"Arnaldo Nuvei"</span>
+    <span class="t-obj">},</span>
+    <span class="t-key">"reference"</span><span class="t-obj">:</span> <span class="t-str">"ORDER_123"</span>
+  <span class="t-obj">}'</span>
+
+<span class="t-comment"># Response: 200 OK</span>
+<span class="t-ok">payment_id: txn_3MzS1U2eZvKY1s2</span>
+<span class="t-ok">status: "pending_customer_action"</span></code></pre>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+   DASHBOARD SHOWCASE — gradient background
+══════════════════════════════════════════ -->
+<section class="dash-showcase" id="dashboard">
+  <div class="dash-showcase-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="dash-showcase-inner">
+      <div class="dash-showcase-wrap">
+
+        <!-- Callout chips around dashboard -->
+        <div class="dsc-callout tl">
+          <span class="dc-lbl">Tudo num só lugar</span>
+          Apresentação dos negócios conectados à empresa.
+        </div>
+        <div class="dsc-callout tr">
+          <span class="dc-lbl">Controle total</span>
+          Interface com observação geral do negócio e balanço total.
+        </div>
+        <div class="dsc-callout bl">
+          <span class="dc-lbl">Organização</span>
+          Menu segmentado por funcionalidades importantes.
+        </div>
+        <div class="dsc-callout br">
+          <span class="dc-lbl">Crescimento financeiro</span>
+          KPIs do volume de vendas apresentado em gráficos.
+        </div>
+
+        <!-- Dashboard SVG do designer -->
+        <img src="assets/designer/cards/ASSETS/Dahboard.svg"
+             alt="Dashboard iMali Way"
+             style="width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 16px 64px rgba(0,0,0,.2);">
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+   SANDBOX STEPS — dark, 3 cards
+══════════════════════════════════════════ -->
+<section class="sandbox-steps" id="sandbox">
+  <div class="container">
+
+    <h2 class="sandbox-steps-hl reveal">
+      Integração rápida para<br>
+      <span class="sg">todo tipo de negócio.</span>
+    </h2>
+
+    <div class="sandbox-svg-cards reveal">
+      <img src="assets/designer/cards/ASSETS/Sandbox 1.svg"
+           alt="Entra no Sandbox (gratuito)"
+           class="sandbox-svg-card">
+      <img src="assets/designer/cards/ASSETS/Staging 2.svg"
+           alt="Passa para a fase Staging"
+           class="sandbox-svg-card">
+      <img src="assets/designer/cards/ASSETS/Producao 3.svg"
+           alt="Vai para Produção"
+           class="sandbox-svg-card">
+    </div>
+
+    <div class="sandbox-steps-cta reveal">
+      <a href="auth/index.html?tab=signup" class="btn btn-primary btn-lg">
+        Entrar no Sandbox
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+   STEPPER — white background
+══════════════════════════════════════════ -->
+<section class="stepper-white" id="como-funciona" aria-labelledby="stepper-h3">
+  <div class="container">
+
+    <h2 class="section-h center reveal" id="stepper-h3">
+      <span style="color:#6DC135;">Como funciona</span> o iMali Way
+    </h2>
+    <p class="section-p center reveal" style="color:#555;">
+      Cria uma conta em menos de 3 minutos
+    </p>
+
+    <div class="step-tabs reveal" role="tablist">
+      <button class="step-tab active" data-step="1" role="tab" aria-selected="true" aria-controls="panel-1">
+        <span class="step-num">1</span><span class="step-lbl">Passo 1</span>
+      </button>
+      <span class="step-conn" aria-hidden="true"></span>
+      <button class="step-tab" data-step="2" role="tab" aria-selected="false" aria-controls="panel-2">
+        <span class="step-num">2</span><span class="step-lbl">Passo 2</span>
+      </button>
+      <span class="step-conn" aria-hidden="true"></span>
+      <button class="step-tab" data-step="3" role="tab" aria-selected="false" aria-controls="panel-3">
+        <span class="step-num">3</span><span class="step-lbl">Passo 3</span>
+      </button>
+      <span class="step-conn" aria-hidden="true"></span>
+      <button class="step-tab" data-step="4" role="tab" aria-selected="false" aria-controls="panel-4">
+        <span class="step-num">4</span><span class="step-lbl">Passo 4</span>
+      </button>
+      <span class="step-conn" aria-hidden="true"></span>
+      <button class="step-tab" data-step="5" role="tab" aria-selected="false" aria-controls="panel-5">
+        <span class="step-num">5</span><span class="step-lbl">Passo 5</span>
+      </button>
+    </div>
+
+    <div class="step-panels">
+
+      <!-- P1 -->
+      <div class="step-panel active" id="panel-1" role="tabpanel">
+        <div class="panel-screen">
+          <div class="screen-bar">
+            <span class="sbar-dot" style="background:#ff5f57"></span>
+            <span class="sbar-dot" style="background:#ffbd2e"></span>
+            <span class="sbar-dot" style="background:#28c840"></span>
+            <span class="sbar-url">app.imaliway.co.mz/signup</span>
+          </div>
+          <div class="screen-body">
+            <h3 class="screen-title">Criar conta</h3>
+            <input class="screen-input" placeholder="Nome completo" readonly tabindex="-1"/>
+            <input class="screen-input" placeholder="Email" readonly tabindex="-1"/>
+            <input class="screen-input" placeholder="Telefone" readonly tabindex="-1"/>
+            <input class="screen-input" placeholder="Nome da empresa" readonly tabindex="-1"/>
+            <div class="screen-btn">Criar conta →</div>
+            <p class="screen-note">Grátis · Sem cartão de crédito</p>
+          </div>
+        </div>
+        <div class="panel-info">
+          <span class="panel-badge">Passo 1 de 5</span>
+          <h3 class="panel-title">Cria a tua conta iMali Business</h3>
+          <p class="panel-desc">Regista-te em menos de 2 minutos. Sem cartão de crédito, sem burocracia. Acesso imediato ao sandbox.</p>
+          <ul class="panel-list">
+            <li>Email e número de telefone</li>
+            <li>Confirmação automática</li>
+            <li>Dashboard completo disponível</li>
+          </ul>
+          <div class="panel-nav">
+            <button class="btn-step-prev" disabled>← Anterior</button>
+            <button class="btn-step-next" data-next="2">Próximo →</button>
+          </div>
+          <div class="step-progress">
+            <span class="sp active"></span><span class="sp"></span>
+            <span class="sp"></span><span class="sp"></span><span class="sp"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- P2 -->
+      <div class="step-panel" id="panel-2" role="tabpanel">
+        <div class="panel-screen">
+          <div class="screen-bar">
+            <span class="sbar-dot" style="background:#ff5f57"></span>
+            <span class="sbar-dot" style="background:#ffbd2e"></span>
+            <span class="sbar-dot" style="background:#28c840"></span>
+            <span class="sbar-url">app.imaliway.co.mz/verificacao</span>
+          </div>
+          <div class="screen-body">
+            <h3 class="screen-title">Verificação KYC</h3>
+            <div class="kyc-item kyc-done"><span class="kyc-n">✓</span><div><strong>Dados pessoais</strong><small>Concluído</small></div></div>
+            <div class="kyc-item kyc-active"><span class="kyc-n">2</span><div><strong>Documento de identificação</strong><small>Em curso...</small></div></div>
+            <div class="kyc-item kyc-pending"><span class="kyc-n">3</span><div><strong>Selfie de verificação</strong><small>Pendente</small></div></div>
+            <div class="screen-btn" style="margin-top:12px">Submeter documentos →</div>
+          </div>
+        </div>
+        <div class="panel-info">
+          <span class="panel-badge">Passo 2 de 5</span>
+          <h3 class="panel-title">Verificação da identidade</h3>
+          <p class="panel-desc">Processo KYC simplificado e digital. Submete o teu BI ou passaporte e uma selfie. Aprovação em menos de 24h.</p>
+          <ul class="panel-list">
+            <li>Submissão de documentos 100% digital</li>
+            <li>Aprovação em menos de 24h</li>
+            <li>Dois níveis: básico e avançado</li>
+          </ul>
+          <div class="panel-nav">
+            <button class="btn-step-prev" data-prev="1">← Anterior</button>
+            <button class="btn-step-next" data-next="3">Próximo →</button>
+          </div>
+          <div class="step-progress">
+            <span class="sp"></span><span class="sp active"></span>
+            <span class="sp"></span><span class="sp"></span><span class="sp"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- P3 -->
+      <div class="step-panel" id="panel-3" role="tabpanel">
+        <div class="panel-screen">
+          <div class="screen-bar">
+            <span class="sbar-dot" style="background:#ff5f57"></span>
+            <span class="sbar-dot" style="background:#ffbd2e"></span>
+            <span class="sbar-dot" style="background:#28c840"></span>
+            <span class="sbar-url">app.imaliway.co.mz/dashboard/api</span>
+          </div>
+          <div class="screen-body">
+            <h3 class="screen-title">As tuas credenciais</h3>
+            <div class="apikey-box">
+              <div class="apikey-row"><span class="apikey-label">API Key (Live)</span><span class="env-badge env-live">LIVE</span></div>
+              <div class="apikey-val">im_live_sk_••••••••••••••••</div>
+              <div class="apikey-btns"><button class="apikey-btn" tabindex="-1">Copiar</button><button class="apikey-btn" tabindex="-1">Mostrar</button></div>
+            </div>
+            <div class="apikey-box" style="margin-top:8px">
+              <div class="apikey-row"><span class="apikey-label">API Key (Sandbox)</span><span class="env-badge env-sandbox">SANDBOX</span></div>
+              <div class="apikey-val">im_test_sk_••••••••••••••</div>
+              <div class="apikey-btns"><button class="apikey-btn" tabindex="-1">Copiar</button><button class="apikey-btn" tabindex="-1">Mostrar</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-info">
+          <span class="panel-badge">Passo 3 de 5</span>
+          <h3 class="panel-title">Obtém as tuas API Keys</h3>
+          <p class="panel-desc">Encontras as tuas chaves no dashboard. Chave separada para sandbox e produção. Troca com uma linha de código.</p>
+          <ul class="panel-list">
+            <li>Chaves separadas: sandbox e produção</li>
+            <li>Rotação de chaves com um clique</li>
+            <li>Webhook URL configurável</li>
+          </ul>
+          <div class="panel-nav">
+            <button class="btn-step-prev" data-prev="2">← Anterior</button>
+            <button class="btn-step-next" data-next="4">Próximo →</button>
+          </div>
+          <div class="step-progress">
+            <span class="sp"></span><span class="sp"></span>
+            <span class="sp active"></span><span class="sp"></span><span class="sp"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- P4 -->
+      <div class="step-panel" id="panel-4" role="tabpanel">
+        <div class="panel-screen">
+          <div class="screen-bar">
+            <span class="sbar-dot" style="background:#ff5f57"></span>
+            <span class="sbar-dot" style="background:#ffbd2e"></span>
+            <span class="sbar-dot" style="background:#28c840"></span>
+            <span class="sbar-url">docs.imaliway.co.mz/sandbox</span>
+          </div>
+          <div class="screen-body">
+            <h3 class="screen-title">Testar pagamento</h3>
+            <div class="sandbox-row">
+              <div><label class="sb-label">Número</label><div class="screen-input">258 84 000 0000</div></div>
+              <div><label class="sb-label">Valor (MZN)</label><div class="screen-input">500.00</div></div>
+            </div>
+            <label class="sb-label" style="margin-top:8px;display:block">Método</label>
+            <div class="screen-input">M-Pesa ▾</div>
+            <div class="screen-btn" style="margin-top:10px">Simular push →</div>
+            <div class="sb-response">
+              <span class="sb-comment">// Response</span><br>
+              <span class="sb-key">"status"</span><span class="sb-colon">: </span><span class="sb-str">"pending_customer"</span><br>
+              <span class="sb-ok">✓ Push enviado</span>
+            </div>
+          </div>
+        </div>
+        <div class="panel-info">
+          <span class="panel-badge">Passo 4 de 5</span>
+          <h3 class="panel-title">Testa no ambiente sandbox</h3>
+          <p class="panel-desc">Simula pagamentos reais sem movimentar dinheiro. Testa todos os métodos, cenários de erro e webhooks antes de ir a produção.</p>
+          <ul class="panel-list">
+            <li>Push payments simulados em tempo real</li>
+            <li>Todos os métodos disponíveis no sandbox</li>
+            <li>Logs detalhados para debugging</li>
+          </ul>
+          <div class="panel-nav">
+            <button class="btn-step-prev" data-prev="3">← Anterior</button>
+            <button class="btn-step-next" data-next="5">Próximo →</button>
+          </div>
+          <div class="step-progress">
+            <span class="sp"></span><span class="sp"></span>
+            <span class="sp"></span><span class="sp active"></span><span class="sp"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- P5 -->
+      <div class="step-panel" id="panel-5" role="tabpanel">
+        <div class="panel-screen">
+          <div class="screen-bar">
+            <span class="sbar-dot" style="background:#ff5f57"></span>
+            <span class="sbar-dot" style="background:#ffbd2e"></span>
+            <span class="sbar-dot" style="background:#28c840"></span>
+            <span class="sbar-url">app.imaliway.co.mz/dashboard</span>
+          </div>
+          <div class="screen-body">
+            <div class="live-row">
+              <span class="live-badge">● LIVE</span>
+              <span class="live-sub">Produção activa</span>
+            </div>
+            <div class="live-txns">
+              <div class="live-txn">
+                <span class="txn-m" style="background:#E8F5E9;color:#1B5E20">M</span>
+                <div class="txn-info"><strong>PAY-00892</strong> · M-Pesa<br><small>agora mesmo</small></div>
+                <span class="txn-val">+2.450 MT</span>
+              </div>
+              <div class="live-txn">
+                <span class="txn-m" style="background:#E3F2FD;color:#0D47A1">K</span>
+                <div class="txn-info"><strong>PAY-00891</strong> · Mkesh<br><small>há 2 min</small></div>
+                <span class="txn-val">+12.000 MT</span>
+              </div>
+              <div class="live-txn">
+                <span class="txn-m" style="background:#FFF3E0;color:#BF360C">E</span>
+                <div class="txn-info"><strong>PAY-00890</strong> · e-Mola<br><small>há 5 min</small></div>
+                <span class="txn-val">+500 MT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-info">
+          <span class="panel-badge panel-badge-ok">🎉 Pronto!</span>
+          <h3 class="panel-title">Em produção. A receber.</h3>
+          <p class="panel-desc">Troca a chave sandbox pela chave live — só isso. Os pagamentos chegam em tempo real à tua conta iMali.</p>
+          <ul class="panel-list">
+            <li>Troca de ambiente com uma linha de código</li>
+            <li>Dashboard em tempo real</li>
+            <li>Saques automáticos configuráveis</li>
+          </ul>
+          <div class="panel-nav">
+            <button class="btn-step-prev" data-prev="4">← Anterior</button>
+            <a href="auth/index.html?tab=signup" class="btn btn-primary" style="height:38px;font-size:.82rem;padding:0 18px">Criar conta →</a>
+          </div>
+          <div class="step-progress">
+            <span class="sp"></span><span class="sp"></span>
+            <span class="sp"></span><span class="sp"></span><span class="sp active"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+   FAQ
+══════════════════════════════════════════ -->
+<section class="faq-section" id="faq" aria-labelledby="faq-h3">
+  <div class="container">
+    <h2 class="section-h center reveal" id="faq-h3">Dúvidas Frequentes</h2>
+    <p class="section-p center reveal">Tudo o que precisas saber para começar a transaccionar hoje.</p>
+
+    <div class="faq-grid reveal">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Como funciona o tempo de liquidação (payout)?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>Para o plano Startup, a liquidação ocorre em D+2 (48 horas). Para planos Business e Enterprise, processamos em D+0 (até 30 segundos), dependendo do volume e histórico de risco.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          É necessário ter conta em todos os bancos?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>Não. A IMaliway funciona como intermediário — uma única integração dá-te acesso a todos os métodos. Recebe tudo numa única conta bancária ou carteira M-Pesa empresarial.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Quais são as certificações de segurança?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>A IMaliway é regulada pelo Banco de Moçambique (Licença nº 177/2022), membro do SIMO e certificada PCI DSS v4. Todas as comunicações são encriptadas com AES-256 e TLS 1.3.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Posso receber pagamentos internacionais?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>Brevemente. O suporte a cartões Visa e Mastercard internacionais está em desenvolvimento. Por agora, a IMaliway suporta todos os principais métodos de pagamento local moçambicanos.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Quanto tempo demora a aprovação da conta?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>O acesso ao sandbox é imediato após o registo. A verificação KYC e activação em produção demora menos de 24 horas em dias úteis.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Posso testar antes de ir live?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>Sim. O sandbox está disponível imediatamente após o registo e espelha o ambiente de produção. Podes testar todos os métodos, simular erros e validar webhooks sem movimentar dinheiro real.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Há limites de transacções?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>Os limites dependem do nível KYC do utilizador final. Nível 1: saldo máx. 3.000 MZN / 300 MZN por operação. Nível 2: saldo máx. 75.000 MZN / 25.000 MZN por operação.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          A integração funciona com todas as plataformas?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>Sim. Temos SDKs para Node.js, Python, PHP e Go. Plugins oficiais para WooCommerce. A API REST pode ser integrada em qualquer plataforma ou linguagem.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+   CTA final
+══════════════════════════════════════════ -->
+<section class="cta-section" aria-labelledby="cta-h3">
+  <div class="container">
+    <div class="cta-card reveal">
+      <div class="cta-card-inner">
+        <div class="cta-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h2 class="cta-title" id="cta-h3">AINDA TEM DÚVIDAS?</h2>
+        <p class="cta-desc">Nossa equipa de suporte técnico está disponível 24/7 para ajudar no teu percurso.</p>
+        <a href="contact/index.html" class="btn btn-primary btn-lg">Fale Connosco</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ -->
+<footer class="footer3" aria-label="Rodapé">
+  <div class="footer3-top">
+    <div class="footer3-brand">
+      <a href="/IMaliWay-Website/" class="footer3-logo">
+        <svg width="32" height="32" viewBox="0 0 38 38" fill="none" aria-hidden="true">
+          <circle cx="8.5" cy="8.5" r="4.5" stroke="#fff" stroke-width="2" fill="none"/>
+          <circle cx="8.5" cy="8.5" r="2" fill="#fff"/>
+          <path d="M13 30 L13 15 L21.5 23 L30 15 L30 30" stroke="#fff" stroke-width="3.5" stroke-linecap="square" fill="none"/>
+          <path d="M13 15 L21.5 22.5 L30 15" stroke="url(#fchev3)" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <defs>
+            <linearGradient id="fchev3" x1="13" y1="15" x2="30" y2="15">
+              <stop offset="0%" stop-color="#6DC135"/>
+              <stop offset="100%" stop-color="#4CAF2B"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <strong>IMali</strong><em>way</em>
+      </a>
+      <p class="footer3-desc">Gateway de pagamentos da Paytek.<br>Regulado pelo Banco de Moçambique.</p>
+      <div class="footer3-socials">
+        <a href="https://www.facebook.com/imalimoz/" class="footer3-soc" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" class="footer3-soc" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" class="footer3-soc" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" class="footer3-soc" aria-label="WhatsApp" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer3-col">
+      <div class="footer3-col-h">PRODUTO</div>
+      <a href="#metodos" class="footer3-lnk">Métodos de Pagamento</a>
+      <a href="solutions/index.html" class="footer3-lnk">Soluções</a>
+      <a href="#sandbox" class="footer3-lnk">Sandbox</a>
+      <a href="#como-funciona" class="footer3-lnk">Como Funciona</a>
+    </div>
+
+    <div class="footer3-col">
+      <div class="footer3-col-h">DEVELOPERS</div>
+      <a href="doc2/doc.html" class="footer3-lnk">Documentação</a>
+      <a href="doc2/doc.html#api" class="footer3-lnk">API Reference</a>
+      <a href="doc2/doc.html#sdks" class="footer3-lnk">SDKs</a>
+      <a href="doc2/doc.html#webhooks" class="footer3-lnk">Webhooks</a>
+    </div>
+
+    <div class="footer3-col">
+      <div class="footer3-col-h">FALA CONNOSCO</div>
+      <a href="tel:+258846002000" class="footer3-lnk">(+258) 84 600 2000</a>
+      <a href="mailto:info@imali.co.mz" class="footer3-lnk">info@imali.co.mz</a>
+      <a href="contact/index.html" class="footer3-lnk">Contacto</a>
+      <a href="https://www.paytek-africa.com/ticketapp/public/tickets/create"
+         class="footer3-lnk" target="_blank" rel="noopener">Centro de Suporte</a>
+    </div>
+  </div>
+
+  <div class="footer3-bottom">
+    <p class="footer3-copy">© 2025 IMALIWAY · PAYTEK TECNOLOGIAS E SERVIÇOS DE PAGAMENTOS, LDA.</p>
+    <p class="footer3-reg">Serviço Financeiro Regulado pelo Banco de Moçambique · Licença nº 177/2022</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+/* Vídeos de fundo: lentos, sem interacção, sem aspecto de vídeo */
+(function() {
+  function initBgVideos() {
+    document.querySelectorAll('.hero-bg-video, .solutions-wave-bg video').forEach(function(v) {
+      v.playbackRate = 0.35;          /* 35% da velocidade normal */
+      v.disablePictureInPicture = true;
+      v.style.pointerEvents = 'none';
+      v.style.userSelect = 'none';
+      /* Garantir que não aparecem controlos por nenhum meio */
+      v.removeAttribute('controls');
+      v.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBgVideos);
+  } else {
+    initBgVideos();
+  }
+})();
+</script>
+</body>
+</html>

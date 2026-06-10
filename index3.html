@@ -1,0 +1,930 @@
+﻿<!DOCTYPE html>
+<html lang="pt" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>iMali Way — Gateway de Pagamentos para Moçambique</title>
+  <meta name="description" content="Aceite M-Pesa, e-Mola, mKesh, QR Code e Link de Pagamento com uma única API. Regulado pelo Banco de Moçambique."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <script src="components/navbar-components.js" defer></script>
+  <link rel="stylesheet" href="assets/css/main.css"/>
+
+  <style>
+   /* ══════════════════════════════════════════════════
+     INDEX 3 — OVERRIDES & NEW SECTIONS (Figma faithful)
+  ══════════════════════════════════════════════════ */
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100dvh;
+    padding: 130px 0 80px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before { display: none; }
+  .hero-grid-bg { display: none; }
+  .hero-glow    { display: none; }
+
+  /* ── Orb — vídeo circular com "iMali Way" overlaid ── */
+  .hero-inner3 {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 36px;
+    max-width: 720px; margin: 0 auto; padding: 0 24px;
+  }
+
+  .hero-orb {
+    position: relative;
+    width: clamp(300px, 42vw, 460px);
+    height: clamp(300px, 42vw, 460px);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .hero-orb-glow {
+    position: absolute; inset: -24px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(82,168,40,.32) 0%, rgba(82,168,40,.08) 50%, transparent 72%);
+  }
+  .hero-orb-video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    pointer-events: none; user-select: none;
+    mask-image: radial-gradient(circle, black 58%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle, black 58%, transparent 80%);
+    filter: brightness(1.08) saturate(1.15);
+  }
+  .hero-orb-text {
+    position: relative; z-index: 2;
+    font-family: var(--font-head);
+    font-size: clamp(2.6rem, 7.5vw, 5.2rem);
+    font-weight: 900; letter-spacing: -.04em; line-height: 1;
+    color: #fff;
+    text-shadow: 0 0 60px rgba(82,168,40,.55), 0 2px 24px rgba(0,0,0,.6);
+  }
+  .hero-orb-text .ot-i  { color: rgba(255,255,255,.9); }
+  .hero-orb-text .ot-m  { color: #6DC135; }
+  .hero-orb-text .ot-w  { color: rgba(255,255,255,.9); }
+
+  .hero-subtitle3 {
+    font-size: 1.05rem; color: rgba(255,255,255,.62);
+    line-height: 1.75; max-width: 520px; text-align: center;
+  }
+  .hero-subtitle3 em { font-style: normal; color: #6DC135; }
+
+  /* Trust bar — 3 itens separados por linha */
+  .hero-trust-bar {
+    display: flex;
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 16px; overflow: hidden;
+    background: rgba(255,255,255,.04);
+    backdrop-filter: blur(10px);
+  }
+  .htb-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 22px;
+    border-right: 1px solid rgba(255,255,255,.1);
+  }
+  .htb-item:last-child { border-right: none; }
+  .htb-label {
+    font-family: var(--font-head); font-size: .58rem; font-weight: 700;
+    color: rgba(255,255,255,.38); text-transform: uppercase; letter-spacing: .09em;
+    white-space: nowrap; display: block;
+  }
+  .htb-logo { height: 30px; width: auto; object-fit: contain; display: block; }
+
+  /* ── SOLUTIONS (white) ── */
+  .solutions-section {
+    padding: 70px 0 0;
+    background: #fff;
+    position: relative;
+    overflow: visible;
+    padding-left: 8%;   /* ou um valor fixo, ex: 80px */
+  padding-right: 2%;  /* reduz o espaço à direita se necessário */
+    
+    /* overflow: hidden;  /* Removido para não cortar o fundo que se estende além */
+    margin-bottom: 200px;
+  }
+  .solutions-hl {
+    font-family: var(--font-head);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    text-align: center;
+    color: #1A1A1A;
+    line-height: 1.2;
+    margin-bottom: 64px;
+  }
+  .solutions-hl .sg { color: #6DC135; }
+
+  .solutions-grid {
+  display: grid;
+  /* Ligeiramente aumentado o lado do telefone vs versão anterior (era 1fr / 1.8fr) */
+  grid-template-columns: 1.15fr 1.85fr;
+  gap: 32px;
+  align-items: flex-start; /* alinha pelo topo para o card-2 acima do dash ser consistente */
+  position: relative;
+  z-index: 1;
+}
+
+  /* Wave bg - altura se estende até o final do margin-bottom */
+  .solutions-wave-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -200px;
+    height: auto;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .solutions-wave-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  /* Phone side — imagem absoluta à esquerda do celular */
+  .phone-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+  .side-card-svg {
+    position: absolute;
+    left: -100px;
+    top: 20%;
+    width: 200px;
+    z-index: 3;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.1));
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+  .side-card-svg:hover {
+    transform: translateX(-4px);
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15));
+  }
+
+  /* ── Dashboard mockup ── */
+  .dash-col {
+    position: relative;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    overflow: visible;
+  }
+
+  .above-dash-svg {
+    position: absolute;
+    top: 30px;
+    left: -20px;
+    width: clamp(180px, 22%, 260px);
+    height: auto;
+    z-index: 2;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+  .above-dash-svg:hover {
+    transform: translateY(-4px);
+    filter: drop-shadow(0 12px 28px rgba(0,0,0,0.2));
+  }
+
+  /* Sombra do telemóvel (mantida) */
+  .shadow-phone-svg {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.02);
+    border-radius: 32px;
+  }
+  .shadow-phone-svg:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 40px -12px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,0,0,0.05);
+  }
+
+  /* Dashboard SVG */
+  .shadow-dashboard-svg {
+    display: block;
+    width: 117%;
+    max-width: 988px;
+    height: auto;
+    aspect-ratio: 1066 / 690;
+    border-radius: 13px;
+    box-shadow:
+      0 24px 64px rgba(0,0,0,0.18),
+      0  8px 24px rgba(0,0,0,0.10);
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: -6%;
+    object-fit: contain;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .shadow-dashboard-svg:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 32px 72px rgba(0,0,0,0.22),
+      0 12px 28px rgba(0,0,0,0.12);
+  }
+
+  /* ── METHODS SVG GRID ── */
+  .methods-svg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .method-svg-card {
+    width: 100%; height: auto; display: block;
+    border-radius: 14px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 12px 28px -8px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.02);
+  }
+  .method-svg-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 35px -12px rgba(82,168,40,0.25), 0 0 0 1px rgba(0,0,0,0.05);
+  }
+
+  /* ── SANDBOX SVG CARDS ── */
+  .sandbox-svg-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 44px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sandbox-svg-card {
+    width: 100%; height: auto; display: block;
+    border-radius: 20px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .sandbox-svg-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 40px rgba(82,168,40,.2);
+  }
+
+  /* ── METHODS WHITE ── */
+  .methods-white-section {
+    padding: 80px 0 60px;
+    background: #fff;
+  }
+  .methods-white-hl {
+    font-family: var(--font-head);
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800; text-align: center; color: #1A1A1A;
+    line-height: 1.2; margin-bottom: 40px;
+  }
+  .methods-white-hl .mg { color: #6DC135; }
+
+  .methods-choose-hl {
+    font-family: var(--font-head);
+    font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+    font-weight: 700; text-align: center; color: #1A1A1A;
+    margin-bottom: 24px;
+  }
+  .methods-choose-hl .mg { color: #6DC135; }
+
+  /* ── DASHBOARD SHOWCASE (gradient) ── */
+  .dash-showcase {
+    padding: 80px 0;
+    position: relative; overflow: hidden;
+  }
+  .dash-showcase-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: url('assets/designer/BG/magnific_a-diagonal-gradient-of-so_Te7MvHHVNR.png');
+    background-size: cover; background-position: center;
+  }
+  .dash-showcase-inner {
+    position: relative; z-index: 1;
+    display: flex; justify-content: center;
+  }
+  .dash-showcase-wrap {
+    position: relative;
+    width: 100%;
+    padding: 0;
+  }
+  .dsc-callout {
+    position: absolute;
+    background: rgba(255,255,255,.96);
+    border: 1px solid #e8e8e8;
+    border-radius: 12px; padding: 12px 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
+    max-width: 175px; font-size: .74rem; color: #444; line-height: 1.55;
+    z-index: 3;
+  }
+  .dsc-callout .dc-lbl {
+    font-family: var(--font-head); font-size: .66rem; font-weight: 800;
+    color: #52A828; display: block; margin-bottom: 4px;
+  }
+  .dsc-callout.tl { top: 10%; left: 0; }
+  .dsc-callout.tr { top: 8%; right: 0; }
+  .dsc-callout.bl { bottom: 22%; left: 0; }
+  .dsc-callout.br { bottom: 16%; right: 0; }
+
+  /* ── SANDBOX STEPS (dark) ── */
+  .sandbox-steps {
+    padding: 80px 0;
+    background: #0C0C0C;
+  }
+  .sandbox-steps-hl {
+    font-family: var(--font-head);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800; text-align: center; color: #fff;
+    line-height: 1.25; margin-bottom: 52px;
+  }
+  .sandbox-steps-hl .sg { color: #6DC135; }
+  .sandbox-steps-cta { text-align: center; }
+
+  /* ── STEPPER WHITE ── */
+  .stepper-white {
+    padding: 80px 0;
+    background-color: #fff;
+    background-image: url('assets/designer/BG/Como Funciona BG.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .stepper-white .section-h { color: #1A1A1A; }
+  .stepper-white .section-p { color: #555; }
+  .stepper-white .step-tab:hover { background: rgba(82,168,40,.07); }
+  .stepper-white .step-num {
+    background: #f0f0f0; color: #888; border-color: #ddd;
+  }
+  .stepper-white .step-tab.active .step-num {
+    background: #52A828; color: #fff; border-color: transparent;
+  }
+  .stepper-white .step-tab.active .step-lbl { color: #52A828; }
+  .stepper-white .step-lbl { color: #888; }
+  .stepper-white .step-conn { background: #ddd; }
+  .stepper-white .panel-title { color: #1A1A1A; }
+  .stepper-white .panel-desc,
+  .stepper-white .panel-list li { color: #555; }
+  .stepper-white .panel-list li::before { background: #52A828; }
+  .stepper-white .sp { background: #ddd; }
+  .stepper-white .sp.active { background: #52A828; width: 22px; }
+  .stepper-white .btn-step-prev { color: #888; border-color: #ddd; }
+  .stepper-white .btn-step-prev:hover:not(:disabled) { background: #f5f5f5; }
+
+  /* ── INLINE FOOTER ── */
+  .footer3 {
+    background: #080808;
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .footer3-top {
+    max-width: 1200px; margin: 0 auto; padding: 64px 24px 48px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+  }
+  .footer3-brand { display: flex; flex-direction: column; gap: 16px; }
+  .footer3-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-head); font-size: 1.18rem;
+    font-weight: 400; color: #fff;
+    text-decoration: none;
+  }
+  .footer3-logo strong { font-weight: 900; }
+  .footer3-logo em { font-style: normal; font-weight: 700; color: #6DC135; }
+  .footer3-desc { font-size: .82rem; color: rgba(255,255,255,.35); line-height: 1.7; }
+  .footer3-socials { display: flex; gap: 8px; }
+  .footer3-soc {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,.07); color: rgba(255,255,255,.45);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s;
+  }
+  .footer3-soc:hover { background: #52A828; color: #fff; }
+  .footer3-col { display: flex; flex-direction: column; gap: 10px; }
+  .footer3-col-h {
+    font-family: var(--font-head); font-size: .6rem; font-weight: 800;
+    color: rgba(255,255,255,.25); letter-spacing: .12em;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .footer3-lnk {
+    font-size: .83rem; color: rgba(255,255,255,.45);
+    transition: color .15s; text-decoration: none;
+  }
+  .footer3-lnk:hover { color: #6DC135; }
+  .footer3-bottom {
+    border-top: 1px solid rgba(255,255,255,.05);
+    padding: 18px 24px;
+    max-width: 1200px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .footer3-copy {
+    font-family: var(--font-head); font-size: .6rem;
+    font-weight: 700; color: rgba(255,255,255,.18); letter-spacing: .04em;
+  }
+  .footer3-reg { font-size: .58rem; color: rgba(255,255,255,.12); letter-spacing: .03em; }
+
+  /* ── CERTIFIED SECTION ── */
+  .certified-section {
+    padding: 100px 0;
+    background: #000;
+    text-align: center;
+  }
+  .certified-hl {
+    font-family: var(--font-head);
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 56px;
+  }
+  .certified-hl .cg { color: #6DC135; }
+  .certified-shield-wrap {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 48px;
+  }
+  .certified-shield-img {
+    width: clamp(260px, 38vw, 380px);
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 60px rgba(82,168,40,.18));
+  }
+  .certified-badge {
+    position: absolute;
+    top: -10px;
+    right: -18px;
+    filter: drop-shadow(0 4px 14px rgba(0,0,0,.5));
+  }
+  .certified-desc {
+    font-size: clamp(.8rem, 2vw, .92rem);
+    color: #bbbbbb;
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .certified-desc .hl {
+    background: linear-gradient(90deg, #d8fde8 0%, #33dd66 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 0 4px rgba(50,200,90,.45));
+  }
+ .question .hll  {
+    background: linear-gradient(90deg, #d8fde8 0%, #33dd66 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 0 4px rgba(50,200,90,.45));
+  }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1200px) {
+    .side-card-svg {
+      left: -160px;
+      width: 160px;
+    }
+  }
+  @media (max-width: 960px) {
+    .solutions-grid { grid-template-columns: 1fr; }
+    .phone-col { display: flex; }
+    .side-card-svg {
+      position: relative;
+      left: auto;
+      top: auto;
+      margin-bottom: 20px;
+      order: -1;
+      width: 200px;
+    }
+    .dash-showcase-wrap { padding: 0 20px; }
+    .dsc-callout { display: none; }
+    .footer3-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 900px) {
+    .shadow-dashboard-svg {
+      width: 100%;
+      max-width: 100%;
+      margin-top: 32px;
+      border-radius: 10px;
+    }
+    .above-dash-svg {
+      position: absolute;
+      top: 16px;
+      left: 0;
+      width: clamp(140px, 40%, 200px);
+      transform: none;
+      margin: 0;
+    }
+  }
+  @media (max-width: 768px) {
+    .methods-svg-grid { grid-template-columns: 1fr 1fr; }
+    .sandbox-svg-cards { grid-template-columns: 1fr; }
+    .hero-trust-bar { flex-direction: column; }
+    .htb-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.09); }
+    .htb-item:last-child { border-bottom: none; }
+    .footer3-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 540px) {
+    .methods-svg-grid { grid-template-columns: 1fr; }
+    .sandbox-svg-cards { grid-template-columns: 1fr; }
+    .footer3-top { grid-template-columns: 1fr; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<site-header></site-header>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+   HERO — dark, green orb, "iMali Way"
+══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-inner3">
+    <div class="hero-orb">
+      <div class="hero-orb-glow" aria-hidden="true"></div>
+      <video class="hero-orb-video" autoplay loop muted playsinline disablepictureinpicture controlsList="nodownload nofullscreen noremoteplayback" aria-hidden="true" oncontextmenu="return false;">
+        <source src="assets/designer/cards/ASSETS/sci-fi-motion.mp4" type="video/mp4">
+      </video>
+      <div class="hero-orb-text" aria-label="iMali Way">
+        <span class="ot-i"></span><span class="ot-m">IMali Way</span> <span class="ot-w"></span>
+      </div>
+    </div>
+    <p class="hero-subtitle3">
+      Concebido para todo o tipo de negócio, aceite e optimize pagamentos
+      a nível nacional <em>online</em> e <em>presencial</em>.
+    </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+   SOLUTIONS — white, phone + dashboard, wave
+   COM CARD-1.SVG AO LADO DO CELULAR E CARD 2.SVG ACIMA DO DASHBOARD
+══════════════════════════════════════════ -->
+<section class="solutions-section" id="solucoes">
+  <div class="solutions-wave-bg" aria-hidden="true">
+    <img src="assets/designer/cards/ASSETS/Clip path group.png" alt="">
+  </div>
+
+  <div class="container">
+    <h2 class="solutions-hl">
+      <span class="sg">Soluções flexíveis</span> para todo<br>modelo de negócio.
+    </h2>
+
+    <div class="solutions-grid">
+
+      <!-- Phone mockup — com Card-1.svg ao lado esquerdo -->
+      <div class="phone-col">
+        <img src="assets/designer/cards/ASSETS/Card-1.svg" 
+             alt="Desenhado para funcionar individualmente ou em conjunto"
+             class="side-card-svg">
+        <img src="assets/designer/cards/ASSETS/smartphone.svg"
+             alt="iMali Way App"
+             class="shadow-phone-svg"
+             style="width:100%;max-width:271px;height:auto;display:block;margin:0 auto;">
+      </div>
+
+      <!-- Dashboard mockup — com Card 2.svg acima -->
+      <div class="dash-col">
+        <img src="assets/designer/cards/ASSETS/Card 2.svg" 
+             alt="Expanda o seu negócio com um conjunto de ferramentas de pagamento"
+             class="above-dash-svg">
+        <img src="assets/designer/cards/ASSETS/Dahboard.svg"
+             alt="Dashboard iMali Way"
+             class="shadow-dashboard-svg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+   METHODS — white, logo cards (ordem alterada + sombras)
+══════════════════════════════════════════ -->
+<section class="methods-white-section" id="metodos">
+  <div class="container">
+    <h2 class="methods-white-hl reveal">
+      <span class="mg">Todos métodos de pagamento</span><br>na palma da mão.
+    </h2>
+    <div class="methods-svg-grid reveal">
+      <img src="assets/designer/cards/ASSETS/eMola.svg"     alt="e-Mola"           class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/MPesa.svg"     alt="M-Pesa"           class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/mKesh.svg"     alt="mKesh"            class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/PayPal.svg"    alt="PayPal"           class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Visa.svg"      alt="Visa/Mastercard"  class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Google n Apple.svg" alt="Google Pay &amp; Apple Pay" class="method-svg-card">
+    </div>
+
+    <h3 class="methods-choose-hl reveal">
+      <span class="mg">Escolha</span> como o seu cliente paga.
+    </h3>
+    <div class="methods-svg-grid reveal">
+      <img src="assets/designer/cards/ASSETS/QRcode.svg"   alt="Via QR Code"              class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Ent Ref.svg"  alt="Por Entidade e Referência" class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Link.svg"     alt="Via Link"                  class="method-svg-card">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+   INTEGRATION — dark, terminal
+══════════════════════════════════════════ -->
+<section class="dev-section" id="developers" aria-labelledby="dev-h3">
+  <div class="container dev-inner">
+    <div class="dev-content reveal">
+      <h2 class="section-h left" id="dev-h3">
+        Integração em<br><span class="hero-accent">minutos</span>
+      </h2>
+      <div class="dev-pillars">
+        <div class="dev-pillar">
+          <div class="pillar-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div><h4>SDKS MODERNOS</h4><p>Bibliotecas prontas para Node.js, Python, PHP e Go.</p></div>
+        </div>
+        <div class="dev-pillar">
+          <div class="pillar-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <div><h4>WEBHOOKS ROBUSTOS</h4><p>Notificações em tempo real com retry automático em caso de falha.</p></div>
+        </div>
+        <div class="dev-pillar">
+          <div class="pillar-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div><h4>SANDBOX GRATUITO</h4><p>Ambiente de testes completo com espelhamento de produção.</p></div>
+        </div>
+      </div>
+      <div class="hero-ctas">
+        <a href="doc2/doc.html" class="btn btn-primary btn-lg">
+          Explorar documentação
+          </a>
+        <a href="#" class="btn btn-ghost btn-lg">Sandbox</a>
+      </div>
+    </div>
+    <div class="dev-terminal reveal" style="animation-delay:.15s">
+      <div class="term-header">
+        <span class="term-dot" style="background:#ff5f57"></span>
+        <span class="term-dot" style="background:#ffbd2e"></span>
+        <span class="term-dot" style="background:#28c840"></span>
+        <span class="term-title">Terminal</span>
+        <div class="term-tabs">
+          <button class="term-tab active" tabindex="-1">curl</button>
+          <button class="term-tab" tabindex="-1">Node.js</button>
+          <button class="term-tab" tabindex="-1">Python</button>
+          <button class="term-tab" tabindex="-1">PHP</button>
+        </div>
+      </div>
+      <div class="term-body">
+        <pre><code><span class="t-cmd">curl</span> <span class="t-url">https://api.imaliway.co.mz/v1/payments</span> \
+  <span class="t-flag">-H</span> <span class="t-str">"Authorization: Bearer sk_live_..."</span> \
+  <span class="t-flag">-d</span> <span class="t-str">'</span><span class="t-obj">{</span>
+    <span class="t-key">"amount"</span><span class="t-obj">:</span>   <span class="t-num">2500.00</span><span class="t-obj">,</span>
+    <span class="t-key">"currency"</span><span class="t-obj">:</span> <span class="t-str">"MZN"</span><span class="t-obj">,</span>
+    <span class="t-key">"method"</span><span class="t-obj">:</span>   <span class="t-str">"mpesa"</span><span class="t-obj">,</span>
+    <span class="t-key">"customer"</span><span class="t-obj">:</span> <span class="t-obj">{</span>
+      <span class="t-key">"msisdn"</span><span class="t-obj">:</span> <span class="t-str">"841234567"</span><span class="t-obj">,</span>
+      <span class="t-key">"name"</span><span class="t-obj">:</span>   <span class="t-str">"Arnaldo Nuvei"</span>
+    <span class="t-obj">},</span>
+    <span class="t-key">"reference"</span><span class="t-obj">:</span> <span class="t-str">"ORDER_123"</span>
+  <span class="t-obj">}'</span>
+
+<span class="t-comment"># Response: 200 OK</span>
+<span class="t-ok">payment_id: txn_3MzS1U2eZvKY1s2</span>
+<span class="t-ok">status: "pending_customer_action"</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+   DASHBOARD SHOWCASE — gradient background
+══════════════════════════════════════════ -->
+<section class="dash-showcase" id="dashboard">
+  <div class="dash-showcase-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="dash-showcase-inner">
+      <div class="dash-showcase-wrap">
+       <img src="assets/designer/dashboard e info.png" alt="Dashboard iMali Way" style="width:100%;height:auto;display:block;border-radius:16px;transform:scale(0.95);transform-origin:center center;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+   SANDBOX STEPS — dark, 3 cards
+══════════════════════════════════════════ -->
+<section class="sandbox-steps" id="sandbox">
+  <div class="container">
+    <h2 class="sandbox-steps-hl reveal">
+      Integração rápida para<br>
+      <span class="sg">todo tipo de negócio.</span>
+    </h2>
+    <div class="sandbox-svg-cards reveal">
+      <img src="assets/designer/cards/ASSETS/Sandbox 1.svg" alt="Entra no Sandbox (gratuito)" class="sandbox-svg-card">
+      <img src="assets/designer/cards/ASSETS/Staging 2.svg" alt="Passa para a fase Staging" class="sandbox-svg-card">
+      <img src="assets/designer/cards/ASSETS/Producao 3.svg" alt="Vai para Produção" class="sandbox-svg-card">
+    </div>
+    <div class="sandbox-steps-cta reveal">
+      <a href="auth/index.html?tab=signup" class="btn btn-primary btn-lg">
+        Entrar no Sandbox
+        </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+   STEPPER — white background
+══════════════════════════════════════════ -->
+<section class="stepper-white" id="como-funciona" aria-labelledby="stepper-h3">
+  <div class="container">
+    <h2 class="section-h center reveal" id="stepper-h3">
+      <span style="color:#6DC135;">Como funciona</span> o iMali Way
+    </h2>
+    <p class="section-p center reveal" style="color:#555;">
+      Cria uma conta em menos de 3 minutos
+    </p>
+    <div class="step-tabs reveal" role="tablist">
+      <button class="step-tab active" data-step="1" role="tab" aria-selected="true" aria-controls="panel-1"><span class="step-num">1</span><span class="step-lbl">Passo 1</span></button>
+      <span class="step-conn" aria-hidden="true"></span>
+      <button class="step-tab" data-step="2" role="tab" aria-selected="false" aria-controls="panel-2"><span class="step-num">2</span><span class="step-lbl">Passo 2</span></button>
+      <span class="step-conn" aria-hidden="true"></span>
+      <button class="step-tab" data-step="3" role="tab" aria-selected="false" aria-controls="panel-3"><span class="step-num">3</span><span class="step-lbl">Passo 3</span></button>
+      <span class="step-conn" aria-hidden="true"></span>
+      <button class="step-tab" data-step="4" role="tab" aria-selected="false" aria-controls="panel-4"><span class="step-num">4</span><span class="step-lbl">Passo 4</span></button>
+      <span class="step-conn" aria-hidden="true"></span>
+      <button class="step-tab" data-step="5" role="tab" aria-selected="false" aria-controls="panel-5"><span class="step-num">5</span><span class="step-lbl">Passo 5</span></button>
+    </div>
+    <div class="step-panels">
+      <!-- Painéis do stepper (conteúdo original) mantidos -->
+      <div class="step-panel active" id="panel-1" role="tabpanel">
+        <div class="panel-screen">
+          <div class="screen-bar">
+            <span class="sbar-dot" style="background:#ff5f57"></span>
+            <span class="sbar-dot" style="background:#ffbd2e"></span>
+            <span class="sbar-dot" style="background:#28c840"></span>
+            <span class="sbar-url">app.imaliway.co.mz/signup</span>
+          </div>
+          <div class="screen-body">
+            <h3 class="screen-title">Criar conta</h3>
+            <input class="screen-input" placeholder="Nome completo" readonly tabindex="-1"/>
+            <input class="screen-input" placeholder="Email" readonly tabindex="-1"/>
+            <input class="screen-input" placeholder="Telefone" readonly tabindex="-1"/>
+            <input class="screen-input" placeholder="Nome da empresa" readonly tabindex="-1"/>
+            <div class="screen-btn">Criar conta →</div>
+            <p class="screen-note">Grátis · Sem cartão de crédito</p>
+          </div>
+        </div>
+        <div class="panel-info">
+          <span class="panel-badge">Passo 1 de 5</span>
+          <h3 class="panel-title">Cria a tua conta iMali Business</h3>
+          <p class="panel-desc">Regista-te em menos de 2 minutos. Sem cartão de crédito, sem burocracia. Acesso imediato ao sandbox.</p>
+          <ul class="panel-list"><li>Email e número de telefone</li><li>Confirmação automática</li><li>Dashboard completo disponível</li></ul>
+          <div class="panel-nav"><button class="btn-step-prev" disabled>← Anterior</button><button class="btn-step-next" data-next="2">Próximo →</button></div>
+          <div class="step-progress"><span class="sp active"></span><span class="sp"></span><span class="sp"></span><span class="sp"></span><span class="sp"></span></div>
+        </div>
+      </div>
+      <div class="step-panel" id="panel-2" role="tabpanel">
+        <div class="panel-screen"><div class="screen-bar"><span class="sbar-dot" style="background:#ff5f57"></span><span class="sbar-dot" style="background:#ffbd2e"></span><span class="sbar-dot" style="background:#28c840"></span><span class="sbar-url">app.imaliway.co.mz/verificacao</span></div><div class="screen-body"><h3 class="screen-title">Verificação KYC</h3><div class="kyc-item kyc-done"><span class="kyc-n">✓</span><div><strong>Dados pessoais</strong><small>Concluído</small></div></div><div class="kyc-item kyc-active"><span class="kyc-n">2</span><div><strong>Documento de identificação</strong><small>Em curso...</small></div></div><div class="kyc-item kyc-pending"><span class="kyc-n">3</span><div><strong>Selfie de verificação</strong><small>Pendente</small></div></div><div class="screen-btn" style="margin-top:12px">Submeter documentos →</div></div></div>
+        <div class="panel-info"><span class="panel-badge">Passo 2 de 5</span><h3 class="panel-title">Verificação da identidade</h3><p class="panel-desc">Processo KYC simplificado e digital. Submete o teu BI ou passaporte e uma selfie. Aprovação em menos de 24h.</p><ul class="panel-list"><li>Submissão de documentos 100% digital</li><li>Aprovação em menos de 24h</li><li>Dois níveis: básico e avançado</li></ul><div class="panel-nav"><button class="btn-step-prev" data-prev="1">← Anterior</button><button class="btn-step-next" data-next="3">Próximo →</button></div><div class="step-progress"><span class="sp"></span><span class="sp active"></span><span class="sp"></span><span class="sp"></span><span class="sp"></span></div></div>
+      </div>
+      <div class="step-panel" id="panel-3" role="tabpanel">
+        <div class="panel-screen"><div class="screen-bar"><span class="sbar-dot" style="background:#ff5f57"></span><span class="sbar-dot" style="background:#ffbd2e"></span><span class="sbar-dot" style="background:#28c840"></span><span class="sbar-url">app.imaliway.co.mz/dashboard/api</span></div><div class="screen-body"><h3 class="screen-title">As tuas credenciais</h3><div class="apikey-box"><div class="apikey-row"><span class="apikey-label">API Key (Live)</span><span class="env-badge env-live">LIVE</span></div><div class="apikey-val">im_live_sk_••••••••••••••••</div><div class="apikey-btns"><button class="apikey-btn" tabindex="-1">Copiar</button><button class="apikey-btn" tabindex="-1">Mostrar</button></div></div><div class="apikey-box" style="margin-top:8px"><div class="apikey-row"><span class="apikey-label">API Key (Sandbox)</span><span class="env-badge env-sandbox">SANDBOX</span></div><div class="apikey-val">im_test_sk_••••••••••••••</div><div class="apikey-btns"><button class="apikey-btn" tabindex="-1">Copiar</button><button class="apikey-btn" tabindex="-1">Mostrar</button></div></div></div></div>
+        <div class="panel-info"><span class="panel-badge">Passo 3 de 5</span><h3 class="panel-title">Obtém as tuas API Keys</h3><p class="panel-desc">Encontras as tuas chaves no dashboard. Chave separada para sandbox e produção. Troca com uma linha de código.</p><ul class="panel-list"><li>Chaves separadas: sandbox e produção</li><li>Rotação de chaves com um clique</li><li>Webhook URL configurável</li></ul><div class="panel-nav"><button class="btn-step-prev" data-prev="2">← Anterior</button><button class="btn-step-next" data-next="4">Próximo →</button></div><div class="step-progress"><span class="sp"></span><span class="sp"></span><span class="sp active"></span><span class="sp"></span><span class="sp"></span></div></div>
+      </div>
+      <div class="step-panel" id="panel-4" role="tabpanel">
+        <div class="panel-screen"><div class="screen-bar"><span class="sbar-dot" style="background:#ff5f57"></span><span class="sbar-dot" style="background:#ffbd2e"></span><span class="sbar-dot" style="background:#28c840"></span><span class="sbar-url">docs.imaliway.co.mz/sandbox</span></div><div class="screen-body"><h3 class="screen-title">Testar pagamento</h3><div class="sandbox-row"><div><label class="sb-label">Número</label><div class="screen-input">258 84 000 0000</div></div><div><label class="sb-label">Valor (MZN)</label><div class="screen-input">500.00</div></div></div><label class="sb-label" style="margin-top:8px;display:block">Método</label><div class="screen-input">M-Pesa ▾</div><div class="screen-btn" style="margin-top:10px">Simular push →</div><div class="sb-response"><span class="sb-comment">// Response</span><br><span class="sb-key">"status"</span><span class="sb-colon">: </span><span class="sb-str">"pending_customer"</span><br><span class="sb-ok">✓ Push enviado</span></div></div></div>
+        <div class="panel-info"><span class="panel-badge">Passo 4 de 5</span><h3 class="panel-title">Testa no ambiente sandbox</h3><p class="panel-desc">Simula pagamentos reais sem movimentar dinheiro. Testa todos os métodos, cenários de erro e webhooks antes de ir a produção.</p><ul class="panel-list"><li>Push payments simulados em tempo real</li><li>Todos os métodos disponíveis no sandbox</li><li>Logs detalhados para debugging</li></ul><div class="panel-nav"><button class="btn-step-prev" data-prev="3">← Anterior</button><button class="btn-step-next" data-next="5">Próximo →</button></div><div class="step-progress"><span class="sp"></span><span class="sp"></span><span class="sp"></span><span class="sp active"></span><span class="sp"></span></div></div>
+      </div>
+      <div class="step-panel" id="panel-5" role="tabpanel">
+        <div class="panel-screen"><div class="screen-bar"><span class="sbar-dot" style="background:#ff5f57"></span><span class="sbar-dot" style="background:#ffbd2e"></span><span class="sbar-dot" style="background:#28c840"></span><span class="sbar-url">app.imaliway.co.mz/dashboard</span></div><div class="screen-body"><div class="live-row"><span class="live-badge">● LIVE</span><span class="live-sub">Produção activa</span></div><div class="live-txns"><div class="live-txn"><span class="txn-m" style="background:#E8F5E9;color:#1B5E20">M</span><div class="txn-info"><strong>PAY-00892</strong> · M-Pesa<br><small>agora mesmo</small></div><span class="txn-val">+2.450 MT</span></div><div class="live-txn"><span class="txn-m" style="background:#E3F2FD;color:#0D47A1">K</span><div class="txn-info"><strong>PAY-00891</strong> · Mkesh<br><small>há 2 min</small></div><span class="txn-val">+12.000 MT</span></div><div class="live-txn"><span class="txn-m" style="background:#FFF3E0;color:#BF360C">E</span><div class="txn-info"><strong>PAY-00890</strong> · e-Mola<br><small>há 5 min</small></div><span class="txn-val">+500 MT</span></div></div></div></div>
+        <div class="panel-info"><span class="panel-badge panel-badge-ok">🎉 Pronto!</span><h3 class="panel-title">Em produção. A receber.</h3><p class="panel-desc">Troca a chave sandbox pela chave live — só isso. Os pagamentos chegam em tempo real à tua conta iMali.</p><ul class="panel-list"><li>Troca de ambiente com uma linha de código</li><li>Dashboard em tempo real</li><li>Saques automáticos configuráveis</li></ul><div class="panel-nav"><button class="btn-step-prev" data-prev="4">← Anterior</button><a href="auth/index.html?tab=signup" class="btn btn-primary" style="height:38px;font-size:.82rem;padding:0 18px">Criar conta →</a></div><div class="step-progress"><span class="sp"></span><span class="sp"></span><span class="sp"></span><span class="sp"></span><span class="sp active"></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+   CERTIFIED — dark, shield, licensed
+══════════════════════════════════════════ -->
+<section class="certified-section" id="licenciada">
+  <div class="container">
+    <h2 class="certified-hl reveal">
+      <span class="cg">Uma solução licenciada,</span><br>
+      Um negócio seguro.
+    </h2>
+    <div class="certified-shield-wrap reveal">
+      <img src="assets/designer/Certified Business.png"
+           alt="Solução licenciada — SandBox Regulatório, Banco de Moçambique, SIMOrede"
+           class="certified-shield-img">
+      <div class="certified-badge" aria-label="Verificado">
+        
+      </div>
+    </div>
+    <p class="certified-desc reveal">
+      O iMali Way é uma solução da PAYTEK, <span class="hl">empresa aprovada pelo SandBox</span><br>
+      Regulatório licenciada pelo Banco de <span class="hl">Moçambique, e com ligação directa</span><br>
+      SIMOrede. Garanta uma solução <span class="hl">segura para seu negócio com iMaliWay</span>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+   FAQ
+══════════════════════════════════════════ -->
+<section class="faq-section" id="faq" aria-labelledby="faq-h3">
+  <div class="container">
+    <h2 class="section-h center reveal faq-hl" id="faq-h3">Dúvidas Frequentes</h2>
+    <p class="section-p center reveal">Tudo o que precisas saber para começar a transaccionar hoje.</p>
+    <div class="faq-grid reveal">
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Como funciona o tempo de liquidação (payout)?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Para o plano Startup, a liquidação ocorre em D+2 (48 horas). Para planos Business e Enterprise, processamos em D+0 (até 30 segundos), dependendo do volume e histórico de risco.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">É necessário ter conta em todos os bancos?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Não. A IMaliway funciona como intermediário — uma única integração dá-te acesso a todos os métodos. Recebe tudo numa única conta bancária ou carteira M-Pesa empresarial.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Quais são as certificações de segurança?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>A IMaliway é regulada pelo Banco de Moçambique (Licença nº 177/2022), membro do SIMO e certificada PCI DSS v4. Todas as comunicações são encriptadas com AES-256 e TLS 1.3.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Posso receber pagamentos internacionais?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Brevemente. O suporte a cartões Visa e Mastercard internacionais está em desenvolvimento. Por agora, a IMaliway suporta todos os principais métodos de pagamento local moçambicanos.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Quanto tempo demora a aprovação da conta?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>O acesso ao sandbox é imediato após o registo. A verificação KYC e activação em produção demora menos de 24 horas em dias úteis.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Posso testar antes de ir live?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Sim. O sandbox está disponível imediatamente após o registo e espelha o ambiente de produção. Podes testar todos os métodos, simular erros e validar webhooks sem movimentar dinheiro real.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Há limites de transacções?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Os limites dependem do nível KYC do utilizador final. Nível 1: saldo máx. 3.000 MZN / 300 MZN por operação. Nível 2: saldo máx. 75.000 MZN / 25.000 MZN por operação.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">A integração funciona com todas as plataformas?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Sim. Temos SDKs para Node.js, Python, PHP e Go. Plugins oficiais para WooCommerce. A API REST pode ser integrada em qualquer plataforma ou linguagem.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+   CTA final
+══════════════════════════════════════════ -->
+<section class="cta-section" aria-labelledby="cta-h3">
+  <div class="container">
+    <div class="cta-card reveal">
+      <div class="cta-card-inner">
+        <div class="cta-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <h2 class="cta-title" id="cta-h3">AINDA TEM DÚVIDAS?</h2>
+        <p class="cta-desc">Nossa equipa de suporte técnico está disponível 24/7 para ajudar no teu percurso.</p>
+        <a href="contact/index.html" class="btn btn-primary btn-lg">Fale Connosco</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ -->
+<footer class="footer3" aria-label="Rodapé">
+  <div class="footer3-top">
+    <div class="footer3-brand">
+      <a href="/IMaliWay-Website/" class="footer3-logo">
+        <svg width="32" height="32" viewBox="0 0 38 38" fill="none" aria-hidden="true">
+          <circle cx="8.5" cy="8.5" r="4.5" stroke="#fff" stroke-width="2" fill="none"/>
+          <circle cx="8.5" cy="8.5" r="2" fill="#fff"/>
+          <path d="M13 30 L13 15 L21.5 23 L30 15 L30 30" stroke="#fff" stroke-width="3.5" stroke-linecap="square" fill="none"/>
+          <path d="M13 15 L21.5 22.5 L30 15" stroke="url(#fchev3)" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <defs><linearGradient id="fchev3" x1="13" y1="15" x2="30" y2="15"><stop offset="0%" stop-color="#6DC135"/><stop offset="100%" stop-color="#4CAF2B"/></linearGradient></defs>
+        </svg>
+        <strong>IMali</strong><em>way</em>
+      </a>
+      <p class="footer3-desc">Gateway de pagamentos da Paytek.<br>Regulado pelo Banco de Moçambique.</p>
+      <div class="footer3-socials">
+        <a href="https://www.facebook.com/imalimoz/" class="footer3-soc" aria-label="Facebook" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" class="footer3-soc" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" class="footer3-soc" aria-label="Instagram" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" class="footer3-soc" aria-label="WhatsApp" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer3-col"><div class="footer3-col-h">PRODUTO</div><a href="#metodos" class="footer3-lnk">Métodos de Pagamento</a><a href="solutions/index.html" class="footer3-lnk">Soluções</a><a href="#sandbox" class="footer3-lnk">Sandbox</a><a href="#como-funciona" class="footer3-lnk">Como Funciona</a></div>
+    <div class="footer3-col"><div class="footer3-col-h">DEVELOPERS</div><a href="doc2/doc.html" class="footer3-lnk">Documentação</a><a href="doc2/doc.html#api" class="footer3-lnk">API Reference</a><a href="doc2/doc.html#sdks" class="footer3-lnk">SDKs</a><a href="doc2/doc.html#webhooks" class="footer3-lnk">Webhooks</a></div>
+    <div class="footer3-col"><div class="footer3-col-h">FALA CONNOSCO</div><a href="tel:+258846002000" class="footer3-lnk">(+258) 84 600 2000</a><a href="mailto:info@imali.co.mz" class="footer3-lnk">info@imali.co.mz</a><a href="contact/index.html" class="footer3-lnk">Contacto</a><a href="https://www.paytek-africa.com/ticketapp/public/tickets/create" class="footer3-lnk" target="_blank" rel="noopener">Centro de Suporte</a></div>
+    </div>
+  </div>
+  <div class="footer3-bottom">
+    <p class="footer3-copy">© 2025 IMALI WAY · PAYTEK TECNOLOGIAS E SERVIÇOS DE PAGAMENTOS, LDA.</p>
+    <p class="footer3-reg">Serviço Financeiro Regulado pelo Banco de Moçambique · Licença nº 177/2022</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+(function() {
+  function initBgVideos() {
+    document.querySelectorAll('.hero-orb-video, .solutions-wave-bg video').forEach(function(v) {
+      v.playbackRate = 0.35;
+      v.disablePictureInPicture = true;
+      v.style.pointerEvents = 'none';
+      v.style.userSelect = 'none';
+      v.removeAttribute('controls');
+      v.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initBgVideos);
+  else initBgVideos();
+})();
+</script>
+</body>
+</html>

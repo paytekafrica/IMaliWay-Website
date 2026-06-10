@@ -6,6 +6,11 @@ class SiteHeader extends HTMLElement {
   }
 
   connectedCallback() {
+    // ══════ CONFIGURAÇÃO DOS LINKS DE AUTENTICAÇÃO ══════
+    const authBase = 'auth/index.html';
+    const loginUrl = `${authBase}?tab=login`;
+    const signupUrl = `${authBase}?tab=signup`;
+
     this.shadowRoot.innerHTML = `
       <style>
         /* ══════ RESET (apenas o necessário) ══════ */
@@ -141,8 +146,7 @@ class SiteHeader extends HTMLElement {
           </a>
 
           <nav class="nav-links" aria-label="Navegação">
-            <a href="/IMaliWay-Website/index2.html" class="nav-link">Soluções</a>
-            
+            <a href="solutions/index.html" class="nav-link">Soluções</a>
             <a href="/IMaliWay-Website/taxas.html" class="nav-link">Taxas</a>
             <a href="doc2/doc.html" class="nav-link">Documentação</a>
             <a href="contact/index.html" class="nav-link">Contacto</a>
@@ -157,8 +161,8 @@ class SiteHeader extends HTMLElement {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
               </span>
             </button>
-            <a href="#" class="btn-ghost-nav">Entrar</a>
-            <a href="#" class="btn-primary-nav">Criar Conta</a>
+            <a href="${loginUrl}" class="btn-ghost-nav">Entrar</a>
+            <a href="${signupUrl}" class="btn-primary-nav">Criar Conta</a>
             <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
               <span></span><span></span><span></span>
             </button>
@@ -167,19 +171,18 @@ class SiteHeader extends HTMLElement {
 
         <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
           <a href="/IMaliWay-Website/index2.html" class="mob-link">Soluções</a>
-          
-          <a href="/IMaliWay-Website/#" class="mob-link">Taxas</a>
-          <a href="doc2/index.html" class="mob-link">Documentação</a>
+          <a href="/IMaliWay-Website/taxas.html" class="mob-link">Taxas</a>
+          <a href="doc2/doc.html" class="mob-link">Documentação</a>
           <a href="contact/index.html" class="mob-link">Contacto</a>
           <div class="mob-ctas">
-            <a href="#" class="btn btn-ghost">Entrar</a>
-            <a href="#" class="btn btn-primary">Criar Conta</a>
+            <a href="${loginUrl}" class="btn btn-ghost">Entrar</a>
+            <a href="${signupUrl}" class="btn btn-primary">Criar Conta</a>
           </div>
         </div>
       </header>
     `;
 
-    // ═══ LÓGICA INTERATIVA ═══
+    // ═══ LÓGICA INTERATIVA (mantida inalterada) ═══
     const root = this.shadowRoot;
     const html = document.documentElement;
     const navbar = root.getElementById('navbar');
