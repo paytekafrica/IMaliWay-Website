@@ -100,7 +100,7 @@ class SiteHeader extends HTMLElement {
         /* ══════ THEME TOGGLE ══════ */
         .theme-toggle {
           width: 34px; height: 34px; border-radius: var(--r-full);
-          display: flex; align-items: center; justify-content: center;
+          display: none;
           color: var(--text-secondary); background: var(--bg-card);
           border: 1px solid var(--border); transition: all var(--t-fast);
         }
@@ -142,14 +142,14 @@ class SiteHeader extends HTMLElement {
       <header class="navbar" id="navbar">
         <div class="nav-wrap">
           <a href="/IMaliWay-Website/" class="nav-logo" aria-label="IMaliway">
-            <span class="logo-text"><strong>IMali</strong><em>way</em></span>
+            <img src="/IMaliWay-Website/assets/designer/Logo MWay.png" alt="iMali Way" style="height:32px;width:auto;display:block;">
           </a>
 
           <nav class="nav-links" aria-label="Navegação">
-            <a href="solutions/index.html" class="nav-link">Soluções</a>
-            <a href="/IMaliWay-Website/taxas.html" class="nav-link">Taxas</a>
-            <a href="doc2/doc.html" class="nav-link">Documentação</a>
-            <a href="contact/index.html" class="nav-link">Contacto</a>
+            <a href="#metodos" class="nav-link">Métodos de Pagamento</a>
+            <a href="#como-funciona" class="nav-link">Como Funciona</a>
+            <a href="#licenciada" class="nav-link">Segurança</a>
+            <a href="#faq" class="nav-link">FAQs</a>
           </nav>
 
           <div class="nav-end">
@@ -161,8 +161,8 @@ class SiteHeader extends HTMLElement {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
               </span>
             </button>
-            <a href="${loginUrl}" class="btn-ghost-nav">Entrar</a>
-            <a href="${signupUrl}" class="btn-primary-nav">Criar Conta</a>
+            <a href="${loginUrl}" class="btn-ghost-nav" style="display:none">Entrar</a>
+            <a href="${signupUrl}" class="btn-primary-nav" style="display:none">Criar Conta</a>
             <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
               <span></span><span></span><span></span>
             </button>
@@ -170,11 +170,11 @@ class SiteHeader extends HTMLElement {
         </div>
 
         <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-          <a href="/IMaliWay-Website/index2.html" class="mob-link">Soluções</a>
-          <a href="/IMaliWay-Website/taxas.html" class="mob-link">Taxas</a>
-          <a href="doc2/doc.html" class="mob-link">Documentação</a>
-          <a href="contact/index.html" class="mob-link">Contacto</a>
-          <div class="mob-ctas">
+          <a href="#metodos" class="mob-link">Métodos de Pagamento</a>
+          <a href="#como-funciona" class="mob-link">Como Funciona</a>
+          <a href="#licenciada" class="mob-link">Segurança</a>
+          <a href="#faq" class="mob-link">FAQs</a>
+          <div class="mob-ctas" style="display:none">
             <a href="${loginUrl}" class="btn btn-ghost">Entrar</a>
             <a href="${signupUrl}" class="btn btn-primary">Criar Conta</a>
           </div>
@@ -190,21 +190,8 @@ class SiteHeader extends HTMLElement {
     const hamburger = root.getElementById('hamburger');
     const mobileMenu = root.getElementById('mobileMenu');
 
-    const THEME_KEY = 'imaliway-theme';
-    const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
-    html.setAttribute('data-theme', savedTheme);
-    this.setAttribute('data-theme', savedTheme);
-
-    function setTheme(theme) {
-      html.setAttribute('data-theme', theme);
-      this.setAttribute('data-theme', theme);
-      localStorage.setItem(THEME_KEY, theme);
-    }
-
-    themeToggle?.addEventListener('click', () => {
-      const current = html.getAttribute('data-theme');
-      setTheme.call(this, current === 'dark' ? 'light' : 'dark');
-    });
+    html.setAttribute('data-theme', 'light');
+    this.setAttribute('data-theme', 'light');
 
     window.addEventListener('scroll', () => {
       navbar?.classList.toggle('scrolled', window.scrollY > 20);

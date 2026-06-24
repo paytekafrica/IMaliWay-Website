@@ -52,19 +52,7 @@ function initializeApp() {
   const mobileMenu   = document.getElementById('mobileMenu');
 
   /* ── THEME TOGGLE ── */
-  const THEME_KEY = 'imaliway-theme';
-  const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
-  html.setAttribute('data-theme', savedTheme);
-
-  function setTheme(theme) {
-    html.setAttribute('data-theme', theme);
-    localStorage.setItem(THEME_KEY, theme);
-  }
-
-  themeToggle?.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    setTheme(current === 'dark' ? 'light' : 'dark');
-  });
+  html.setAttribute('data-theme', 'light');
 
   /* ── NAVBAR: scroll shadow + mobile ── */
   window.addEventListener('scroll', () => {

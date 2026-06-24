@@ -39,8 +39,8 @@ input { font-family: inherit; }
   --c-emola:       #E65100; --c-emola-bg: #FFF3E0;
 
   /* Fonts */
-  --font-head: 'Montserrat', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-head: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Spacing */

@@ -62,8 +62,8 @@ input { font-family: inherit; }
   --emola-bg: #FFF3E0; --emola-fg: #BF360C; --emola-bd: #FFCC80;
 
   /* Tipografia */
-  --font-head: 'Montserrat', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-head: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Border radius */

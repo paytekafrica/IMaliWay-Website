@@ -52,8 +52,8 @@ input {
   --green-tint2: rgba(82, 168, 40, .22);
   --green-glow: rgba(82, 168, 40, .15);
 
-  --font-head: 'Montserrat', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-head: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --r-sm: 4px;

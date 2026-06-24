@@ -26,8 +26,8 @@ input{font-family:inherit;}
   --mkesh-bg:#E3F2FD; --mkesh-fg:#0D47A1; --mkesh-bd:#90CAF9;
   --emola-bg:#FFF3E0; --emola-fg:#BF360C; --emola-bd:#FFCC80;
 
-  --font-head:'Montserrat',sans-serif;
-  --font-body:'DM Sans',sans-serif;
+  --font-head:'Inter',sans-serif;
+  --font-body:'Inter',sans-serif;
   --font-mono:'JetBrains Mono',monospace;
 
   --r-sm:4px; --r-md:8px; --r-lg:12px; --r-xl:16px; --r-2xl:20px; --r-full:9999px;
@@ -535,7 +535,7 @@ p { color:var(--text-secondary); line-height:1.65; }
 /* ════════════════════════════════════
    DEVELOPER (Stitch)
 ════════════════════════════════════ */
-.dev-section { padding:96px 0; background:var(--dev-bg); }
+.dev-section { padding:96px 0; background:var(--dev-bg); border-radius: 0 0 24px 24px; }
 .dev-inner { display:grid; grid-template-columns:1fr 1.3fr; gap:64px; align-items:center; }
 .dev-content { display:flex; flex-direction:column; gap:20px; }
 .dev-pillars { display:flex; flex-direction:column; gap:12px; }
@@ -725,8 +725,8 @@ ul{list-style:none;}
   --green-tint2:  rgba(82,168,40,.22);
   --green-glow:   rgba(82,168,40,.15);
 
-  --font-head:'Montserrat',sans-serif;
-  --font-body:'DM Sans',sans-serif;
+  --font-head:'Inter',sans-serif;
+  --font-body:'Inter',sans-serif;
   --font-mono:'JetBrains Mono',monospace;
 
   --r-sm:4px; --r-md:8px; --r-lg:12px; --r-xl:16px; --r-2xl:20px; --r-full:9999px;
@@ -1299,7 +1299,7 @@ p { color:var(--text-secondary); line-height:1.65; }
 }
 
 .flip-content h3 {
-  font-family: var(--font-head, 'Montserrat', sans-serif);
+  font-family: var(--font-head, 'Inter', sans-serif);
   font-size: clamp(0.7rem, 2.2vw, 1rem);
   font-weight: 800;
   margin-bottom: 6px;
@@ -1332,7 +1332,7 @@ p { color:var(--text-secondary); line-height:1.65; }
 
 /* Tags */
 .cert-tag {
-  font-family: var(--font-head, 'Montserrat', sans-serif);
+  font-family: var(--font-head, 'Inter', sans-serif);
   font-size: clamp(0.5rem, 1.8vw, 0.63rem);
   font-weight: 700;
   padding: 2px 8px;

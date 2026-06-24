@@ -8,7 +8,7 @@ ul{list-style:none}
 :root{
   --green:#4DA823;--green-dark:#2A7518;--green-light:#69B530;
   --green-tint:rgba(77,168,35,.09);--green-tint2:rgba(77,168,35,.17);
-  --font-head:'Montserrat',sans-serif;--font-body:'DM Sans',sans-serif;
+  --font-head:'Inter',sans-serif;--font-body:'Inter',sans-serif;
   --r-xs:3px;--r-sm:5px;--r-md:9px;--r-lg:13px;--r-xl:18px;--r-2xl:22px;--r-3xl:30px;--r-full:9999px;
   --t-fast:170ms cubic-bezier(.4,0,.2,1);--t-norm:320ms cubic-bezier(.33,1,.68,1);
 }
