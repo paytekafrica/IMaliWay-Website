@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   iMaliPay API Reference — style.css (v3.3)
+   IMaliWay API Reference — style.css (v3.3)
    Redução de tamanho 15% (equivalente a 85%) sem transformação
    Tema: Dark/Light consistente com o site iMaliWay
    Scrollbars ocultas
@@ -27,7 +27,11 @@ body {
   color: var(--text-primary);
   background: var(--bg-page);
   overflow-x: hidden;
+  zoom: 1.25;                  /* aumenta navbar, sidebar e conteúdo em 25% */
 }
+
+/* Footer fica de fora do zoom acima (1.25 * 0.8 = 1 → tamanho original) */
+.footer3 { zoom: 0.8; }
 
 h1, h2, h3, h4 {
   font-family: var(--font-head);
@@ -224,33 +228,18 @@ body,
 }
 
 .menu-toggle {
-  display: none;
+  display: flex; align-items: center; justify-content: center;
   background: none; border: none; cursor: pointer;
   color: var(--text-secondary); padding: 3.4px;
   border-radius: var(--r-sm);
 }
-.menu-toggle:hover { color: var(--text-primary); }
+.menu-toggle:hover { color: var(--text-primary); background: var(--green-tint); }
+.menu-toggle.active { color: var(--green-light); background: var(--green-tint); }
 
 .topbar-logo {
   display: flex; align-items: center; gap: 7.65px;  /* 9px */
   flex-shrink: 0; text-decoration: none;
 }
-
-.logo-mark {
-  width: 23.8px; height: 23.8px;      /* 28px */
-  background: var(--green);
-  border-radius: 5.1px;               /* 6px */
-  display: flex; align-items: center; justify-content: center;
-}
-
-.logo-text {
-  font-family: var(--font-head);
-  font-size: 0.85rem;                  /* era 1rem */
-  font-weight: 900;
-  color: var(--text-primary);
-}
-
-.logo-text em { font-style: normal; color: var(--green-light); }
 
 .topbar-divider {
   width: 1px; height: 17px;           /* 20px */
@@ -367,6 +356,20 @@ body,
   grid-template-columns: 221px 1fr;        /* 260px * 0.85 */
   min-height: 100vh;
   padding-top: 47.6px;                     /* altura da topbar */
+  transition: grid-template-columns var(--t-norm);
+}
+
+/* Sidebar ocultada (apenas desktop — no mobile o overlay já resolve isto via .sidebar.open) */
+@media (min-width: 981px) {
+  .layout.sidebar-collapsed {
+    grid-template-columns: 0 1fr;
+  }
+  .layout.sidebar-collapsed .sidebar {
+    padding: 20.4px 0 34px 0;
+    opacity: 0;
+    pointer-events: none;
+    border-right: none;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -375,35 +378,37 @@ body,
 .sidebar {
   position: sticky;
   top: 47.6px;
-  height: calc(100vh - 47.6px);
+  max-height: calc(100vh - 47.6px);        /* ajusta ao conteúdo; só faz scroll próprio se não couber */
+  min-width: 0;
   background: var(--sidebar-bg);
   border-right: 1px solid var(--sidebar-border);
   overflow-y: auto;
-  padding: 20.4px 0 34px;                  /* 24px, 40px */
+  padding: 13.6px 0 10px;                  /* reduzido de 20.4px 0 34px */
   display: flex;
   flex-direction: column;
   gap: 1.7px;                              /* 2px */
+  transition: opacity var(--t-norm);
 }
 
 .sb-section {
-  margin-bottom: 23.8px;                   /* 28px */
+  margin-bottom: 14px;                     /* reduzido de 23.8px */
 }
 
 .sb-group-label {
   font-family: var(--font-head);
-  font-size: 0.493rem;                     /* 0.58rem */
+  font-size: 0.44rem;                      /* reduzido de 0.493rem */
   font-weight: 800;
   color: var(--text-muted);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 11.9px 17px 3.4px;             /* 14px, 20px, 4px */
+  padding: 3px 17px 3px;                   /* reduzido de 5px 17px 3.4px */
 }
 
 .sb-link {
   display: flex;
   align-items: center;
   gap: 6.8px;                              /* 8px */
-  padding: 5.95px 17px;                    /* 7px, 20px */
+  padding: 5px 17px;                       /* reduzido de 5.95px 17px */
   font-size: 0.697rem;                     /* 0.82rem */
   color: var(--text-secondary);
   font-family: var(--font-head);
@@ -467,8 +472,6 @@ body,
 
 /* ─── MAIN ─── */
 .main {
-  overflow-y: auto;
-  height: calc(100vh - 47.6px);
   padding: 40.8px 47.6px 102px;            /* 48px, 56px, 120px */
 }
 
@@ -477,7 +480,7 @@ body,
 ═══════════════════════════════════════════════════════════ */
 .doc-section {
   max-width: 663px;                        /* 780px */
-  margin: 0 auto 68px;                     /* 80px */
+  margin: 0 0 68px;                        /* alinhado à esquerda, junto à sidebar */
 }
 
 /* Secção com código: layout lado a lado */
@@ -485,7 +488,7 @@ body,
   display: flex;
   gap: 40.8px;                             /* 48px */
   max-width: 1020px;                       /* 1200px */
-  margin: 0 auto 68px;
+  margin: 0 0 68px;                        /* alinhado à esquerda, junto à sidebar */
   align-items: flex-start;
 }
 
@@ -501,19 +504,42 @@ body,
   background: var(--bg-terminal);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: var(--r-xl);
-  overflow: hidden;
+  overflow-y: auto;                        /* fallback: scroll interno se ainda não couber */
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   position: sticky;
   top: 68px;                               /* 80px */
   max-height: calc(100vh - 119px);         /* 140px */
+  opacity: .5;
+  transform: translateY(8px) scale(.98);
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.code-panel-inline.is-active {
+  opacity: 1;
+  transform: none;
+}
+
+/* Ecrãs mais baixos (laptops) — reduz ligeiramente para caber por inteiro */
+/* "top" nunca pode ficar abaixo dos 47.6px da topbar (altura real ~59.5px com o zoom
+   de 1.25 da página), senão o painel sticky fica sobreposto pela navbar. */
+@media (max-height: 820px) {
+  .code-panel-inline { top: 60px; max-height: calc(100vh - 94px); }
+  .code-body { font-size: 0.52rem; line-height: 1.5; padding: 8px; }
+  .response-preview pre { font-size: 0.52rem; line-height: 1.45; }
+}
+@media (max-height: 700px) {
+  .code-panel-inline { top: 56px; max-height: calc(100vh - 80px); }
+  .code-body { font-size: 0.47rem; line-height: 1.42; padding: 6px; }
+  .response-preview pre { font-size: 0.47rem; line-height: 1.35; }
 }
 
 .code-panel-inline .code-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10.2px 13.6px;                  /* 12px, 16px */
+  padding: 8.5px 11.9px;                   /* reduzido de 10.2px 13.6px */
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   background: rgba(255, 255, 255, 0.02);
   flex-shrink: 0;
@@ -530,9 +556,9 @@ body,
   border-radius: var(--r-sm);
   color: rgba(255, 255, 255, 0.4);
   font-family: var(--font-head);
-  font-size: 0.578rem;                     /* 0.68rem */
+  font-size: 0.52rem;                      /* reduzido de 0.578rem */
   font-weight: 700;
-  padding: 3.4px 10.2px;
+  padding: 3px 8.5px;                      /* reduzido de 3.4px 10.2px */
   cursor: pointer;
   transition: all var(--t-fast);
 }
@@ -549,10 +575,10 @@ body,
 }
 
 .code-body {
-  padding: 15.3px 17px;                    /* 18px, 20px */
+  padding: 10px;
   font-family: var(--font-mono);
-  font-size: 0.646rem;                     /* 0.76rem */
-  line-height: 1.8;
+  font-size: 0.58rem;                      /* reduzido de 0.646rem */
+  line-height: 1.6;                        /* reduzido de 1.8 */
   color: #c9d1d9;
   overflow-x: auto;
   flex: 1;
@@ -573,13 +599,13 @@ body,
 .response-preview {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   background: rgba(0, 0, 0, 0.2);
-  padding: 11.9px 17px;
+  padding: 9.5px 14.5px;                   /* reduzido de 11.9px 17px */
   flex-shrink: 0;
 }
 
 .response-label {
   font-family: var(--font-head);
-  font-size: 0.527rem;                     /* 0.62rem */
+  font-size: 0.48rem;                      /* reduzido de 0.527rem */
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -589,8 +615,8 @@ body,
 
 .response-preview pre {
   font-family: var(--font-mono);
-  font-size: 0.638rem;                     /* 0.75rem */
-  line-height: 1.7;
+  font-size: 0.58rem;                      /* reduzido de 0.638rem */
+  line-height: 1.55;                       /* reduzido de 1.7 */
   color: #c9d1d9;
   white-space: pre-wrap;
   word-break: break-word;
@@ -1602,6 +1628,8 @@ body,
     width: 100%;
     position: static;
     max-height: none;
+    opacity: 1;                  /* empilhado: sem sticky, sem animação de troca */
+    transform: none;
   }
 }
 
@@ -1625,10 +1653,6 @@ body,
 
   .main {
     padding: 20.4px 17px 51px;             /* 24px, 20px, 60px */
-  }
-
-  .menu-toggle {
-    display: flex;
   }
 
   .topbar-search {
@@ -1668,4 +1692,63 @@ body,
   .sb-picker { padding: 10.2px 11.9px; }
   .sb-card-hd { padding: 7.65px 11.9px; }
   .sb-col-form .send-btn { margin: 11.9px; width: calc(100% - 23.8px); }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FOOTER — igual ao usado em index.html (footer3)
+══════════════════════════════════════════════════════════════ */
+.footer3 {
+    background: #080808;
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+.footer3-top {
+    max-width: 1200px; margin: 0 auto; padding: 64px 24px 48px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+}
+.footer3-brand { display: flex; flex-direction: column; gap: 16px; }
+.footer3-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-head); font-size: 1.18rem;
+    font-weight: 400; color: #fff;
+    text-decoration: none;
+}
+.footer3-logo strong { font-weight: 900; }
+.footer3-logo em { font-style: normal; font-weight: 700; color: #6DC135; }
+.footer3-desc { font-size: .82rem; color: rgba(255,255,255,.6); line-height: 1.7; }
+.footer3-socials { display: flex; gap: 8px; }
+.footer3-soc {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,.10); color: rgba(255,255,255,.75);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s;
+}
+.footer3-soc:hover { background: #52A828; color: #fff; }
+.footer3-col { display: flex; flex-direction: column; gap: 10px; }
+.footer3-col-h {
+    font-family: var(--font-head); font-size: .6rem; font-weight: 800;
+    color: rgba(255,255,255,.55); letter-spacing: .12em;
+    text-transform: uppercase; margin-bottom: 4px;
+}
+.footer3-lnk {
+    font-size: .83rem; color: rgba(255,255,255,.75);
+    transition: color .15s; text-decoration: none;
+}
+.footer3-lnk:hover { color: #6DC135; }
+.footer3-bottom {
+    border-top: 1px solid rgba(255,255,255,.05);
+    padding: 18px 24px;
+    max-width: 1200px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 3px;
+}
+.footer3-copy {
+    font-family: var(--font-head); font-size: .6rem;
+    font-weight: 700; color: rgba(255,255,255,.55); letter-spacing: .04em;
+}
+.footer3-reg { font-size: .58rem; color: rgba(255,255,255,.45); letter-spacing: .03em; }
+
+@media (max-width: 767px) {
+    .footer3-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 540px) {
+    .footer3-top { grid-template-columns: 1fr; }
 }

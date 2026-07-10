@@ -21,7 +21,7 @@
   /* ── HERO ── */
   .hero {
     min-height: 100dvh;
-    padding: 130px 0 80px;
+    padding: 60px 0;
     background: #000;
     display: flex;
     align-items: center;
@@ -38,14 +38,14 @@
   .hero-inner3 {
     position: relative; z-index: 1;
     display: flex; flex-direction: column;
-    align-items: center; gap: 36px;
+    align-items: center; gap: 0;
     max-width: 720px; margin: 0 auto; padding: 0 24px;
   }
 
   .hero-orb {
     position: relative;
-    width: clamp(300px, 42vw, 460px);
-    height: clamp(300px, 42vw, 460px);
+    width: clamp(704px, 99vw, 1079px);
+    height: clamp(704px, 99vw, 1079px);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
@@ -53,7 +53,7 @@
     position: absolute; inset: -24px; border-radius: 50%; pointer-events: none;
     background: radial-gradient(circle, rgba(82,168,40,.32) 0%, rgba(82,168,40,.08) 50%, transparent 72%);
   }
-  .hero-orb-video {
+  .hero-orb-img {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
@@ -65,21 +65,29 @@
   }
   .hero-orb-text {
     position: relative; z-index: 2;
-    font-family: var(--font-head);
-    font-size: clamp(2.6rem, 7.5vw, 5.2rem);
-    font-weight: 900; letter-spacing: -.04em; line-height: 1;
-    color: #fff;
-    text-shadow: 0 0 60px rgba(82,168,40,.55), 0 2px 24px rgba(0,0,0,.6);
+    font-family: 'Inter', var(--font-head);
+    font-style: normal;
+    font-size: 128px;
+    font-weight: 700; line-height: 155px;
+    text-align: center;
+    background: linear-gradient(90deg, #6DC135 0%, #335B19 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
   }
-  .hero-orb-text .ot-i  { color: rgba(255,255,255,.9); }
-  .hero-orb-text .ot-m  { color: #6DC135; }
-  .hero-orb-text .ot-w  { color: rgba(255,255,255,.9); }
 
   .hero-subtitle3 {
-    font-size: 1.26rem; color: rgba(255,255,255,.62);
-    line-height: 1.75; max-width: 520px; text-align: center;
+    position: absolute; z-index: 2;
+    top: 58%; left: 50%; transform: translateX(-50%);
+    width: 90%; max-width: 884px;
+    font-family: 'Inter', var(--font-body);
+    font-style: normal; font-weight: 500;
+    font-size: 36px; line-height: 44px; text-align: center;
+    color: #FFFFFF;
   }
-  .hero-subtitle3 em { font-style: normal; color: #6DC135; }
+  .hero-subtitle3 .hs-fade {
+    background: linear-gradient(to right, #fff 0%, #707456 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
 
   /* Trust bar — 3 itens separados por linha */
   .hero-trust-bar {
@@ -101,27 +109,6 @@
     white-space: nowrap; display: block;
   }
   .htb-logo { height: 30px; width: auto; object-fit: contain; display: block; }
-
-  /* ── HERO → SOLUTIONS: degradê suave ── */
-  .solutions-section::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 50px;
-    background: linear-gradient(to bottom,
-      #000000 0%,
-      rgba(0, 0, 0, 0.85) 20%,
-      rgba(0, 0, 0, 0.55) 40%,
-      rgba(255, 255, 255, 0.3) 65%,
-      rgba(255, 255, 255, 0.8) 85%,
-      #ffffff 100%
-    );
-    pointer-events: none;
-    z-index: 0;
-  }
 
   /* ── SOLUTIONS (white) ── */
   .solutions-section {
@@ -323,9 +310,9 @@
   }
   .methods-choose-hl .mg { color: #6DC135; }
 
-  /* ── DASHBOARD SHOWCASE outer (fundo escuro de contraste) ── */
+  /* ── DASHBOARD SHOWCASE outer (fundo branco) ── */
   .dash-showcase-outer {
-    background: #111111;
+    background: #FFFFFF;
     padding: 60px 24px;
   }
 
@@ -333,7 +320,7 @@
   .dash-showcase {
     padding: 80px 0;
     position: relative; overflow: hidden;
-    border-radius: 24px;
+    border-radius: 32px;
     border: 1px solid rgba(0, 0, 0, 0.06);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.06);
   }
@@ -392,7 +379,7 @@
   /* ── STEPPER WHITE ── */
   .stepper-white {
     padding: 80px 0;
-    border-radius: 16px;
+    border-radius: 32px;
     overflow: hidden;
     background-color: #fff;
     background-image: url('assets/designer/BG/Como Funciona BG.png');
@@ -435,6 +422,160 @@
   .stepper-white .sp.active { background: #52A828; width: 22px; }
   .stepper-white .btn-step-prev { color: #888; border-color: #ddd; background: transparent; }
   .stepper-white .btn-step-prev:hover:not(:disabled) { background: #f5f5f5; }
+
+  /* ── PRICING OUTER (fundo escuro de contraste) ── */
+  .pricing-outer {
+    background: #111111;
+    padding: 60px 24px;
+  }
+
+  /* ── PRICING WHITE ── */
+  .pricing-white {
+    background: #ffffff;
+    border-radius: 32px;
+    padding: 80px 0;
+  }
+  .pricing-eyebrow {
+    display: block;
+    text-align: center;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    color: var(--green);
+    margin-bottom: 14px;
+  }
+  .pricing-white .section-h { color: #1A1A1A; }
+  .pricing-white .section-p { color: #555; }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 28px;
+    align-items: stretch;
+  }
+  .pricing-card {
+    background: #0C0C0C;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px;
+    padding: 36px 32px;
+  }
+  .pricing-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--green-light) 0%, var(--green) 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 6px 16px rgba(109,193,53,.35);
+  }
+  .pricing-icon svg { width: 22px; height: 22px; stroke: #fff; }
+  .pricing-card-title { font-size: 1.05rem; font-weight: 700; color: #fff; margin: 16px 0 0; }
+
+  /* Fee card */
+  .pricing-flow-toggle {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    margin: 18px 0 22px;
+  }
+  .pricing-flow-btn {
+    background: #161616; border: 1px solid rgba(255,255,255,.12);
+    border-radius: 10px; padding: 11px 14px;
+    font-family: var(--font-head); font-size: .82rem; font-weight: 700;
+    color: rgba(255,255,255,.55);
+    cursor: pointer; transition: all .15s;
+  }
+  .pricing-flow-btn:hover { border-color: rgba(109,193,53,.4); }
+  .pricing-flow-btn.active {
+    background: rgba(109,193,53,.12);
+    border-color: var(--green-light);
+    color: var(--green-light);
+  }
+  .pricing-fee-value {
+    font-size: 2.6rem; font-weight: 800; line-height: 1.15;
+    color: var(--green-light);
+    margin: 0 0 6px;
+  }
+  .pricing-fee-sub { font-size: .85rem; color: rgba(255,255,255,.5); margin: 0 0 22px; line-height: 1.6; }
+  .pricing-flag {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(109,193,53,.1);
+    border: 1px solid rgba(109,193,53,.22);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: .82rem; font-weight: 600; color: var(--green-light);
+    margin-bottom: 26px;
+  }
+  .pricing-check-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 13px; }
+  .pricing-check-list li { display: flex; align-items: center; gap: 10px; font-size: .87rem; color: rgba(255,255,255,.78); }
+  .pricing-check-list li::before {
+    content: '';
+    width: 16px; height: 16px; flex-shrink: 0; border-radius: 50%;
+    background: var(--green-light) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/10px no-repeat;
+  }
+
+  /* Calculator card */
+  .pricing-calc-header { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+  .pricing-calc-header .pricing-card-title { margin: 0; }
+  .pricing-calc-sub { margin: 2px 0 0; font-size: .8rem; color: rgba(255,255,255,.45); }
+  .pricing-label {
+    display: block; font-size: .72rem; font-weight: 700;
+    letter-spacing: .05em; text-transform: uppercase;
+    color: rgba(255,255,255,.45); margin: 0 0 10px;
+  }
+  .pricing-slider {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 5px; border-radius: 3px;
+    background: linear-gradient(to right, var(--green-light) var(--fill,20%), rgba(255,255,255,.12) var(--fill,20%));
+    outline: none; margin-bottom: 6px; cursor: pointer;
+  }
+  .pricing-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #fff; border: 3px solid var(--green-light);
+    box-shadow: 0 2px 8px rgba(0,0,0,.4); cursor: pointer;
+  }
+  .pricing-slider::-moz-range-thumb {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #fff; border: 3px solid var(--green-light); cursor: pointer;
+  }
+  .pricing-slider-scale { display: flex; justify-content: space-between; font-size: .7rem; color: rgba(255,255,255,.35); margin-bottom: 18px; }
+  .pricing-amount-input {
+    width: 100%; background: #161616; border: 1px solid rgba(255,255,255,.12);
+    border-radius: 10px; padding: 12px 14px;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 1rem; font-weight: 600;
+    color: #fff; margin-bottom: 24px;
+  }
+  .pricing-amount-input:focus { outline: none; border-color: var(--green-light); }
+
+  .pricing-method-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 26px; }
+  .pricing-method {
+    background: #161616; border: 1px solid rgba(255,255,255,.1);
+    border-radius: 10px; padding: 11px 14px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+    cursor: pointer; transition: .15s;
+    font-family: 'Inter', sans-serif;
+  }
+  .pricing-method span { font-size: .7rem; color: rgba(255,255,255,.4); font-weight: 500; }
+  .pricing-method strong { font-size: .85rem; color: #fff; font-weight: 600; }
+  .pricing-method:hover { border-color: rgba(109,193,53,.4); }
+  .pricing-method.active { background: rgba(109,193,53,.1); border-color: var(--green-light); }
+  .pricing-method.active strong { color: var(--green-light); }
+
+  .pricing-result {
+    background: #161616; border: 1px solid rgba(255,255,255,.1);
+    border-radius: 14px; padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 13px;
+  }
+  .pricing-result-row { display: flex; justify-content: space-between; align-items: center; font-size: .85rem; color: rgba(255,255,255,.55); }
+  .pricing-result-row strong { font-family: var(--font-mono, 'JetBrains Mono', monospace); color: #fff; font-weight: 600; font-size: .9rem; }
+  .pricing-result-total { border-top: 1px dashed rgba(255,255,255,.14); padding-top: 13px; font-size: .92rem; color: rgba(255,255,255,.85); font-weight: 600; }
+  .pricing-result-total strong { color: var(--green-light); font-size: 1.35rem; }
+
+  .pricing-footnote { text-align: center; font-size: .76rem; color: rgba(255,255,255,.35); max-width: 680px; margin: 32px auto 0; line-height: 1.7; }
+
+  @media (max-width: 860px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-white { padding: 56px 0; border-radius: 22px; }
+    .pricing-method-grid { grid-template-columns: 1fr 1fr; }
+  }
 
   /* ── INLINE FOOTER ── */
   .footer3 {
@@ -493,11 +634,13 @@
     text-align: center;
   }
   .certified-hl {
-    font-family: var(--font-head);
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-    font-weight: 800;
+    font-family: 'Inter', var(--font-head);
+    font-style: normal;
+    font-size: 40px;
+    font-weight: 700;
     color: #fff;
-    line-height: 1.3;
+    line-height: 115%;
+    text-align: center;
     margin-bottom: 56px;
   }
   .certified-hl .cg { color: #6DC135; }
@@ -519,24 +662,19 @@
     filter: drop-shadow(0 4px 14px rgba(0,0,0,.5));
   }
   .certified-desc {
-    font-size: clamp(.6rem, 2.2vw, .92rem);
-    color: #bbbbbb;
-    line-height: 1.8;
-    max-width: 500px;
+    font-family: 'Inter', var(--font-body);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 115%;
+    max-width: 883px;
     margin: 0 auto;
     text-align: center;
-  }
-  .cert-line {
-    display: block;
-    white-space: nowrap;
-  }
-  .certified-desc .hl {
-    background: linear-gradient(90deg, #d8fde8 0%, #33dd66 100%);
+    background: linear-gradient(90deg, #FFFFFF 36.06%, #6DC135 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-    filter: drop-shadow(0 0 4px rgba(50,200,90,.45));
   }
  .question .hll  {
     background: linear-gradient(90deg, #d8fde8 0%, #33dd66 100%);
@@ -628,17 +766,40 @@
   <div class="hero-inner3">
     <div class="hero-orb">
       <div class="hero-orb-glow" aria-hidden="true"></div>
-      <video class="hero-orb-video" autoplay loop muted playsinline disablepictureinpicture controlsList="nodownload nofullscreen noremoteplayback" aria-hidden="true" oncontextmenu="return false;">
-        <source src="assets/designer/cards/ASSETS/sci-fi-motion.mp4" type="video/mp4">
-      </video>
-      <div class="hero-orb-text" aria-label="iMali Way">
-        <span class="ot-i"></span><span class="ot-m">IMali Way</span> <span class="ot-w"></span>
-      </div>
+      <img class="hero-orb-img" src="assets/designer/abstract-twisted-cosmic-wormhole-technology-background-data-network-3d-rendering.jpg" alt="" aria-hidden="true">
+      <div class="hero-orb-text" aria-label="iMali Way">iMali Way</div>
+      <p class="hero-subtitle3">
+        Concebido para todo o tipo de negócio, <span class="hs-fade">aceite e</span> optimize pagamentos
+        a nível nacional <span class="hs-fade">online e</span> presencial.
+      </p>
     </div>
-    <p class="hero-subtitle3">
-      Concebido para todo o tipo de negócio, aceite e optimize pagamentos
-      a nível nacional <em>online</em> e <em>presencial</em>.
-    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+   METHODS — white, logo cards (ordem alterada + sombras)
+══════════════════════════════════════════ -->
+<section class="methods-white-section" id="metodos">
+  <div class="container">
+    <h2 class="methods-white-hl reveal">
+      <span class="mg">Todos métodos de pagamento</span><br>na palma da mão.
+    </h2>
+    <div class="methods-svg-grid reveal">
+      <img src="assets/designer/cards/ASSETS/eMola.svg"     alt="e-Mola"           class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/MPesa.svg"     alt="M-Pesa"           class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/mKesh.svg"     alt="mKesh"            class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/PayPal.svg"    alt="PayPal"           class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Visa.svg"      alt="Visa/Mastercard"  class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Google n Apple.svg" alt="Google Pay &amp; Apple Pay" class="method-svg-card">
+    </div>
+
+    <h3 class="methods-choose-hl reveal">
+      <span class="mg">Escolha</span> como o seu cliente paga.
+    </h3>
+    <div class="methods-svg-grid reveal">
+      <img src="assets/designer/cards/ASSETS/QRcode.svg"   alt="Via QR Code"              class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Ent Ref.svg"  alt="Por Entidade e Referência" class="method-svg-card">
+      <img src="assets/designer/cards/ASSETS/Link.svg"     alt="Via Link"                  class="method-svg-card">
     </div>
   </div>
 </section>
@@ -684,32 +845,21 @@
 </section>
 
 <!-- ══════════════════════════════════════════
-   METHODS — white, logo cards (ordem alterada + sombras)
+   DASHBOARD SHOWCASE — dark outer + floating card
 ══════════════════════════════════════════ -->
-<section class="methods-white-section" id="metodos">
+<section class="dash-showcase-outer">
+<section class="dash-showcase" id="dashboard">
+  <div class="dash-showcase-bg" aria-hidden="true"></div>
   <div class="container">
-    <h2 class="methods-white-hl reveal">
-      <span class="mg">Todos métodos de pagamento</span><br>na palma da mão.
-    </h2>
-    <div class="methods-svg-grid reveal">
-      <img src="assets/designer/cards/ASSETS/eMola.svg"     alt="e-Mola"           class="method-svg-card">
-      <img src="assets/designer/cards/ASSETS/MPesa.svg"     alt="M-Pesa"           class="method-svg-card">
-      <img src="assets/designer/cards/ASSETS/mKesh.svg"     alt="mKesh"            class="method-svg-card">
-      <img src="assets/designer/cards/ASSETS/PayPal.svg"    alt="PayPal"           class="method-svg-card">
-      <img src="assets/designer/cards/ASSETS/Visa.svg"      alt="Visa/Mastercard"  class="method-svg-card">
-      <img src="assets/designer/cards/ASSETS/Google n Apple.svg" alt="Google Pay &amp; Apple Pay" class="method-svg-card">
-    </div>
-
-    <h3 class="methods-choose-hl reveal">
-      <span class="mg">Escolha</span> como o seu cliente paga.
-    </h3>
-    <div class="methods-svg-grid reveal">
-      <img src="assets/designer/cards/ASSETS/QRcode.svg"   alt="Via QR Code"              class="method-svg-card">
-      <img src="assets/designer/cards/ASSETS/Ent Ref.svg"  alt="Por Entidade e Referência" class="method-svg-card">
-      <img src="assets/designer/cards/ASSETS/Link.svg"     alt="Via Link"                  class="method-svg-card">
+    <div class="dash-showcase-inner">
+      <div class="dash-showcase-wrap">
+       <img src="assets/designer/dashboard e info.png" alt="Dashboard iMali Way" style="width:100%;height:auto;display:block;border-radius:16px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));">
+      </div>
     </div>
   </div>
-</section>
+</section><!-- /.dash-showcase -->
+</section><!-- /.dash-showcase-outer -->
+
 
 <!-- ══════════════════════════════════════════
    INTEGRATION — dark, terminal
@@ -782,43 +932,6 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-   DASHBOARD SHOWCASE — dark outer + floating card
-══════════════════════════════════════════ -->
-<section class="dash-showcase-outer">
-<section class="dash-showcase" id="dashboard">
-  <div class="dash-showcase-bg" aria-hidden="true"></div>
-  <div class="container">
-    <div class="dash-showcase-inner">
-      <div class="dash-showcase-wrap">
-       <img src="assets/designer/dashboard e info.png" alt="Dashboard iMali Way" style="width:100%;height:auto;display:block;border-radius:16px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));">
-      </div>
-    </div>
-  </div>
-</section><!-- /.dash-showcase -->
-</section><!-- /.dash-showcase-outer -->
-
-<!-- ══════════════════════════════════════════
-   SANDBOX STEPS — dark, 3 cards
-══════════════════════════════════════════ -->
-<section class="sandbox-steps" id="sandbox">
-  <div class="container">
-    <h2 class="sandbox-steps-hl reveal">
-      Integração rápida para<br>
-      <span class="sg">todo tipo de negócio.</span>
-    </h2>
-    <div class="sandbox-svg-cards reveal">
-      <img src="assets/designer/cards/ASSETS/Sandbox 1.svg" alt="Entra no Sandbox (gratuito)" class="sandbox-svg-card">
-      <img src="assets/designer/cards/ASSETS/Staging 2.svg" alt="Passa para a fase Staging" class="sandbox-svg-card">
-      <img src="assets/designer/cards/ASSETS/Producao 3.svg" alt="Vai para Produção" class="sandbox-svg-card">
-    </div>
-    <div class="sandbox-steps-cta reveal">
-      <a href="auth/index.html?tab=signup" class="btn btn-primary btn-lg">
-        Entrar no Sandbox
-        </a>
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════════════════════════════════
    STEPPER — dark outer + white floating card
@@ -827,7 +940,7 @@
 <section class="stepper-white" id="como-funciona" aria-labelledby="stepper-h3">
   <div class="container">
     <h2 class="section-h center reveal" id="stepper-h3">
-      <span style="color:#6DC135;">Como funciona</span> o iMali Way
+      <span style="color:#6DC135;">Como integrar</span> o iMali Way
     </h2>
     <p class="section-p center reveal" style="color:#555;">
       Cria uma conta em menos de 3 minutos
@@ -894,6 +1007,95 @@
 </section><!-- /.stepper-outer -->
 
 <!-- ══════════════════════════════════════════
+   PRICING — dark outer + white floating card
+══════════════════════════════════════════ -->
+<section class="pricing-outer">
+<section class="pricing-white" id="tarifario" aria-labelledby="pricing-h3">
+  <div class="container">
+    <h2 class="section-h center reveal" id="pricing-h3"><span style="color:#6DC135;">Tarifário</span> simples e transparente</h2>
+    <p class="section-p center reveal">Sem mensalidades, sem custos adicionais.</p>
+
+    <div class="pricing-grid reveal">
+
+      <!-- LEFT — flat fee card -->
+      <div class="pricing-card">
+        <div class="pricing-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+        </div>
+        <h3 class="pricing-card-title">Taxa por Transacção</h3>
+
+        <div class="pricing-flow-toggle" role="tablist" aria-label="Tipo de fluxo">
+          <button type="button" class="pricing-flow-btn active" data-flow="c2b" data-min="1.5" data-max="4.5" role="tab" aria-selected="true">C2B</button>
+          <button type="button" class="pricing-flow-btn" data-flow="b2c" data-min="1" data-max="2.5" role="tab" aria-selected="false">B2C</button>
+        </div>
+
+        <div class="pricing-fee-value" id="pcFeeValue">1,5% – 4,5%</div>
+        <p class="pricing-fee-sub" id="pcFeeSub">por transacção (C2B) </p>
+
+        <ul class="pricing-check-list">
+          <li>Sem taxa de adesão</li>
+          <li>Sem volume mínimo</li>
+          <li>Todos os métodos de pagamento incluídos</li>
+          <li>Relatórios em tempo real incluídos</li>
+          <li>Suporte dedicado</li>
+        </ul>
+      </div>
+
+      <!-- RIGHT — interactive calculator -->
+      <div class="pricing-card">
+        <div class="pricing-calc-header">
+          <div class="pricing-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
+          </div>
+          <div>
+            <h3 class="pricing-card-title">Calculadora de Taxas</h3>
+            <p class="pricing-calc-sub">Veja exactamente quanto vai receber</p>
+          </div>
+        </div>
+
+        <label class="pricing-label" for="pcAmount">Valor da Transacção (MZN)</label>
+        <input type="range" id="pcSlider" class="pricing-slider" min="50" max="200000" step="50" value="1000">
+        <div class="pricing-slider-scale"><span>50 MT</span><span>200 000 MT</span></div>
+        <input type="number" id="pcAmount" class="pricing-amount-input" value="1000" min="50" max="200000">
+
+        <label class="pricing-label">Método de Pagamento</label>
+        <div class="pricing-method-grid" id="pcMethods">
+          <button class="pricing-method active" data-method="mpesa" data-settle="Imediato">
+            <span>M-Pesa</span><strong>3,0%</strong>
+          </button>
+          <button class="pricing-method" data-method="emola" data-settle="Imediato">
+            <span>e-Mola</span><strong>3,0%</strong>
+          </button>
+          <button class="pricing-method" data-method="mkesh" data-settle="D+2">
+            <span>mKesh</span><strong>3,0%</strong>
+          </button>
+          <button class="pricing-method" data-method="visa" data-settle="D+2">
+            <span>Visa / Mastercard</span><strong>--</strong>
+          </button>
+        </div>
+
+        <div class="pricing-result">
+          <div class="pricing-result-row"><span id="pcFeeLabel">Taxa da transacção (3,0%)</span><strong id="pcFee">30,00 MT</strong></div>
+          <div class="pricing-result-row"><span>Liquidação</span><strong id="pcSettle">Imediato</strong></div>
+          <div class="pricing-result-row pricing-result-total"><span>Valor líquido a receber</span><strong id="pcNet">970,00 MT</strong></div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="pricing-footnote">
+      * M-Pesa e e-Mola usam fluxo automático C2B → B2C: recebemos o pagamento e devolvemos imediatamente a sua quota ao(s) seu(s) número(s) registado(s). Liquidação em dias úteis (D+2) para Visa/Mastercard.
+    </p>
+  </div>
+</section><!-- /.pricing-white -->
+</section><!-- /.pricing-outer -->
+
+
+
+
+
+
+<!-- ══════════════════════════════════════════
    CERTIFIED — dark, shield, licensed
 ══════════════════════════════════════════ -->
 <section class="certified-section" id="licenciada">
@@ -911,9 +1113,7 @@
       </div>
     </div>
     <p class="certified-desc reveal">
-      <span class="cert-line">O iMali Way é uma solução da PAYTEK, <span class="hl">empresa aprovada pelo SandBox</span></span>
-      <span class="cert-line">Regulatório licenciada pelo Banco de <span class="hl">Moçambique, e com ligação directa</span></span>
-      <span class="cert-line">SIMOrede. Garanta uma solução <span class="hl">segura para seu negócio com iMaliWay</span></span>
+      O iMali Way é uma solução da PAYTEK, empresa aprovada pelo SandBox Regulatório, licenciada pelo Banco de Moçambique, e com ligação direta à SIMOrede. Garanta uma solução segura para o seu negócio com o iMali Way.
     </p>
   </div>
 </section>
@@ -926,14 +1126,12 @@
     <h2 class="section-h center reveal faq-hl" id="faq-h3">Dúvidas Frequentes</h2>
     <p class="section-p center reveal">Tudo o que precisas saber para começar a transaccionar hoje.</p>
     <div class="faq-grid reveal">
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Como funciona o tempo de liquidação (payout)?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Para o plano Startup, a liquidação ocorre em D+2 (48 horas). Para planos Business e Enterprise, processamos em D+0 (até 30 segundos), dependendo do volume e histórico de risco.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">É necessário ter conta em todos os bancos?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Não. A IMaliway funciona como intermediário — uma única integração dá-te acesso a todos os métodos. Recebe tudo numa única conta bancária ou carteira M-Pesa empresarial.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Quais são as certificações de segurança?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>A IMaliway é regulada pelo Banco de Moçambique (Licença nº 177/2022), membro do SIMO e certificada PCI DSS v4. Todas as comunicações são encriptadas com AES-256 e TLS 1.3.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Posso receber pagamentos internacionais?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Brevemente. O suporte a cartões Visa e Mastercard internacionais está em desenvolvimento. Por agora, a IMaliway suporta todos os principais métodos de pagamento local moçambicanos.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Quanto tempo demora a aprovação da conta?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>O acesso ao sandbox é imediato após o registo. A verificação KYC e activação em produção demora menos de 24 horas em dias úteis.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Posso testar antes de ir live?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Sim. O sandbox está disponível imediatamente após o registo e espelha o ambiente de produção. Podes testar todos os métodos, simular erros e validar webhooks sem movimentar dinheiro real.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Há limites de transacções?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Os limites dependem do nível KYC do utilizador final. Nível 1: saldo máx. 3.000 MZN / 300 MZN por operação. Nível 2: saldo máx. 75.000 MZN / 25.000 MZN por operação.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">A integração funciona com todas as plataformas?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Sim. Temos SDKs para Node.js, Python, PHP e Go. Plugins oficiais para WooCommerce. A API REST pode ser integrada em qualquer plataforma ou linguagem.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Os pagamentos e dados dos meus clientes estão seguros?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Sim. O iMali Way utiliza encriptação TLS em todas as transmissões, tokenização de dados sensíveis e cumpre os padrões de segurança PCI DSS. Sendo uma solução regulada pelo Banco de Moçambique e com ligação directa à SIMOrede, todas as transacções são auditadas e protegidas.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Preciso de ter um site ou app para usar o iMali Way? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Não. Embora a API e os SDKs permitam integração em sites e aplicações, também pode cobrar através de Link de Pagamento ou QR Code — sem precisar de qualquer desenvolvimento técnico. Ideal para pequenos negócios, vendas nas redes sociais ou cobranças presenciais.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Quais são os custos e taxas envolvidos?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>O iMali Way cobra uma taxa por transacção, sem custos de adesão ou mensalidades fixas. As taxas variam conforme o método de pagamento (M-Pesa, e-Mola, cartão, etc.) e o volume mensal. Consulte o tarifário ou fale com a equipa comercial para uma proposta personalizada.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Quanto tempo demora a integração técnica?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Com os SDKs disponíveis (Node.js, Python, PHP e Go) e a documentação completa, a integração básica pode ser feita em menos de um dia. O sandbox gratuito permite testar todos os fluxos antes de ir para produção, sem riscos.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Posso aceitar pagamentos de clientes que não têm conta bancária?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Sim. O iMali Way suporta M-Pesa, e-Mola e mKesh — carteiras móveis que não exigem conta bancária. Além disso, oferece pagamento via QR Code, Link de Pagamento e Entidade/Referência, cobrindo praticamente todos os perfis de cliente em Moçambique.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Posso receber pagamentos internacionais? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a" hidden>Sim. Além dos métodos locais, o iMali Way suporta Visa, Mastercard, PayPal, Google Pay e Apple Pay, permitindo que clientes de qualquer parte do mundo paguem pelos seus produtos ou serviços. As transacções internacionais são convertidas automaticamente para MZN.</div></div>
     </div>
   </div>
 </section>
@@ -953,10 +1151,10 @@
       </a>
       <p class="footer3-desc">Gateway de pagamentos da Paytek.<br>Regulado pelo Banco de Moçambique.</p>
       <div class="footer3-socials">
-        <a href="#" class="footer3-soc" aria-label="Facebook" onclick="return false;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-        <a href="#" class="footer3-soc" aria-label="LinkedIn" onclick="return false;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-        <a href="#" class="footer3-soc" aria-label="Instagram" onclick="return false;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-        <a href="#" class="footer3-soc" aria-label="WhatsApp" onclick="return false;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        <a href="https://www.facebook.com/imalimoz/" class="footer3-soc" aria-label="Facebook" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="https://mz.linkedin.com/company/imalimoz" class="footer3-soc" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://www.instagram.com/imalimoz?igsh=MWN1ZGxvNDI2a2FlcQ==" class="footer3-soc" aria-label="Instagram" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://wa.me/258846002000" class="footer3-soc" aria-label="WhatsApp" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
       </div>
     </div>
     <!-- PRODUTO — oculto (MVP) -->
@@ -986,21 +1184,5 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
-<script>
-(function() {
-  function initBgVideos() {
-    document.querySelectorAll('.hero-orb-video, .solutions-wave-bg video').forEach(function(v) {
-      v.playbackRate = 0.35;
-      v.disablePictureInPicture = true;
-      v.style.pointerEvents = 'none';
-      v.style.userSelect = 'none';
-      v.removeAttribute('controls');
-      v.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-    });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initBgVideos);
-  else initBgVideos();
-})();
-</script>
 </body>
 </html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contacte a Paytek — Av. Agostinho Neto, Maputo. Telefone, email e formulário de contacto.">
+    <title>Contactos — Paytek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <script src="../components/navbar-components.js" defer></script>
+</head>
+<body>
+
+    <site-header></site-header>
+
+
+
+    <!-- ═══════════════════════════════════════
+         HERO DA PÁGINA
+    ═══════════════════════════════════════ -->
+    <header class="page-hero page-hero--contact">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="container page-hero-content">
+            <nav class="breadcrumb" aria-label="Localização">
+                <a href="../index.html">Início</a>
+                <span aria-hidden="true">›</span>
+                <span aria-current="page">Contactos</span>
+            </nav>
+            <h1>Fale connosco</h1>
+            <p>A nossa equipa está disponível para responder a todas as suas questões sobre os nossos serviços e plataformas.</p>
+        </div>
+    </header>
+
+
+    <!-- ═══════════════════════════════════════
+         FORMULÁRIO + MAPA
+    ═══════════════════════════════════════ -->
+    <section class="section section--contact" aria-labelledby="contact-heading">
+        <div class="container">
+            <div class="section-info">
+               <!-- ── Informações  ── -->
+                <div class="contact-side reveal reveal-left">
+
+                    <div class="section-header">
+                        <h2>Informações</h2>
+                    </div>
+
+                    <!-- Cards de contacto — alinhados na horizontal com o header -->
+                    <div class="info-cards-row">
+
+                        <div class="info-card">
+                            <div class="info-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/>
+                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div class="info-card-label">Morada</div>
+                            <div class="info-card-value">Av. Agostinho Neto, no. 1962,1° Andar, Porta 8,Maputo, Moçambique</div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498A1 1 0 0121 17v1a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </div>
+                            <div class="info-card-label">Telefone</div>
+                            <div class="info-card-value"><a href="tel:+258846002000">(+258) 84 600 2000</a></div>
+                        </div>
+
+                        
+
+                        <div class="info-card">
+                            <div class="info-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div class="info-card-label">Email</div>
+                            <div class="info-card-value"><a href="mailto:info@paytekafrika.com">info@paytekafrika.com</a></div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div class="info-card-label">Horário</div>
+                            <div class="info-card-value">Seg – Sex: 09h – 17h </div>
+                            <div class="info-card-value">
+                                Sab-Dom: Encerrado
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Mapa + Formulário — grid de 2 colunas -->
+                    <div class="map-col reveal reveal-left">
+                        <div class="section-header">
+                            <h2 id="map-heading">Localização</h2>
+                            <p>A nossa sede em Maputo, Moçambique</p>
+                        </div>
+                        <div class="contact-map-wrap">
+                            <iframe
+                                src="https://maps.google.com/maps?q=Avenida+Agostinho+Neto+1962+Maputo+Mozambique&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                title="Localização Paytek — Av. Agostinho Neto, Maputo"
+                                allowfullscreen
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                aria-label="Mapa com a localização da Paytek em Maputo">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- ── Formulário ── -->
+                    <div class="contact-form-wrap reveal reveal-right">
+                    <div class="section-header">
+                        <h2 id="contact-heading">Envie-nos uma mensagem</h2>
+                        <p>Preencha o formulário e entraremos em contacto em menos de 24 horas.</p>
+                    </div>
+
+                    <form class="cform" id="contact-form" novalidate>
+                        <div class="cform-row">
+                            <div class="cform-field">
+                                <label for="cf-name">Nome completo</label>
+                                <input type="text" id="cf-name" name="name" placeholder="O seu nome" required>
+                            </div>
+                            <div class="cform-field">
+                                <label for="cf-email">Email</label>
+                                <input type="email" id="cf-email" name="email" placeholder="email@exemplo.com" required>
+                            </div>
+                        </div>
+                        <div class="cform-row cform-row-3">
+                            <div class="cform-field">
+                                <label for="country">País</label>
+                                <select id="country">
+                                    <option value="" disabled selected>País</option>
+                                    <option>Moçambique</option>
+                                    <option>África do Sul</option>
+                                    <option>Angola</option>
+                                    <option>Nigéria</option>
+                                    <option>Quénia</option>
+                                    <option>Outro</option>
+                                </select>
+                            </div>
+                            <div class="cform-field">
+                                <label for="province">Província / Estado</label>
+                                <input id="province" type="text" placeholder="Província" />
+                            </div>
+                            <div class="cform-field">
+                                <label for="city">Cidade</label>
+                                <input id="city" type="text" placeholder="Cidade" />
+                            </div>
+                        </div>
+
+                        <div class="cform-row">
+                            <div class="cform-field">
+                                <label for="cf-phone">Telefone</label>
+                                <input type="tel" id="cf-phone" name="phone" placeholder="(+258) 8X XXX XXXX">
+                            </div>
+                            <div class="cform-field">
+                                <label for="cf-subject">Assunto</label>
+                                <select id="cf-subject" name="subject" required>
+                                    <option value="" disabled selected>Seleccione um assunto</option>
+                                    <option value="plataformas">Plataformas</option>
+                                    <option value="solucoes">Soluções e integrações</option>
+                                    <option value="parcerias">Parcerias</option>
+                                    <option value="suporte">Suporte técnico</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="cform-field">
+                            <label for="cf-message">Mensagem</label>
+                            <textarea id="cf-message" name="message" placeholder="Descreva a sua questão ou pedido..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="form-submit">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            </svg>
+                            Enviar mensagem
+                        </button>
+                    </form>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         FOOTER (igual ao usado em index.html)
+    ═══════════════════════════════════════ -->
+    <footer class="footer3" aria-label="Rodapé">
+      <div class="footer3-top">
+        <div class="footer3-brand">
+          <a href="#" class="footer3-logo" onclick="return false;">
+            <img src="../assets/designer/Logo MWay dark.png" alt="iMali Way" style="height:28px;width:auto;display:block;">
+          </a>
+          <p class="footer3-desc">Gateway de pagamentos da Paytek.<br>Regulado pelo Banco de Moçambique.</p>
+          <div class="footer3-socials">
+            <a href="https://www.facebook.com/imalimoz/" class="footer3-soc" aria-label="Facebook" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="https://mz.linkedin.com/company/imalimoz" class="footer3-soc" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://www.instagram.com/imalimoz?igsh=MWN1ZGxvNDI2a2FlcQ==" class="footer3-soc" aria-label="Instagram" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://wa.me/258846002000" class="footer3-soc" aria-label="WhatsApp" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          </div>
+        </div>
+        <!-- LEGAL -->
+        <div class="footer3-col">
+          <div class="footer3-col-h">LEGAL</div>
+          <a href="#" class="footer3-lnk" onclick="return false;">Termos e Condições</a>
+          <a href="#" class="footer3-lnk" onclick="return false;">Política de Privacidade</a>
+          <a href="#" class="footer3-lnk" onclick="return false;">Política de Segurança de Informação</a>
+        </div>
+        <!-- CONTACTE-NOS -->
+        <div class="footer3-col">
+          <div class="footer3-col-h">CONTACTE-NOS</div>
+          <span class="footer3-lnk">Av. Agostinho Neto, No. 1862, 1º Andar,<br>Porta 8, Maputo</span>
+          <a href="#" class="footer3-lnk" onclick="return false;">Telefone: (+258) 84 600 2000</a>
+          <a href="#" class="footer3-lnk" onclick="return false;">Email: info@paytek.co.mz</a>
+        </div>
+      </div>
+      <div class="footer3-bottom">
+        <p class="footer3-copy">© 2025 IMALI WAY · PAYTEK TECNOLOGIAS E SERVIÇOS DE PAGAMENTOS, LDA.</p>
+        <p class="footer3-reg">Serviço Financeiro Regulado pelo Banco de Moçambique · Licença nº 177/2022</p>
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

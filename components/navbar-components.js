@@ -10,6 +10,8 @@ class SiteHeader extends HTMLElement {
     const authBase = 'auth/index.html';
     const loginUrl = `${authBase}?tab=login`;
     const signupUrl = `${authBase}?tab=signup`;
+    // Botão "Solicitar acesso" — caminho absoluto para funcionar em qualquer profundidade de página
+    const accessUrl = '/IMaliWay-Website/Formulario/index.html';
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -56,23 +58,49 @@ class SiteHeader extends HTMLElement {
           border-color: var(--border-hover); color: var(--nav-link-hover);
         }
         .btn-primary-nav {
-          display: inline-flex; align-items: center; justify-content: center;
-          background: var(--green); color: #fff;
+          box-sizing: border-box;
+          display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 8px;
+          background: #6CBF34; color: #fff;
           font-family: var(--font-head); font-weight: 700; font-size: .8rem;
           line-height: 1; letter-spacing: .01em;
-          padding: 0 14px; height: 34px; border-radius: var(--r-md);
+          width: 140px; height: 40px; padding: 12px; border-radius: 8px;
           transition: all var(--t-fast);
         }
         .btn-primary-nav:hover { background: var(--green-dark); }
+        .btn-white-nav {
+          box-sizing: border-box;
+          display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 8px;
+          background: #fff; color: #1A1A1A;
+          font-family: var(--font-head); font-weight: 700; font-size: .8rem;
+          line-height: 1; letter-spacing: .01em;
+          width: 140px; height: 40px; padding: 12px; border-radius: 8px;
+          transition: all var(--t-fast);
+        }
+        .btn-white-nav:hover { background: #EDEDED; }
+        .btn-access-nav {
+          box-sizing: border-box;
+          display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 8px;
+          background: #6CBF34; color: #fff;
+          font-family: var(--font-head); font-weight: 700; font-size: .8rem;
+          line-height: 1; letter-spacing: .01em; white-space: nowrap;
+          width: auto; height: 40px; padding: 0 18px; border-radius: 8px;
+          transition: all var(--t-fast);
+        }
+        .btn-access-nav:hover { background: var(--green-dark); }
+        .nav-hidden { display: none !important; }
 
         /* ══════ NAVBAR ══════ */
         .navbar {
           position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-          background: var(--nav-bg); backdrop-filter: blur(16px) saturate(180%);
-          border-bottom: 1px solid var(--nav-border);
-          transition: box-shadow var(--t-norm), background var(--t-norm), border-color var(--t-norm);
+          background: transparent; backdrop-filter: none;
+          border-bottom: 1px solid transparent;
+          transition: box-shadow var(--t-norm), background var(--t-norm), border-color var(--t-norm), backdrop-filter var(--t-norm);
         }
-        .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.3); }
+        .navbar.scrolled {
+          background: var(--nav-bg); backdrop-filter: blur(16px) saturate(180%);
+          border-bottom-color: var(--nav-border);
+          box-shadow: 0 2px 20px rgba(0,0,0,.3);
+        }
         .nav-wrap {
           max-width: 1200px; margin: 0 auto; padding: 0 24px;
           height: 66px; display: flex; align-items: center; gap: 32px;
@@ -86,15 +114,18 @@ class SiteHeader extends HTMLElement {
         .logo-text em { font-style: normal; font-weight: 700; color: var(--green-light); }
         .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center; }
         .nav-link {
-          font-family: var(--font-head); font-size: .83rem; font-weight: 600;
-          color: var(--nav-link); padding: 7px 13px; border-radius: var(--r-md);
+          font-family: 'Inter', var(--font-head); font-style: normal;
+          font-size: 16px; font-weight: 600; line-height: 19px;
+          background: linear-gradient(180deg, #FFFFFF 0%, #6DC135 84.13%);
+          -webkit-background-clip: text; background-clip: text;
+          -webkit-text-fill-color: transparent; color: transparent;
+          padding: 7px 13px; border-radius: var(--r-md);
           transition: all var(--t-fast);
         }
-        .nav-link:hover, .nav-link.active {
-          color: var(--nav-link-hover); background: rgba(255,255,255,.06);
+        .nav-link:hover {
+          box-shadow: inset 0 0 0 999px rgba(255,255,255,.06);
         }
-        [data-theme="light"] .nav-link:hover,
-        [data-theme="light"] .nav-link.active { background: #F7F8F6; }
+        [data-theme="light"] .nav-link:hover { box-shadow: inset 0 0 0 999px #F7F8F6; }
         .nav-end { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
         /* ══════ THEME TOGGLE ══════ */
@@ -134,7 +165,7 @@ class SiteHeader extends HTMLElement {
 
         /* ══════ RESPONSIVO ══════ */
         @media (max-width: 768px) {
-          .nav-links, .btn-ghost-nav, .btn-primary-nav { display: none; }
+          .nav-links, .btn-white-nav, .btn-primary-nav, .btn-access-nav { display: none; }
           .hamburger { display: flex; }
         }
       </style>
@@ -146,10 +177,10 @@ class SiteHeader extends HTMLElement {
           </a>
 
           <nav class="nav-links" aria-label="Navegação">
-            <a href="#metodos" class="nav-link">Métodos de Pagamento</a>
-            <a href="#como-funciona" class="nav-link">Como Funciona</a>
-            <a href="#licenciada" class="nav-link">Segurança</a>
-            <a href="#faq" class="nav-link">FAQs</a>
+            <a href="index.html" class="nav-link active">Início</a>
+            <a href="index.html#tarifario" class="nav-link">Tarifário</a>
+            <a href="documentation.html" class="nav-link">Documentação</a>
+            <a href="contacts.html" class="nav-link">Contactos</a>
           </nav>
 
           <div class="nav-end">
@@ -161,8 +192,9 @@ class SiteHeader extends HTMLElement {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
               </span>
             </button>
-            <a href="${loginUrl}" class="btn-ghost-nav" style="display:none">Entrar</a>
-            <a href="${signupUrl}" class="btn-primary-nav" style="display:none">Criar Conta</a>
+            <a href="${signupUrl}" class="btn-white-nav nav-hidden">Criar conta</a>
+            <a href="${loginUrl}" class="btn-primary-nav nav-hidden">Iniciar sessão</a>
+            <a href="${accessUrl}" class="btn-access-nav">Solicitar acesso</a>
             <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
               <span></span><span></span><span></span>
             </button>
@@ -170,13 +202,15 @@ class SiteHeader extends HTMLElement {
         </div>
 
         <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-          <a href="#metodos" class="mob-link">Métodos de Pagamento</a>
-          <a href="#como-funciona" class="mob-link">Como Funciona</a>
-          <a href="#licenciada" class="mob-link">Segurança</a>
-          <a href="#faq" class="mob-link">FAQs</a>
-          <div class="mob-ctas" style="display:none">
-            <a href="${loginUrl}" class="btn btn-ghost">Entrar</a>
-            <a href="${signupUrl}" class="btn btn-primary">Criar Conta</a>
+          <a href="#link-inicio" class="mob-link">Início</a>
+          <a href="index.html#tarifario" class="mob-link">Tarifário</a>
+          <a href="#link-documentacao" class="mob-link">Documentação</a>
+          <a href="#link-sandbox" class="mob-link">Sandbox</a>
+          <a href="#link-contatos" class="mob-link">Contatos</a>
+          <div class="mob-ctas">
+            <a href="${signupUrl}" class="btn btn-ghost nav-hidden">Criar conta</a>
+            <a href="${loginUrl}" class="btn btn-primary nav-hidden">Iniciar sessão</a>
+            <a href="${accessUrl}" class="btn btn-primary">Solicitar acesso</a>
           </div>
         </div>
       </header>
@@ -219,20 +253,6 @@ class SiteHeader extends HTMLElement {
         hamburger.setAttribute('aria-expanded', 'false');
       }
     });
-
-    // Spy de navegação
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = root.querySelectorAll('.nav-link');
-    const spyObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          const match = root.querySelector(`.nav-link[href="#${e.target.id}"]`);
-          if (match) match.classList.add('active');
-        }
-      });
-    }, { threshold: 0.4 });
-    sections.forEach(s => spyObs.observe(s));
 
     // Smooth scroll para links internos
     root.querySelectorAll('a[href^="#"]').forEach(a => {

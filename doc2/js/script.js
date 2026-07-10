@@ -1,5 +1,5 @@
 // ============================================================
-// iMaliPay API Reference — script.js v2.1 (estático)
+// IMaliWay API Reference — script.js v2.1 (estático)
 // Interage com o HTML estático: traduções, scroll spy, sandbox, etc.
 // ============================================================
 
@@ -724,13 +724,35 @@
   }
 
   // ══════════════════════════════════════════════════════════
-  // MOBILE SIDEBAR
+  // TROCA DO PAINEL DE CÓDIGO (fade in/out ao encadear secções)
+  // ══════════════════════════════════════════════════════════
+  function setupCodePanelSwap() {
+    const codeSections = document.querySelectorAll('.doc-section.has-code');
+    if (!codeSections.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const panel = entry.target.querySelector('.code-panel-inline');
+        if (panel) panel.classList.toggle('is-active', entry.isIntersecting);
+      });
+    }, { rootMargin: '-10% 0px -65% 0px', threshold: 0 });
+
+    codeSections.forEach(section => observer.observe(section));
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // SIDEBAR TOGGLE (mobile: mostra overlay · desktop: colapsa coluna)
   // ══════════════════════════════════════════════════════════
   function setupMobile() {
     const toggle = document.getElementById('menuToggle');
     const sb = document.getElementById('sidebar');
+    const layout = document.querySelector('.layout');
     if (toggle && sb) {
-      toggle.addEventListener('click', () => sb.classList.toggle('open'));
+      toggle.addEventListener('click', () => {
+        sb.classList.toggle('open');               // mobile: desliza para dentro
+        layout?.classList.toggle('sidebar-collapsed'); // desktop: colapsa a coluna
+        toggle.classList.toggle('active');
+      });
       document.getElementById('mainContent')?.addEventListener('click', (e) => {
         if (!e.target.closest('.sidebar') && !e.target.closest('.menu-toggle')) {
           sb.classList.remove('open');
@@ -739,10 +761,19 @@
     }
   }
 
+  // A sidebar deve começar sempre aberta (não persiste estado colapsado entre
+  // carregamentos, incluindo restauro via bfcache ao usar o botão "Voltar").
+  function resetSidebarOpen() {
+    document.querySelector('.layout')?.classList.remove('sidebar-collapsed');
+    document.getElementById('sidebar')?.classList.remove('open');
+    document.getElementById('menuToggle')?.classList.remove('active');
+  }
+
   // ══════════════════════════════════════════════════════════
   // INIT
   // ══════════════════════════════════════════════════════════
   document.addEventListener('DOMContentLoaded', () => {
+    resetSidebarOpen();
     setupTheme();
     setupLang();
     setupEnv();
@@ -750,6 +781,7 @@
     setupCopyButtons();
     setupMobile();
     setupScrollSpy();
+    setupCodePanelSwap();
 
     // Activar o sandbox se houver, mas apenas se a secção existir
     if (document.getElementById('sandbox')) {
@@ -764,6 +796,12 @@
     }
 
     updateI18nElements();
+  });
+
+  // Cobre o caso de a página ser restaurada da bfcache (ex: botão "Voltar"),
+  // que não dispara DOMContentLoaded de novo.
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) resetSidebarOpen();
   });
 
 })();

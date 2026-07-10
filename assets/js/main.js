@@ -180,6 +180,93 @@ function initializeApp() {
       tab.classList.add('active');
     });
   });
+
+  /* ── PRICING: flow toggle (C2B / B2C) drives fee card + calculator ── */
+  const pcFlowBtns = document.querySelectorAll('.pricing-flow-btn');
+  const pcFeeValue = document.getElementById('pcFeeValue');
+  const pcFeeSub   = document.getElementById('pcFeeSub');
+  const pcSlider   = document.getElementById('pcSlider');
+  const pcAmount   = document.getElementById('pcAmount');
+  const pcMethods  = document.querySelectorAll('.pricing-method');
+  const pcFeeLabel = document.getElementById('pcFeeLabel');
+  const pcFee      = document.getElementById('pcFee');
+  const pcSettle   = document.getElementById('pcSettle');
+  const pcNet      = document.getElementById('pcNet');
+
+  if (pcFlowBtns.length && pcSlider && pcAmount) {
+    const fmtPct = n => n.toString().replace('.', ',');
+    const fmt = n => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' MT';
+
+    let feeRate = 0.03; // taxa efectiva (ponto médio) do fluxo activo
+
+    const updateSliderFill = () => {
+      const pct = (pcSlider.value - pcSlider.min) / (pcSlider.max - pcSlider.min) * 100;
+      pcSlider.style.setProperty('--fill', pct + '%');
+    };
+
+    const recalcPricing = () => {
+      const amount = parseFloat(pcAmount.value) || 0;
+      const fee = amount * feeRate;
+      const net = amount - fee;
+      const active = document.querySelector('.pricing-method.active');
+      const settle = active ? active.dataset.settle : 'Imediato';
+
+      if (pcFeeLabel) pcFeeLabel.textContent = `Taxa da transacção (${fmtPct((feeRate * 100).toFixed(1))}%)`;
+      pcFee.textContent = fmt(fee);
+      pcSettle.textContent = settle;
+      pcNet.textContent = fmt(net);
+    };
+
+    const updateFlow = () => {
+      const activeBtn = document.querySelector('.pricing-flow-btn.active') || pcFlowBtns[0];
+      const min = parseFloat(activeBtn.dataset.min);
+      const max = parseFloat(activeBtn.dataset.max);
+      feeRate = (min + max) / 2 / 100;
+
+      if (pcFeeValue) pcFeeValue.textContent = `${fmtPct(min)}% – ${fmtPct(max)}%`;
+      if (pcFeeSub) pcFeeSub.textContent = `por transacção (${activeBtn.dataset.flow.toUpperCase()})| Sujeito a negociação de taxas para volumes elevados.`;
+
+      recalcPricing();
+    };
+
+    pcFlowBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        pcFlowBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        updateFlow();
+      });
+    });
+
+    pcSlider.addEventListener('input', () => {
+      pcAmount.value = pcSlider.value;
+      updateSliderFill();
+      recalcPricing();
+    });
+
+    pcAmount.addEventListener('input', () => {
+      let v = parseFloat(pcAmount.value);
+      if (isNaN(v)) v = 0;
+      v = Math.min(Math.max(v, pcSlider.min), pcSlider.max);
+      pcSlider.value = v;
+      updateSliderFill();
+      recalcPricing();
+    });
+
+    pcMethods.forEach(btn => {
+      btn.addEventListener('click', () => {
+        pcMethods.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        recalcPricing();
+      });
+    });
+
+    updateSliderFill();
+    updateFlow();
+  }
 }
 
 /* ─────────────────────────────────────────

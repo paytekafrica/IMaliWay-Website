@@ -3,16 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iMaliPay — API Reference</title>
+    <title>IMaliWay — API Reference</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="components/navbar-components.js" defer></script>
-    <script src="components/footer-components.js" defer></script>
-    <link rel="stylesheet" href=" css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-   <site-header></site-header>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+
+  <a href="/IMaliWay-Website/" class="topbar-logo" aria-label="IMaliWay Home">
+    <img src="/IMaliWay-Website/assets/designer/Logo MWay.png" alt="iMali Way" style="height:27px;width:auto;display:block;">
+  </a>
+
+  <div class="topbar-divider"></div>
+  <span class="topbar-title">API Documentação</span>
+  <div class="topbar-spacer"></div>
+
+  <div class="topbar-search" role="search">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="searchInput" placeholder="Pesquisar…" aria-label="Pesquisar endpoints">
+    
+  </div>
+
+  <div class="topbar-actions">
+    <div class="lang-toggle" role="group" aria-label="Idioma">
+      <button class="lang-btn active" data-lang="pt" aria-pressed="true">PT</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <div class="env-toggle" role="group" aria-label="Ambiente">
+      <button class="env-btn active" data-env="sandbox">Sandbox</button>
+      <button class="env-btn" data-env="live">Live</button>
+    </div>
+    <button class="icon-btn" id="themeToggle" aria-label="Mudar para modo claro">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <button class="icon-btn" id="themeToggleLight" aria-label="Mudar para modo escuro" style="display:none">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+    </button>
+    <button class="topbar-cta">Obter Chaves API</button>
+  </div>
+</header>
     <!-- ═══════════════════════════════════════════ LAYOUT ═══════════════════════════════════════════ -->
     <div class="layout">
 
@@ -53,20 +89,11 @@
 
             <!-- ─────────────────────────────────── INTRO ─────────────────────────────────── -->
             <section id="intro" class="doc-section" data-section="intro">
-                <div class="section-tag" data-i18n="overview_tag">Visão Geral</div>
-                <h1 class="section-h">iMaliPay Gateway API</h1>
+                <h1 class="section-h">IMaliWay Gateway API</h1>
                 <p class="section-p" data-i18n-html="intro_desc">
-                    A API iMaliPay é organizada em torno de REST. Aceita corpos de pedido em JSON, devolve respostas em JSON e utiliza códigos de resposta HTTP padrão. Integre pagamentos M-Pesa, e-Mola, mKesh e iMali na sua aplicação em minutos.
+                    A API IMaliWay é organizada em torno de REST. Aceita corpos de pedido em JSON, devolve respostas em JSON e utiliza códigos de resposta HTTP padrão. Integre pagamentos M-Pesa, e-Mola, mKesh e iMali na sua aplicação em minutos.
                 </p>
-                <div class="base-url-block">
-                    <span class="bub-label">Base URL</span>
-                    <span class="bub-url">https://paytek-africa.net:11901/api/partners/imaliway/v2</span>
-                    <span class="env-badge" id="envBadge" data-i18n="sandbox_badge">Sandbox</span>
-                </div>
-                <div class="alert alert-info">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                    <div data-i18n-html="intro_alert">Todos os pedidos requerem <code>Authorization: Bearer &lt;token&gt;</code> e <code>X-Client-ID</code> únicos. Contacte <strong>partner@paytekafrica.com</strong> para obter credenciais.</div>
-                </div>
+                
                 <h3 class="sub-h" data-i18n="methods_available">Métodos de Pagamento Disponíveis</h3>
                 <div class="methods-row">
                     <div class="method-chip"><span class="chip-dot mpesa"></span>M-Pesa</div>
@@ -96,9 +123,8 @@
 
             <!-- ─────────────────────────────────── AUTH ─────────────────────────────────── -->
             <section id="auth" class="doc-section" data-section="auth">
-                <div class="section-tag" data-i18n="security_tag">Segurança</div>
                 <h2 class="section-h" data-i18n="auth_title">Autenticação</h2>
-                <p class="section-p" data-i18n="auth_desc">A iMaliPay utiliza encriptação RSA-ES-PKCS1 para gerar uma chave privada a partir do api_key e publicKey fornecidos pela Paytek. Este token deve ser enviado em cada pedido.</p>
+                <p class="section-p" data-i18n="auth_desc">A IMaliWay utiliza encriptação RSA-ES-PKCS1 para gerar uma chave privada a partir do api_key e publicKey fornecidos pela Paytek. Este token deve ser enviado em cada pedido.</p>
                 <div class="auth-steps">
                     <div class="auth-step">
                         <div class="auth-step-num">1</div>
@@ -134,30 +160,11 @@
                     <div class="ht-row"><span><code>Content-Type</code></span><span><code>application/json</code></span></div>
                     <div class="ht-row"><span><code>Accept</code></span><span><code>application/json</code></span></div>
                 </div>
-                <h3 class="sub-h" data-i18n="auth_example_title">Exemplo de geração (PHP)</h3>
-                <div class="code-block">
-                    <button class="copy-btn code-copy" data-copy-group="auth-php">Copiar</button>
-                    <pre><code>$api_key   = 'your_api_key_here';
-$publicKey = '-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ...
------END PUBLIC KEY-----';
-
-// Encrypt with RSA-ES-PKCS1
-openssl_public_encrypt($api_key, $encrypted, $publicKey, OPENSSL_PKCS1_PADDING);
-$privateKey = base64_encode($encrypted);
-
-// Use in every request
-$headers = [
-    'Authorization: Bearer ' . $privateKey,
-    'X-Client-ID: YOUR_CLIENT_ID',
-    'Content-Type: application/json'
-];</code></pre>
-                </div>
+               
             </section>
 
             <!-- ─────────────────────────────────── CODES ─────────────────────────────────── -->
             <section id="codes" class="doc-section" data-section="codes">
-                <div class="section-tag" data-i18n="reference_tag">Referência</div>
                 <h2 class="section-h" data-i18n="codes_title">Códigos de Resposta</h2>
                 <p class="section-p" data-i18n="codes_desc">A API usa códigos no estilo HTTP para indicar sucesso ou falha.</p>
                 <div class="codes-grid">
@@ -188,7 +195,6 @@ $headers = [
             <!-- ─────────────────────────────────── PUSH ─────────────────────────────────── -->
             <section id="push" class="doc-section has-code" data-section="push">
                 <div class="section-content">
-                    <div class="section-tag" data-i18n="payment_tag">Pagamentos</div>
                     <h2 class="section-h" data-i18n="push">Push Payment</h2>
                     <div class="endpoint-banner">
                         <span class="ep-method m-post">POST</span>
@@ -309,7 +315,6 @@ $headers = [
                 <!-- ─────────────────────────────────── LINK ─────────────────────────────────── -->
                 <section id="link" class="doc-section has-code" data-section="link">
                     <div class="section-content">
-                        <div class="section-tag" data-i18n="payment_tag">Pagamentos</div>
                         <h2 class="section-h" data-i18n="link">Pay-By-Link</h2>
                         <div class="endpoint-banner">
                             <span class="ep-method m-post">POST</span>
@@ -456,7 +461,6 @@ $headers = [
                     <!-- ─────────────────────────────────── QRCODE ─────────────────────────────────── -->
                     <section id="qrcode" class="doc-section has-code" data-section="qrcode">
                         <div class="section-content">
-                            <div class="section-tag" data-i18n="payment_tag">Pagamentos</div>
                             <h2 class="section-h" data-i18n="qrcode">QR Code</h2>
                             <div class="endpoint-banner">
                                 <span class="ep-method m-post">POST</span>
@@ -582,7 +586,6 @@ $headers = [
                         <!-- ─────────────────────────────────── STATUS ─────────────────────────────────── -->
                         <section id="status" class="doc-section has-code" data-section="status">
                             <div class="section-content">
-                                <div class="section-tag" data-i18n="payment_tag">Pagamentos</div>
                                 <h2 class="section-h" data-i18n="status">Verificar Estado</h2>
                                 <div class="endpoint-banner">
                                     <span class="ep-method m-get">GET</span>
@@ -670,7 +673,6 @@ $headers = [
                                 <!-- ─────────────────────────────────── REFRESH ─────────────────────────────────── -->
                                 <section id="refresh" class="doc-section has-code" data-section="refresh">
                                     <div class="section-content">
-                                        <div class="section-tag" data-i18n="payment_tag">Pagamentos</div>
                                         <h2 class="section-h" data-i18n="refresh">Atualizar QR</h2>
                                         <div class="endpoint-banner">
                                             <span class="ep-method m-post">POST</span>
@@ -769,7 +771,6 @@ $headers = [
                                     <!-- ─────────────────────────────────── B2C CHECK ─────────────────────────────────── -->
                                     <section id="b2c_check" class="doc-section has-code" data-section="b2c_check">
                                         <div class="section-content">
-                                            <div class="section-tag" data-i18n="transfer_tag">Transferências</div>
                                             <h2 class="section-h" data-i18n="b2c_check">Verificação B2C</h2>
                                             <div class="endpoint-banner">
                                                 <span class="ep-method m-post">POST</span>
@@ -885,7 +886,6 @@ $headers = [
                                         <!-- ─────────────────────────────────── B2C ─────────────────────────────────── -->
                                         <section id="b2c" class="doc-section has-code" data-section="b2c">
                                             <div class="section-content">
-                                                <div class="section-tag" data-i18n="transfer_tag">Transferências</div>
                                                 <h2 class="section-h" data-i18n="b2c">Transferência B2C</h2>
                                                 <div class="endpoint-banner">
                                                     <span class="ep-method m-post">POST</span>
@@ -1001,7 +1001,6 @@ $headers = [
 
                                             <!-- ─────────────────────────────────── WEBHOOKS ─────────────────────────────────── -->
                                             <section id="webhooks" class="doc-section" data-section="webhooks">
-                                                <div class="section-tag" data-i18n="webhook_tag">Webhooks</div>
                                                 <h2 class="section-h" data-i18n="webhooks_title">Webhooks — Visão Geral</h2>
                                                 <p class="section-p" data-i18n="webhooks_desc">Webhooks permitem que o sistema notifique automaticamente a sua aplicação sempre que ocorrer um evento importante, como a confirmação de um pagamento. Elimina a necessidade de polling constante.</p>
                                                 <div class="alert alert-info">
@@ -1051,7 +1050,6 @@ X-Webhook-Signature: sha256=abc123...</code></pre>
 
                                             <!-- ─────────────────────────────────── WEBHOOK SECURITY ─────────────────────────────────── -->
                                             <section id="webhook-security" class="doc-section" data-section="webhook-security">
-                                                <div class="section-tag" data-i18n="webhook_tag">Webhooks</div>
                                                 <h2 class="section-h" data-i18n="webhook_sec_title">Segurança dos Webhooks</h2>
                                                 <p class="section-p" data-i18n="webhook_sec_desc">Valide cada webhook recebido usando a assinatura HMAC-SHA256 no cabeçalho X-Webhook-Signature para garantir autenticidade e proteção anti-replay.</p>
                                                 <div class="alert alert-warn">
@@ -1077,36 +1075,11 @@ X-Webhook-Signature: sha256=abc123...</code></pre>
                                                         <div><div class="auth-step-title" data-i18n="webhook_sec_step4_title">Comparar e validar tempo</div><div class="auth-step-desc" data-i18n="webhook_sec_step4_desc">Usar hash_equals() para comparação. Validar que timestamp ≤ 5 minutos.</div></div>
                                                     </div>
                                                 </div>
-                                                <h3 class="sub-h" data-i18n="webhook_sec_example">Exemplo de Validação (PHP)</h3>
-                                                <div class="code-block">
-                                                    <button class="copy-btn code-copy" data-copy-group="webhook-sec-php">Copiar</button>
-                                                    <pre><code>$payload   = file_get_contents('php://input');
-$timestamp = $_SERVER['HTTP_X_WEBHOOK_TIMESTAMP'];
-$received  = $_SERVER['HTTP_X_WEBHOOK_SIGNATURE'];
-
-// 1. Build signed payload
-$signed = $timestamp . '.' . $payload;
-
-// 2. Generate expected signature
-$expected = hash_hmac('sha256', $signed, $webhookSecret);
-
-// 3. Compare (constant-time)
-if (!hash_equals($expected, $received)) {
-http_response_code(401);
-exit('Invalid signature');
-}
-
-// 4. Anti-replay: reject if older than 5 minutes
-if (abs(time() - $timestamp) > 300) {
-http_response_code(400);
-exit('Webhook expired');
-}</code></pre>
-                                                </div>
+                                                
                                             </section>
 
                                             <!-- ─────────────────────────────────── SANDBOX ─────────────────────────────────── -->
                                             <section id="sandbox" class="doc-section" data-section="sandbox">
-                                                <div class="section-tag" data-i18n="devtools_tag">Ferramentas de Dev</div>
                                                 <h2 class="section-h">API Sandbox</h2>
                                                 <p class="section-p" data-i18n="sandbox_desc">Teste os endpoints directamente no browser. Nenhum dinheiro real é movimentado. As respostas são simuladas para desenvolvimento.</p>
                                                 <div class="alert alert-info">
@@ -1126,7 +1099,6 @@ exit('Webhook expired');
                                                                 <option value="b2c_check">POST — Verificação B2C</option>
                                                                 <option value="b2c">POST — Transferência B2C</option>
                                                             </select>
-                                                            <span class="env-badge" id="sbEnvBadge" data-i18n="sandbox_badge">Sandbox</span>
                                                         </div>
                                                     </div>
                                                     <div class="sb-grid">
@@ -1181,6 +1153,41 @@ exit('Webhook expired');
 
                                         </main>
                                     </div>
+
+<footer class="footer3" aria-label="Rodapé">
+  <div class="footer3-top">
+    <div class="footer3-brand">
+      <a href="#" class="footer3-logo" onclick="return false;">
+        <img src="../assets/designer/Logo MWay dark.png" alt="iMali Way" style="height:28px;width:auto;display:block;">
+      </a>
+      <p class="footer3-desc">Gateway de pagamentos da Paytek.<br>Regulado pelo Banco de Moçambique.</p>
+      <div class="footer3-socials">
+        <a href="https://www.facebook.com/imalimoz/" class="footer3-soc" aria-label="Facebook" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="https://mz.linkedin.com/company/imalimoz" class="footer3-soc" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://www.instagram.com/imalimoz?igsh=MWN1ZGxvNDI2a2FlcQ==" class="footer3-soc" aria-label="Instagram" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://wa.me/258846002000" class="footer3-soc" aria-label="WhatsApp" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+      </div>
+    </div>
+    <!-- LEGAL -->
+    <div class="footer3-col">
+      <div class="footer3-col-h">LEGAL</div>
+      <a href="#" class="footer3-lnk" onclick="return false;">Termos e Condições</a>
+      <a href="#" class="footer3-lnk" onclick="return false;">Política de Privacidade</a>
+      <a href="#" class="footer3-lnk" onclick="return false;">Política de Segurança de Informação</a>
+    </div>
+    <!-- CONTACTE-NOS -->
+    <div class="footer3-col">
+      <div class="footer3-col-h">CONTACTE-NOS</div>
+      <span class="footer3-lnk">Av. Agostinho Neto, No. 1862, 1º Andar,<br>Porta 8, Maputo</span>
+      <a href="#" class="footer3-lnk" onclick="return false;">Telefone: (+258) 84 600 2000</a>
+      <a href="#" class="footer3-lnk" onclick="return false;">Email: info@paytek.co.mz</a>
+    </div>
+  </div>
+  <div class="footer3-bottom">
+    <p class="footer3-copy">© 2025 IMALI WAY · PAYTEK TECNOLOGIAS E SERVIÇOS DE PAGAMENTOS, LDA.</p>
+    <p class="footer3-reg">Serviço Financeiro Regulado pelo Banco de Moçambique · Licença nº 177/2022</p>
+  </div>
+</footer>
 
                                     <script src="js/script.js"></script>
                                 </body>

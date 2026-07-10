@@ -579,7 +579,7 @@ p { color:var(--text-secondary); line-height:1.65; }
    FAQ (Figma style)
 ════════════════════════════════════ */
 .faq-section { padding:96px 0; background:var(--faq-bg); }
-.faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:40px; }
+.faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:40px; align-items:start; }
 .faq-item { background:var(--faq-card); border:1px solid var(--faq-border); border-radius:var(--r-lg); overflow:hidden; transition:border-color var(--t-fast); }
 .faq-item:has(.faq-q[aria-expanded="true"]) { border-color:rgba(82,168,40,.4); }
 .faq-q {
@@ -591,6 +591,7 @@ p { color:var(--text-secondary); line-height:1.65; }
 }
 .faq-q:hover { color:var(--green-light); }
 .faq-q[aria-expanded="true"] { color:var(--green-light); }
+.faq-q em { font-style:italic; font-weight:600; }
 .faq-icon {
   width:26px; height:26px; border-radius:50%; flex-shrink:0;
   background:var(--bg-input); color:var(--text-secondary);
