@@ -177,10 +177,10 @@ class SiteHeader extends HTMLElement {
           </a>
 
           <nav class="nav-links" aria-label="Navegação">
-            <a href="index.html" class="nav-link active">Início</a>
-            <a href="index.html#tarifario" class="nav-link">Tarifário</a>
-            <a href="documentation.html" class="nav-link">Documentação</a>
-            <a href="contacts.html" class="nav-link">Contactos</a>
+            <a href="/IMaliWay-Website/" class="nav-link active">Início</a>
+            <a href="/IMaliWay-Website/#tarifario" class="nav-link" id="navTarifario">Tarifário</a>
+            <a href="/IMaliWay-Website/documentation/index.html" class="nav-link">Documentação</a>
+            <a href="/IMaliWay-Website/contactV2/index.html" class="nav-link">Contactos</a>
           </nav>
 
           <div class="nav-end">
@@ -202,11 +202,11 @@ class SiteHeader extends HTMLElement {
         </div>
 
         <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-          <a href="#link-inicio" class="mob-link">Início</a>
-          <a href="index.html#tarifario" class="mob-link">Tarifário</a>
-          <a href="#link-documentacao" class="mob-link">Documentação</a>
+          <a href="/IMaliWay-Website/" class="mob-link">Início</a>
+          <a href="/IMaliWay-Website/#tarifario" class="mob-link" id="mobTarifario">Tarifário</a>
+          <a href="/IMaliWay-Website/documentation/index.html" class="mob-link">Documentação</a>
           <a href="#link-sandbox" class="mob-link">Sandbox</a>
-          <a href="#link-contatos" class="mob-link">Contatos</a>
+          <a href="/IMaliWay-Website/contactV2/index.html" class="mob-link">Contactos</a>
           <div class="mob-ctas">
             <a href="${signupUrl}" class="btn btn-ghost nav-hidden">Criar conta</a>
             <a href="${loginUrl}" class="btn btn-primary nav-hidden">Iniciar sessão</a>
@@ -266,6 +266,23 @@ class SiteHeader extends HTMLElement {
             behavior: 'smooth'
           });
         }
+      });
+    });
+
+    // Link "Tarifário": se já estivermos na home, faz scroll suave em vez de recarregar a página
+    const isHome = /^\/IMaliWay-Website\/(index\.html)?$/.test(location.pathname);
+    [root.getElementById('navTarifario'), root.getElementById('mobTarifario')].forEach(link => {
+      if (!link) return;
+      link.addEventListener('click', e => {
+        if (!isHome) return;
+        const target = document.getElementById('tarifario');
+        if (!target) return;
+        e.preventDefault();
+        const offset = (navbar?.offsetHeight ?? 70) + 12;
+        window.scrollTo({
+          top: target.getBoundingClientRect().top + window.scrollY - offset,
+          behavior: 'smooth'
+        });
       });
     });
   }
