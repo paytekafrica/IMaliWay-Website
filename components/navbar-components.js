@@ -179,7 +179,7 @@ class SiteHeader extends HTMLElement {
           <nav class="nav-links" aria-label="Navegação">
             <a href="/IMaliWay-Website/" class="nav-link active">Início</a>
             <a href="/IMaliWay-Website/#tarifario" class="nav-link" id="navTarifario">Tarifário</a>
-            <a href="/IMaliWay-Website/documentation/index.html" class="nav-link">Documentação</a>
+            <a href="/IMaliWay-Website/doc2/doc.html" class="nav-link">Documentação</a>
             <a href="/IMaliWay-Website/contactV2/index.html" class="nav-link">Contactos</a>
           </nav>
 
@@ -204,7 +204,7 @@ class SiteHeader extends HTMLElement {
         <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
           <a href="/IMaliWay-Website/" class="mob-link">Início</a>
           <a href="/IMaliWay-Website/#tarifario" class="mob-link" id="mobTarifario">Tarifário</a>
-          <a href="/IMaliWay-Website/documentation/index.html" class="mob-link">Documentação</a>
+          <a href="/IMaliWay-Website/doc2/doc.html" class="mob-link">Documentação</a>
           <a href="#link-sandbox" class="mob-link">Sandbox</a>
           <a href="/IMaliWay-Website/contactV2/index.html" class="mob-link">Contactos</a>
           <div class="mob-ctas">
