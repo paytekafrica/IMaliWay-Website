@@ -11,7 +11,7 @@ class SiteHeader extends HTMLElement {
     const loginUrl = `${authBase}?tab=login`;
     const signupUrl = `${authBase}?tab=signup`;
     // Botão "Solicitar acesso" — caminho absoluto para funcionar em qualquer profundidade de página
-    const accessUrl = '/IMaliWay-Website/Formulario/index.html';
+    const accessUrl = '/Formulario/index.html';
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -172,15 +172,15 @@ class SiteHeader extends HTMLElement {
 
       <header class="navbar" id="navbar">
         <div class="nav-wrap">
-          <a href="/IMaliWay-Website/" class="nav-logo" aria-label="IMaliway">
-            <img src="/IMaliWay-Website/assets/designer/Logo MWay.png" alt="iMali Way" style="height:32px;width:auto;display:block;">
+          <a href="/" class="nav-logo" aria-label="IMaliway">
+            <img src="/assets/designer/Logo MWay.png" alt="iMali Way" style="height:32px;width:auto;display:block;">
           </a>
 
           <nav class="nav-links" aria-label="Navegação">
-            <a href="/IMaliWay-Website/" class="nav-link active">Início</a>
-            <a href="/IMaliWay-Website/#tarifario" class="nav-link" id="navTarifario">Tarifário</a>
-            <a href="/IMaliWay-Website/doc2/doc.html" class="nav-link">Documentação</a>
-            <a href="/IMaliWay-Website/contactV2/index.html" class="nav-link">Contactos</a>
+            <a href="/" class="nav-link active">Início</a>
+            <a href="/#tarifario" class="nav-link" id="navTarifario">Tarifário</a>
+            <a href="/doc2/doc.html" class="nav-link">Documentação</a>
+            <a href="/contactV2/index.html" class="nav-link">Contactos</a>
           </nav>
 
           <div class="nav-end">
@@ -202,11 +202,11 @@ class SiteHeader extends HTMLElement {
         </div>
 
         <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-          <a href="/IMaliWay-Website/" class="mob-link">Início</a>
-          <a href="/IMaliWay-Website/#tarifario" class="mob-link" id="mobTarifario">Tarifário</a>
-          <a href="/IMaliWay-Website/doc2/doc.html" class="mob-link">Documentação</a>
+          <a href="/" class="mob-link">Início</a>
+          <a href="/#tarifario" class="mob-link" id="mobTarifario">Tarifário</a>
+          <a href="/doc2/doc.html" class="mob-link">Documentação</a>
           <a href="#link-sandbox" class="mob-link">Sandbox</a>
-          <a href="/IMaliWay-Website/contactV2/index.html" class="mob-link">Contactos</a>
+          <a href="/contactV2/index.html" class="mob-link">Contactos</a>
           <div class="mob-ctas">
             <a href="${signupUrl}" class="btn btn-ghost nav-hidden">Criar conta</a>
             <a href="${loginUrl}" class="btn btn-primary nav-hidden">Iniciar sessão</a>
@@ -270,7 +270,7 @@ class SiteHeader extends HTMLElement {
     });
 
     // Link "Tarifário": se já estivermos na home, faz scroll suave em vez de recarregar a página
-    const isHome = /^\/IMaliWay-Website\/(index\.html)?$/.test(location.pathname);
+    const isHome = /^\/(index\.html)?$/.test(location.pathname);
     [root.getElementById('navTarifario'), root.getElementById('mobTarifario')].forEach(link => {
       if (!link) return;
       link.addEventListener('click', e => {

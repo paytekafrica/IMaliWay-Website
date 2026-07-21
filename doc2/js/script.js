@@ -761,6 +761,18 @@
     }
   }
 
+  // ══════════════════════════════════════════════════════════
+  // TOPBAR CTA
+  // ══════════════════════════════════════════════════════════
+  function setupCTA() {
+    const btn = document.querySelector('.topbar-cta');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        window.location.href = '/Formulario/index.html';
+      });
+    }
+  }
+
   // A sidebar deve começar sempre aberta (não persiste estado colapsado entre
   // carregamentos, incluindo restauro via bfcache ao usar o botão "Voltar").
   function resetSidebarOpen() {
@@ -779,6 +791,7 @@
     setupEnv();
     setupSearch();
     setupCopyButtons();
+    setupCTA();
     setupMobile();
     setupScrollSpy();
     setupCodePanelSwap();

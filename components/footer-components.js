@@ -157,7 +157,7 @@ class SiteFooter extends HTMLElement {
       <footer class="footer">
         <div class="footer-top">
           <div class="footer-brand">
-            <a href="/IMaliWay-Website/" class="nav-logo footer-logo-link" aria-label="IMaliway">
+            <a href="/" class="nav-logo footer-logo-link" aria-label="IMaliway">
               <span class="logo-text"><strong>IMali</strong><em>way</em></span>
             </a>
             <p class="footer-tagline">Liderando a revolução digital em Moçambique com tecnologia de pagamentos robusta e acessível.</p>
@@ -179,16 +179,16 @@ class SiteFooter extends HTMLElement {
 
           <div class="footer-col">
             <h4 class="footer-col-h">PRODUTO</h4>
-            <a href="/IMaliWay-Website/index2.html#metodos" class="footer-lnk">API Checkout</a>
-            <a href="/IMaliWay-Website/developers.html" class="footer-lnk">Checkout.net</a>
+            <a href="/index2.html#metodos" class="footer-lnk">API Checkout</a>
+            <a href="/developers.html" class="footer-lnk">Checkout.net</a>
             <a href="#" class="footer-lnk">Payout API</a>
             <a href="#" class="footer-lnk">Segurança</a>
           </div>
 
           <div class="footer-col">
             <h4 class="footer-col-h">RECURSOS</h4>
-            <a href="/IMaliWay-Website/developers.html" class="footer-lnk">Documentação</a>
-            <a href="/IMaliWay-Website/developers.html#api" class="footer-lnk">API Reference</a>
+            <a href="/developers.html" class="footer-lnk">Documentação</a>
+            <a href="/developers.html#api" class="footer-lnk">API Reference</a>
             <a href="#" class="footer-lnk">Changelog</a>
             <a href="#" class="footer-lnk">Licenciabilidade</a>
           </div>
