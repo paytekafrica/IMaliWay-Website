@@ -41,7 +41,7 @@ class SiteFooter extends HTMLElement {
         }
 
         .logo-text {
-          font-family: var(--font-head, 'Montserrat', sans-serif);
+          font-family: var(--font-head, 'Inter', sans-serif);
           font-size: 1.18rem;
           font-weight: 400;
           color: var(--text-primary, #fff);
@@ -96,7 +96,7 @@ class SiteFooter extends HTMLElement {
         }
 
         .footer-col-h {
-          font-family: var(--font-head, 'Montserrat', sans-serif);
+          font-family: var(--font-head, 'Inter', sans-serif);
           font-size: .6rem;
           font-weight: 800;
           color: rgba(255, 255, 255, .28);
@@ -126,7 +126,7 @@ class SiteFooter extends HTMLElement {
         }
 
         .footer-copy {
-          font-family: var(--font-head, 'Montserrat', sans-serif);
+          font-family: var(--font-head, 'Inter', sans-serif);
           font-size: .6rem;
           font-weight: 700;
           color: rgba(255, 255, 255, .2);
@@ -203,7 +203,7 @@ class SiteFooter extends HTMLElement {
         </div>
 
         <div class="footer-bottom">
-          <p class="footer-copy">© 2025 IMALIWAY® TODOS OS DIREITOS RESERVADOS. PAYTEK TECNOLOGIAS E SERVIÇOS DE PAGAMENTOS, LDA. · LICENÇA Nº 177/2022</p>
+          <p class="footer-copy">© 2025 IMALIWAY® TODOS OS DIREITOS RESERVADOS. PAYTEK TECNOLOGIAS E SERVIÇOS DE PAGAMENTOS, LDA.</p>
           <p class="footer-reg">DESENVOLVIDO E OPERADO SOB REGULAÇÃO DO BANCO DE MOÇAMBIQUE</p>
         </div>
       </footer>
